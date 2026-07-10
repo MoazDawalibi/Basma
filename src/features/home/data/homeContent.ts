@@ -1,3 +1,4 @@
+import  mariaFounder  from '@/assets/images/maria-founder.png';
 import brandMark from '@/assets/images/basma-mark.png'
 import basmaAbout from '@/assets/images/basma-about.png'
 import brandWordmark from '@/assets/images/basma-wordmark.png'
@@ -44,11 +45,11 @@ export const homeContent = {
         imageAlt: 'Moaz Dawalibi seated in a blue chair',
       },
       {
-        name: 'Moaz Dawalibi',
+        name: 'Maria Al-Samman',
         role: 'Graphic Designer, UI/UX Designer & Project Manager',
-        bio: 'With strong experience in graphic design and user experience, Moaz manages the creative and operational direction at Basma.',
-        image: moazFounder,
-        imageAlt: 'Moaz Dawalibi seated in a blue chair',
+        bio: 'With strong experience in graphic design and user experience, Maria manages the creative and operational direction at Basma.',
+        image: mariaFounder,
+        imageAlt: 'Maria Al-Samman seated in a blue chair',
       },
     ],
   },
