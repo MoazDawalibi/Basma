@@ -7,11 +7,39 @@ type Project = (typeof homeContent.work.projects)[number]
 function ProjectCard({ project }: { project: Project }) {
   return (
     <article className={styles.card}>
-      <img className={styles.image} src={project.image} alt={project.imageAlt} loading="eager" decoding="async" />
+      {'projectUrl' in project && project.projectUrl ? (
+        <a
+          href={project.projectUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.imageLink}
+        >
+          <img
+            className={styles.image}
+            src={project.image}
+            alt={project.imageAlt}
+          />
+          <span className={styles.imageOverlay}>View Project</span>
+        </a>
+      ) : (
+        <img
+          className={styles.image}
+          src={project.image}
+          alt={project.imageAlt}
+        />
+      )}
+
       <div className={styles.cardBody}>
         <h3>{project.title}</h3>
-        <p className={styles.description}>{project.description}</p>
-        <p className={styles.featuresLabel}>Key Features :</p>
+
+        <p className={styles.description}>
+          {project.description}
+        </p>
+
+        <p className={styles.featuresLabel}>
+          Key Features :
+        </p>
+
         <ul className={styles.features}>
           {project.features.map((feature) => (
             <li key={feature}>{feature}</li>
@@ -42,7 +70,7 @@ export function WorkSection() {
   return (
     <section id="work" className={styles.section} aria-labelledby="work-title">
       <div className={styles.header}>
-        <h2 id="work-title">
+        <h2 id="work-title" className='gradiant_text'>
           <span>{work.titleStart}</span> <span className={styles.titleAccent}>{work.titleAccent}</span>
         </h2>
         <p>{work.subtitle}</p>

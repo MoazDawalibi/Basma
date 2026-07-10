@@ -17,13 +17,12 @@
   color: #151019;
   font-size: clamp(3rem, 3.9vw, 4.45rem);
   font-weight: 700;
-  line-height: 1.02;
+  /* line-height: 1.02; */
   letter-spacing: 0;
+    
+
 }
 
-.titleAccent {
-  color: #7b438c;
-}
 
 .header p {
   max-width: 58rem;

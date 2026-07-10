@@ -12,8 +12,8 @@ export function ContactSection() {
   return (
     <section id="contact" className={styles.section} aria-labelledby="contact-title">
       <div className={styles.header}>
-        <h2 id="contact-title">
-          <span>{contact.titleStart}</span> <span className={styles.titleAccent}>{contact.titleAccent}</span>
+        <h2 id="contact-title" className="gradiant_text">
+          <span>{contact.titleStart} </span> 
         </h2>
         <p>{contact.subtitle}</p>
       </div>

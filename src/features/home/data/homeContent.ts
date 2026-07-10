@@ -6,11 +6,25 @@ import contactHandshake from '@/assets/Contact-Image.png'
 import footerTentacle from '@/assets/Footer-Image.png'
 import heroArtwork from '@/assets/images/hero-brain.png'
 import moazFounder from '@/assets/images/moaz-founder.png'
-import brightDentProject from '@/assets/images/projects/bright-dent.png'
-import etaxiProject from '@/assets/images/projects/etaxi.png'
-import misbarProject from '@/assets/images/projects/misbar.png'
-import optimumProject from '@/assets/images/projects/optimum.png'
-import qtrendProject from '@/assets/images/projects/qtrend.png'
+import brightDentProject from '@/assets/images/projects/Bright.png'
+import etaxiProject from '@/assets/images/projects/Etaxi.png'
+import misbarProject from '@/assets/images/projects/Misbar.png'
+import optimumProject from '@/assets/images/projects/Optimum.png'
+import qtrendProject from '@/assets/images/projects/Qtrend.png'
+import aheldubaiProject from '@/assets/images/projects/aheldubai.png'
+import talabeeProject from '@/assets/images/projects/talabee.png'
+import recoProject from '@/assets/images/projects/reco.png'
+import recoV2Project from '@/assets/images/projects/recov2.png'
+import zakerProject from '@/assets/images/projects/zaker.png'
+import fsheinProject from '@/assets/images/projects/Fshein.png'
+import karmaProject from '@/assets/images/projects/Karma.png'
+import karmaV2Project from '@/assets/images/projects/Karmav2.png'
+import kareemProject from '@/assets/images/projects/Karim.png'
+import dmProject from '@/assets/images/projects/Dm.png'
+import mnsProject from '@/assets/images/projects/Mns.png'
+import narabiaProject from '@/assets/images/projects/NArabia.png'
+import nokhbehProject from '@/assets/images/projects/Nokhbeh.png'
+import sdnoneProject from '@/assets/images/projects/Sdnone.png'
 
 export const homeContent = {
   brand: {
@@ -93,71 +107,241 @@ export const homeContent = {
       },
     ],
   },
-  work: {
-    titleStart: 'What We’ve',
-    titleAccent: 'Worked On',
-    subtitle: 'A look at the projects we’ve built and the ideas we brought to life.',
-    projects: [
-      {
-        title: 'Qtrend',
-        description: 'A platform for trend analysis and market insights.',
-        image: qtrendProject,
-        imageAlt: 'Qtrend landing page screenshot',
-        features: [
-          'Real-time data visualization',
-          'User-friendly interface for market tracking',
-          'Customizable alerts and notifications',
-        ],
-      },
-      {
-        title: 'Misbar',
-        description: 'Landing page for showcasing creative projects.',
-        image: misbarProject,
-        imageAlt: 'Misbar landing page screenshot',
-        features: [
-          'Sleek and modern design',
-          'Mobile-friendly responsiveness',
-          'Integrated social media links',
-        ],
-      },
-      {
-        title: 'Etaxi',
-        description: 'Landing page for a taxi service provider.',
-        image: etaxiProject,
-        imageAlt: 'Etaxi landing page screenshot',
-        features: [
-          'Service area overview',
-          'Contactless booking features',
-          'Promotional offers display',
-        ],
-      },
-      {
-        title: 'Bright Dent',
-        description: 'Website for a dental clinic offering advanced services.',
-        image: brightDentProject,
-        imageAlt: 'Bright Dent website screenshot',
-        features: [
-          'Appointment booking system',
-          'Detailed service descriptions',
-          'Interactive location map',
-        ],
-      },
-      {
-        title: 'Optimum',
-        description: 'Corporate website for presenting business services.',
-        image: optimumProject,
-        imageAlt: 'Optimum corporate website screenshot',
-        features: [
-          'Comprehensive service overview',
-          'Corporate identity presentation',
-          'Team and contact sections',
-        ],
-      },
+ work: {
+  titleStart: 'What We’ve',
+  titleAccent: 'Worked On',
+  subtitle: 'A look at the projects we’ve built and the ideas we brought to life.',
+
+  projects: [
+  {
+    title: 'Qtrend',
+    description: 'A platform for trend analysis and market insights.',
+    image: qtrendProject,
+    imageAlt: 'Qtrend landing page screenshot',
+    projectUrl: 'https://qtrend.vercel.app/',
+    features: [
+      'Real-time data visualization',
+      'User-friendly interface for market tracking',
+      'Customizable alerts and notifications',
     ],
   },
+  {
+    title: 'Misbar',
+    description: 'Landing page for showcasing creative projects.',
+    image: misbarProject,
+    imageAlt: 'Misbar landing page screenshot',
+    projectUrl: 'https://misbar-landingpage.vercel.app/',
+    features: [
+      'Sleek and modern design',
+      'Mobile-friendly responsiveness',
+      'Integrated social media links',
+    ],
+  },
+  {
+    title: 'Bright Dent',
+    description: 'Website for a dental clinic offering advanced services.',
+    image: brightDentProject,
+    imageAlt: 'Bright Dent website screenshot',
+    projectUrl: 'https://bright-dent-website.vercel.app/',
+    features: [
+      'Appointment booking system',
+      'Detailed service descriptions',
+      'Interactive location map',
+    ],
+  },
+  {
+    title: 'Talabee',
+    description: 'An e-commerce platform for ordering food online.',
+    image: talabeeProject,
+    imageAlt: 'Talabee website screenshot',
+    projectUrl: 'https://talabee.vercel.app/',
+    features: [
+      'Seamless online food ordering',
+      'Secure payment integration',
+      'Real-time order tracking',
+    ],
+  },
+  {
+    title: 'AhlDubai',
+    description: 'Professional medical landing page.',
+    image: aheldubaiProject,
+    imageAlt: 'AhlDubai website screenshot',
+    projectUrl: 'https://medical-landing-page-iota.vercel.app/',
+    features: [
+      'Healthcare services',
+      'Health blog',
+      'Contact & location',
+    ],
+  },
+  {
+    title: 'Reco',
+    description: 'Environmental awareness organization website.',
+    image: recoProject,
+    imageAlt: 'Reco website screenshot',
+    projectUrl: 'https://recoproject.org/',
+    features: [
+      'Environmental education',
+      'Eco-friendly tips',
+      'Community participation',
+    ],
+  },
+  {
+    title: 'Etaxi',
+    description: 'Landing page for a taxi service provider.',
+    image: etaxiProject,
+    imageAlt: 'Etaxi landing page screenshot',
+    projectUrl: 'https://taxi-app-landing-page.vercel.app/',
+    features: [
+      'Service area overview',
+      'Contactless booking',
+      'Promotional offers',
+    ],
+  },
+  {
+    title: 'Zaker',
+    description: 'AI-powered study companion.',
+    image: zakerProject,
+    imageAlt: 'Zaker website screenshot',
+    projectUrl: 'https://zaker.vercel.app/',
+    features: [
+      'AI recommendations',
+      'Interactive quizzes',
+      'Study resources',
+    ],
+  },
+  {
+    title: '4Leaf',
+    description: 'Fashion brand landing page.',
+    image: fsheinProject,
+    imageAlt: '4Leaf landing page screenshot',
+    projectUrl: 'https://4-leaf.vercel.app/',
+    features: [
+      'Collection showcase',
+      'Promotional videos',
+      'Feedback form',
+    ],
+  },
+  {
+    title: 'Reco V2',
+    description: 'Interactive environmental platform.',
+    image: recoV2Project,
+    imageAlt: 'Reco V2 website screenshot',
+    projectUrl: 'https://reco-website.vercel.app/',
+    features: [
+      'Educational resources',
+      'Carbon reduction tools',
+      'Community initiatives',
+    ],
+  },
+  {
+    title: 'KarmaCoin V2',
+    description: 'Advanced cryptocurrency platform.',
+    image: karmaV2Project,
+    imageAlt: 'KarmaCoin V2 screenshot',
+    projectUrl: 'https://new-karma-coin.vercel.app/',
+    features: [
+      'Trading algorithms',
+      'Modern dashboard',
+      'Multi-coin support',
+    ],
+  },
+  {
+    title: 'SDNone',
+    description: 'Professional portfolio website.',
+    image: sdnoneProject,
+    imageAlt: 'SDNone website screenshot',
+    projectUrl: 'https://sdnone.vercel.app/',
+    features: [
+      'Portfolio showcase',
+      'Image gallery',
+      'Contact form',
+    ],
+  },
+  {
+    title: 'Optimum',
+    description: 'Corporate website for an industrial group.',
+    image: optimumProject,
+    imageAlt: 'Optimum website screenshot',
+    features: [
+      'Corporate services',
+      'Company updates',
+      'Team section',
+    ],
+  },
+  {
+    title: 'KarmaCoin',
+    description: 'Cryptocurrency trading platform.',
+    image: karmaProject,
+    imageAlt: 'KarmaCoin screenshot',
+    features: [
+      'Market rates',
+      'Wallet integration',
+      'Transaction history',
+    ],
+  },
+  {
+    title: 'Kareem Ecommerce',
+    description: 'Modern e-commerce platform.',
+    image: kareemProject,
+    imageAlt: 'Kareem Ecommerce screenshot',
+    projectUrl: 'https://ecommerce-structure-six.vercel.app/',
+    features: [
+      'Shopping cart',
+      'Secure payments',
+      'Order tracking',
+    ],
+  },
+  {
+    title: 'DM',
+    description: 'Business collaboration platform.',
+    image: dmProject,
+    imageAlt: 'DM website screenshot',
+    projectUrl: 'https://dm-f9z6.vercel.app/',
+    features: [
+      'Team management',
+      'Chat',
+      'File sharing',
+    ],
+  },
+  {
+    title: 'MNS',
+    description: 'Technology startup landing page.',
+    image: mnsProject,
+    imageAlt: 'MNS website screenshot',
+    projectUrl: 'https://mns-ecommerce.vercel.app/',
+    features: [
+      'Startup showcase',
+      'Investor section',
+      'News blog',
+    ],
+  },
+  {
+    title: 'Nokhbeh Arabia',
+    description: 'Regional business networking platform.',
+    image: narabiaProject,
+    imageAlt: 'Nokhbeh Arabia screenshot',
+    features: [
+      'User profiles',
+      'Discussion forums',
+      'Events',
+    ],
+  },
+  {
+    title: 'Elite Auction',
+    description: 'Premium online auction platform.',
+    image: nokhbehProject,
+    imageAlt: 'Elite Auction screenshot',
+    features: [
+      'Real-time bidding',
+      'Secure payments',
+      'Analytics',
+    ],
+  },
+]
+  },
   contact: {
-    titleStart: 'Let’s Build Something',
-    titleAccent: 'Together',
+    titleStart: 'Let’s Build Something Together',
+    // titleAccent: 'Together',
     subtitle:
       'We believe that every project starts with a simple idea and grows through collaboration. If you’re ready to turn your concept into a clear, functional design, we’re here to make it real. Contact us to start shaping your next project.',
     formTitle: 'Let’s connect constellations',

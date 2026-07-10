@@ -26,3 +26,21 @@ body {
     scroll-behavior: auto;
   }
 }
+
+.gradiant_text{
+  /* Gradient */
+  background: linear-gradient(
+    90deg,
+    #000000 0%,
+    #342042 35%,
+    #88489D 70%,
+    #88489D 100%
+  );
+
+  /* Make the gradient fill the text */
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  /* margin-bottom: 115px; */
+}

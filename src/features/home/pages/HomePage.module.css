@@ -1,6 +1,6 @@
 .page {
   min-height: 100svh;
-  border: var(--frame-border-width) solid var(--color-frame);
+  /* border: var(--frame-border-width) solid var(--color-frame); */
   background: var(--color-white);
 }
 

@@ -87,7 +87,7 @@ export function ServicesSection() {
       </ul>
 
       <div className={styles.header}>
-        <h2 id="services-title">{services.title}</h2>
+        <h2 id="services-title" className='gradiant_text'>{services.title}</h2>
         <p>{services.body}</p>
       </div>
 

@@ -7,7 +7,7 @@ export function AboutBasmaSection() {
   return (
     <section id="about-basma" className={styles.section} aria-labelledby="basma-title">
       <div className={styles.copy}>
-        <h2 id="basma-title">{basma.title}</h2>
+        <h2 id="basma-title" className='gradiant_text'>{basma.title}</h2>
         <p>{basma.body}</p>
       </div>
 
