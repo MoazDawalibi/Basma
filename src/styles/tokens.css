@@ -1,0 +1,17 @@
+:root {
+  --color-white: #ffffff;
+  --color-ink: #070707;
+  --color-frame: #292929;
+  --color-divider: #d8d8d8;
+  --color-focus: #ffd84d;
+  --color-hero-fallback: #9f9f9f;
+  --font-sans: Arial, Helvetica, sans-serif;
+  --header-height: 5.75rem;
+  --header-height-mobile: 4.5rem;
+  --header-gutter: clamp(1.25rem, 3.45vw, 4.125rem);
+  --hero-gutter: clamp(1.125rem, 1.56vw, 1.875rem);
+  --hero-end-gutter: clamp(1.25rem, 2.82vw, 3.375rem);
+  --frame-border-width: 2px;
+  --button-height: 3.4375rem;
+  --button-radius: 0.75rem;
+}

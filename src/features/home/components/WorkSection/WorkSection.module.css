@@ -1,0 +1,253 @@
+.section {
+  overflow: hidden;
+  padding: clamp(5.25rem, 6vw, 6.75rem) 0 1.25rem;
+  background: var(--color-white);
+}
+
+.header {
+  width: min(100% - 2.5rem, 78rem);
+  margin: 0 auto clamp(5rem, 7.2vw, 7.5rem);
+  text-align: center;
+}
+
+.header h2 {
+  margin: 0;
+  color: #151019;
+  font-size: clamp(3.5rem, 4.45vw, 5.25rem);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: 0;
+}
+
+.titleAccent {
+  color: #7b438c;
+}
+
+.header p {
+  margin: 1.65rem 0 0;
+  color: #707070;
+  font-size: clamp(1.25rem, 1.55vw, 1.625rem);
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: 0;
+}
+
+.slider {
+  position: relative;
+}
+
+.track {
+  --work-card-width: clamp(27rem, 32vw, 37.25rem);
+
+  display: grid;
+  grid-auto-columns: var(--work-card-width);
+  grid-auto-flow: column;
+  gap: 2.25rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-padding-inline: clamp(1.25rem, 6.45vw, 7.5rem);
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding: 0 clamp(1.25rem, 6.45vw, 7.5rem) 1.5rem;
+}
+
+.track::-webkit-scrollbar {
+  display: none;
+}
+
+.track:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: -3px;
+}
+
+.card {
+  min-height: clamp(35rem, 38vw, 37.25rem);
+  overflow: hidden;
+  border-radius: 0.75rem;
+  background: var(--color-white);
+  box-shadow: 0 0.35rem 0.65rem rgb(0 0 0 / 22%);
+  scroll-snap-align: start;
+}
+
+.image {
+  width: 100%;
+  height: clamp(15.25rem, 15.8vw, 18.25rem);
+  object-fit: cover;
+  object-position: top center;
+}
+
+.cardBody {
+  padding: 1.45rem 1.35rem 1.75rem;
+}
+
+.card h3 {
+  margin: 0;
+  color: #ffc107;
+  font-size: clamp(1.45rem, 1.6vw, 1.75rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0;
+}
+
+.description {
+  margin: 1.75rem 0 0;
+  color: var(--color-ink);
+  font-size: clamp(1.4rem, 1.45vw, 1.75rem);
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+.featuresLabel {
+  margin: 1.55rem 0 0;
+  color: #ffc107;
+  font-size: clamp(1.35rem, 1.45vw, 1.7rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.features {
+  margin: 1.45rem 0 0;
+  padding-left: 2.25rem;
+  color: var(--color-ink);
+  font-size: clamp(1.25rem, 1.35vw, 1.55rem);
+  line-height: 1.15;
+  letter-spacing: 0;
+}
+
+.controls {
+  position: absolute;
+  right: clamp(1.25rem, 4vw, 4rem);
+  bottom: -3.5rem;
+  display: flex;
+  gap: 0.75rem;
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+.section:hover .controls,
+.controls:focus-within {
+  opacity: 1;
+}
+
+.controls button {
+  width: 2.75rem;
+  height: 2.75rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgb(0 0 0 / 18%);
+  border-radius: 999px;
+  color: var(--color-ink);
+  background: var(--color-white);
+  box-shadow: 0 0.25rem 0.65rem rgb(0 0 0 / 14%);
+  cursor: pointer;
+}
+
+.controls span {
+  display: block;
+  margin-top: -0.15rem;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.controls button:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+@media (max-width: 68rem) {
+  .section {
+    padding-top: 4rem;
+  }
+
+  .header {
+    margin-bottom: 3.75rem;
+  }
+
+  .header h2 {
+    font-size: clamp(2.75rem, 7vw, 4.25rem);
+  }
+
+  .header p {
+    font-size: clamp(1.05rem, 2.5vw, 1.3rem);
+  }
+
+  .track {
+    --work-card-width: min(72vw, 34rem);
+
+    gap: 1.5rem;
+    scroll-padding-inline: 1.5rem;
+    padding-inline: 1.5rem;
+  }
+
+  .card {
+    min-height: 34rem;
+  }
+
+  .controls {
+    display: none;
+  }
+}
+
+@media (max-width: 40rem) {
+  .section {
+    padding-top: 3rem;
+  }
+
+  .header {
+    width: min(100% - 2.25rem, 28rem);
+    margin-bottom: 2.5rem;
+  }
+
+  .header h2 {
+    font-size: clamp(2.1rem, 11vw, 3rem);
+  }
+
+  .header p {
+    margin-top: 1rem;
+    font-size: 1rem;
+  }
+
+  .track {
+    --work-card-width: min(82vw, 22rem);
+
+    gap: 1rem;
+    scroll-padding-inline: 1.125rem;
+    padding-inline: 1.125rem;
+  }
+
+  .card {
+    min-height: 32rem;
+    border-radius: 0.65rem;
+  }
+
+  .image {
+    height: 10.5rem;
+  }
+
+  .cardBody {
+    padding: 1.15rem 1rem 1.35rem;
+  }
+
+  .card h3 {
+    font-size: 1.35rem;
+  }
+
+  .description {
+    margin-top: 1.2rem;
+    font-size: 1.1rem;
+  }
+
+  .featuresLabel {
+    margin-top: 1.2rem;
+    font-size: 1.1rem;
+  }
+
+  .features {
+    margin-top: 1rem;
+    padding-left: 1.45rem;
+    font-size: 1rem;
+    line-height: 1.25;
+  }
+}
