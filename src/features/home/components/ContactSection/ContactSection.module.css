@@ -3,6 +3,7 @@
   overflow: hidden;
   padding: clamp(4.75rem, 7vw, 7.25rem) 0 clamp(4.75rem, 7vw, 6.75rem);
   background: var(--color-white);
+  margin-bottom: 10vh;
 }
 
 .header {
