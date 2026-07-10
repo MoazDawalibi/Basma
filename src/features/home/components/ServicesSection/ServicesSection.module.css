@@ -23,7 +23,7 @@
 
 .stat strong {
   color: #000000;
-  font-size: clamp(5.5rem, 7vw, 8.25rem);
+  font-size: clamp(5rem, 6.4vw, 7.5rem);
   font-weight: 400;
   line-height: 0.9;
   letter-spacing: 0;
@@ -31,7 +31,7 @@
 
 .stat span {
   color: #000000;
-  font-size: clamp(1.25rem, 1.45vw, 1.625rem);
+  font-size: clamp(1.1rem, 1.3vw, 1.45rem);
   font-weight: 400;
   line-height: 1.2;
   letter-spacing: 0;
@@ -46,7 +46,7 @@
 .header h2 {
   margin: 0;
   color: #6f4384;
-  font-size: clamp(3.5rem, 4.45vw, 5.125rem);
+  font-size: clamp(3.15rem, 4vw, 4.6rem);
   font-weight: 700;
   line-height: 1;
   letter-spacing: 0;
@@ -55,7 +55,7 @@
 .header p {
   margin: 1.5rem 0 0;
   color: #6f6f6f;
-  font-size: clamp(1.25rem, 1.55vw, 1.625rem);
+  font-size: clamp(1.1rem, 1.35vw, 1.4rem);
   font-weight: 400;
   line-height: 1.35;
   letter-spacing: 0;
@@ -98,7 +98,7 @@
 .service h3 {
   margin: 0;
   color: #6f4384;
-  font-size: clamp(1.45rem, 1.45vw, 1.75rem);
+  font-size: clamp(1.3rem, 1.3vw, 1.55rem);
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: 0;
@@ -107,7 +107,7 @@
 .service p {
   margin: 0;
   color: #6f6f6f;
-  font-size: clamp(1.1rem, 1.25vw, 1.375rem);
+  font-size: clamp(1rem, 1.1vw, 1.2rem);
   font-weight: 400;
   line-height: 1.35;
   letter-spacing: 0;
@@ -128,7 +128,7 @@
   }
 
   .stat strong {
-    font-size: clamp(4rem, 10vw, 6rem);
+    font-size: clamp(3.65rem, 8.5vw, 5.4rem);
   }
 
   .header {
@@ -168,11 +168,11 @@
   }
 
   .header h2 {
-    font-size: clamp(2.65rem, 13vw, 3.5rem);
+    font-size: clamp(2.25rem, 11vw, 3rem);
   }
 
   .header p {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
 
   .timeline {
@@ -187,14 +187,14 @@
   .service {
     gap: 1rem;
     border-radius: 0.75rem;
-    padding: 1.25rem 1rem;
+    padding: 1.1rem 0.9rem;
   }
 
   .service h3 {
-    font-size: 1.2rem;
+    font-size: 1.08rem;
   }
 
   .service p {
-    font-size: 0.95rem;
+    font-size: 0.88rem;
   }
 }

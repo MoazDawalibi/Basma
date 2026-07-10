@@ -1,0 +1,264 @@
+.section {
+  scroll-margin-top: var(--header-height);
+  overflow: hidden;
+  padding: clamp(4.75rem, 7vw, 7.25rem) 0 clamp(4.75rem, 7vw, 6.75rem);
+  background: var(--color-white);
+}
+
+.header {
+  width: min(100% - 2.5rem, 66rem);
+  margin: 0 auto clamp(5rem, 8.25vw, 8.25rem);
+  text-align: center;
+}
+
+.header h2 {
+  margin: 0;
+  color: #151019;
+  font-size: clamp(3rem, 3.9vw, 4.45rem);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: 0;
+}
+
+.titleAccent {
+  color: #7b438c;
+}
+
+.header p {
+  max-width: 58rem;
+  margin: 1.6rem auto 0;
+  color: #666666;
+  font-size: clamp(1.02rem, 1.2vw, 1.3rem);
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: 0;
+}
+
+.panel {
+  width: min(100% - 2.5rem, 89.5rem);
+  display: grid;
+  grid-template-columns: minmax(22rem, 0.9fr) minmax(22rem, 1fr);
+  gap: clamp(2.5rem, 4.4vw, 4.75rem);
+  align-items: center;
+  margin: 0 auto;
+  padding: clamp(2.2rem, 4vw, 4rem);
+  background: #f4f4f4;
+  box-shadow: 0.16rem 0.22rem 0.28rem rgb(0 0 0 / 24%);
+}
+
+.formWrap {
+  width: min(100%, 34.25rem);
+  justify-self: end;
+}
+
+.formWrap h3 {
+  margin: 0;
+  color: #030303;
+  font-size: clamp(1.75rem, 2vw, 2.2rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 0;
+}
+
+.formWrap p {
+  margin: 0.85rem 0 0;
+  color: #333333;
+  font-size: clamp(0.98rem, 1.05vw, 1.15rem);
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+.form {
+  display: grid;
+  gap: 1rem;
+  margin-top: clamp(2rem, 3vw, 2.75rem);
+}
+
+.nameRow {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.form label {
+  display: grid;
+}
+
+.form label > span {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.form input,
+.form textarea {
+  width: 100%;
+  border: 1px solid #9d9d9d;
+  border-radius: 0;
+  padding: 0.8rem 1.15rem;
+  color: var(--color-ink);
+  background: var(--color-white);
+  font-size: clamp(1rem, 1vw, 1.125rem);
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+.form input {
+  min-height: 3.2rem;
+}
+
+.form textarea {
+  min-height: 7.75rem;
+  resize: vertical;
+}
+
+.form input::placeholder,
+.form textarea::placeholder {
+  color: #777777;
+  opacity: 1;
+}
+
+.form input:focus,
+.form textarea:focus,
+.form button:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.form button {
+  min-height: 3.25rem;
+  margin-top: clamp(1.6rem, 2.6vw, 2.75rem);
+  border: 1px solid #9d9d9d;
+  color: #050505;
+  background: var(--color-white);
+  font-size: clamp(1rem, 1.1vw, 1.2rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0;
+  cursor: pointer;
+  transition:
+    color 180ms ease,
+    background 180ms ease,
+    border-color 180ms ease;
+}
+
+.form button:hover {
+  border-color: var(--color-ink);
+  color: var(--color-white);
+  background: var(--color-ink);
+}
+
+.imageFrame {
+  width: min(100%, 38.75rem);
+  aspect-ratio: 660 / 686;
+  justify-self: start;
+  overflow: hidden;
+  background: var(--color-white);
+}
+
+.imageFrame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+@media (max-width: 68rem) {
+  .section {
+    padding-top: 4.5rem;
+  }
+
+  .header {
+    margin-bottom: 4rem;
+  }
+
+  .header h2 {
+    font-size: clamp(2.25rem, 5.8vw, 3.55rem);
+  }
+
+  .header p {
+    margin-top: 1.15rem;
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+  }
+
+  .panel {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: clamp(1.35rem, 3.4vw, 2.1rem);
+  }
+
+  .formWrap,
+  .imageFrame {
+    width: min(100%, 36rem);
+    justify-self: center;
+  }
+}
+
+@media (max-width: 40rem) {
+  .section {
+    scroll-margin-top: var(--header-height-mobile);
+    padding: 3rem 0 3.5rem;
+  }
+
+  .header {
+    width: min(100% - 2.25rem, 28rem);
+    margin-bottom: 2.25rem;
+  }
+
+  .header h2 {
+    font-size: clamp(1.85rem, 9vw, 2.45rem);
+  }
+
+  .header p {
+    font-size: 0.9rem;
+  }
+
+  .panel {
+    width: min(100% - 2.25rem, 28rem);
+    gap: 1.55rem;
+    padding: 1rem;
+  }
+
+  .formWrap h3 {
+    font-size: clamp(1.35rem, 6.2vw, 1.75rem);
+  }
+
+  .formWrap p {
+    font-size: 0.9rem;
+    line-height: 1.35;
+  }
+
+  .form {
+    gap: 0.75rem;
+    margin-top: 1.45rem;
+  }
+
+  .nameRow {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .form input {
+    min-height: 2.85rem;
+  }
+
+  .form textarea {
+    min-height: 6.5rem;
+  }
+
+  .form button {
+    min-height: 3rem;
+    margin-top: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .form button {
+    transition: none;
+  }
+}

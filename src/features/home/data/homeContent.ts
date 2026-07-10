@@ -1,8 +1,9 @@
 import brandMark from '@/assets/images/basma-mark.png'
 import basmaAbout from '@/assets/images/basma-about.png'
 import brandWordmark from '@/assets/images/basma-wordmark.png'
+import contactHandshake from '@/assets/Contact-Image.png'
+import footerTentacle from '@/assets/Footer-Image.png'
 import heroArtwork from '@/assets/images/hero-brain.png'
-import mariaFounder from '@/assets/images/moaz-founder.png'
 import moazFounder from '@/assets/images/moaz-founder.png'
 import brightDentProject from '@/assets/images/projects/bright-dent.png'
 import etaxiProject from '@/assets/images/projects/etaxi.png'
@@ -36,16 +37,16 @@ export const homeContent = {
     title: 'Meet The Founders Of Basma',
     people: [
       {
-        name: 'moaz Dawalibi',
-        role: 'Graphic Designer, UI/UX Designer & Project Manager',
-        bio: 'With strong experience in graphic design and user experience, Maria manages the creative and operational direction at Basma.',
-        image: mariaFounder,
-        imageAlt: 'Maria Dawalibi seated in a studio chair',
+        name: 'Moaz Dawalibi',
+        role: 'Technical Lead & Project Manager',
+        bio: 'With a strong experience in programming and development, Moaz leads each project with precision and strategy.',
+        image: moazFounder,
+        imageAlt: 'Moaz Dawalibi seated in a blue chair',
       },
       {
         name: 'Moaz Dawalibi',
         role: 'Graphic Designer, UI/UX Designer & Project Manager',
-        bio: 'With strong experience in graphic design and user experience, Maria manages the creative and operational direction at Basma.',
+        bio: 'With strong experience in graphic design and user experience, Moaz manages the creative and operational direction at Basma.',
         image: moazFounder,
         imageAlt: 'Moaz Dawalibi seated in a blue chair',
       },
@@ -149,6 +150,55 @@ export const homeContent = {
           'Comprehensive service overview',
           'Corporate identity presentation',
           'Team and contact sections',
+        ],
+      },
+    ],
+  },
+  contact: {
+    titleStart: 'Let’s Build Something',
+    titleAccent: 'Together',
+    subtitle:
+      'We believe that every project starts with a simple idea and grows through collaboration. If you’re ready to turn your concept into a clear, functional design, we’re here to make it real. Contact us to start shaping your next project.',
+    formTitle: 'Let’s connect constellations',
+    formBody:
+      "Let's align our constellations! Reach out and let the magic of collaboration illuminate our skies.",
+    image: contactHandshake,
+    imageAlt: 'Business handshake over a bright yellow circle',
+    submitLabel: 'Let’s Talk!!',
+  },
+  footer: {
+    brandName: 'Basma',
+    description: 'Descriptive line about what your company does.',
+    artwork: footerTentacle,
+    socialLinks: [
+      { label: 'Instagram', href: 'https://www.instagram.com/', icon: 'instagram' },
+      { label: 'LinkedIn', href: 'https://www.linkedin.com/', icon: 'linkedin' },
+      { label: 'X', href: 'https://x.com/', icon: 'x' },
+    ],
+    columns: [
+      {
+        title: 'Features',
+        links: [
+          { label: 'Core features', href: '#services' },
+          { label: 'Pro experience', href: '#services' },
+          { label: 'Integrations', href: '#services' },
+        ],
+      },
+      {
+        title: 'Learn more',
+        links: [
+          { label: 'Blog', href: '#work' },
+          { label: 'Case studies', href: '#work' },
+          { label: 'Customer stories', href: '#work' },
+          { label: 'Best practices', href: '#about' },
+        ],
+      },
+      {
+        title: 'Support',
+        links: [
+          { label: 'Contact', href: '#contact' },
+          { label: 'Support', href: '#contact' },
+          { label: 'Legal', href: '#top' },
         ],
       },
     ],

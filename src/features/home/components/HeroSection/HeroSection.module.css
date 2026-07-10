@@ -73,13 +73,13 @@
 
 @media (max-width: 68rem) {
   .hero {
-    min-height: clamp(20rem, 36vw, 29rem);
-    background: var(--color-white);
+    min-height: clamp(29rem, 56svh, 39rem);
+    background: var(--color-hero-fallback);
   }
 
   .artwork {
-    object-fit: contain;
-    object-position: 50% 56%;
+    object-fit: cover;
+    object-position: 50% 54%;
   }
 
   .content {
@@ -119,11 +119,11 @@
 
 @media (max-width: 40rem) {
   .hero {
-    min-height: clamp(10.5rem, 48vw, 13.75rem);
+    min-height: clamp(22rem, 54svh, 30rem);
   }
 
   .artwork {
-    object-position: 50% 54%;
+    object-position: 50% 50%;
   }
 
   .scrim {
@@ -134,20 +134,20 @@
 
   .content {
     align-items: center;
-    gap: 0.45rem;
-    padding: 0.75rem 0.75rem 0.9rem;
+    gap: 0.7rem;
+    padding: 1rem 0.875rem 1.25rem;
     text-align: center;
   }
 
   .title {
-    max-width: 18rem;
-    font-size: clamp(1rem, 5.6vw, 1.45rem);
+    max-width: 20rem;
+    font-size: clamp(1.35rem, 7vw, 2rem);
     line-height: 1.05;
   }
 
   .subtitle {
     max-width: 18.5rem;
-    font-size: clamp(0.5rem, 2.8vw, 0.7rem);
+    font-size: clamp(0.72rem, 3.3vw, 0.92rem);
     line-height: 1.25;
   }
 
@@ -165,10 +165,10 @@
 
   .actionButton {
     width: auto;
-    min-height: 1.65rem;
+    min-height: 2rem;
     border-width: 1px;
     border-radius: 0.25rem;
-    padding-inline: 0.45rem;
-    font-size: 0.5rem;
+    padding-inline: 0.55rem;
+    font-size: 0.62rem;
   }
 }
