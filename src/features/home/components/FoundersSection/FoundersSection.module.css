@@ -2,267 +2,388 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
+
+  padding: 0 0 3rem;
   scroll-margin-top: var(--header-height);
-  padding: 2.75rem 0 2.5rem;
+
   background: var(--color-white);
 }
 
+/* Main diagonal yellow background */
 .ribbon {
   position: absolute;
-  inset: 0;
+  inset: 6.6rem 0 0;
   z-index: -1;
+
   width: 100%;
-  height: 100%;
+  height: calc(100% - 6.6rem);
   max-width: none;
+
   object-fit: fill;
+
   pointer-events: none;
+  user-select: none;
 }
 
-.inner {
-  position: relative;
-  z-index: 1;
-  width: min(100%, 58rem);
-  margin: 0 auto;
-}
-
+/* Full-width yellow title bar */
 .titleBand {
   position: relative;
+  z-index: 2;
+
   display: grid;
   width: 100%;
-  min-height: 4rem;
+  min-height: 6.6rem;
   place-items: center;
-  margin: 0 auto 4rem;
-  padding: 0.75rem 1.25rem;
+
+  margin: 0;
+  padding: 1rem 2rem;
 }
 
+/* Background image for the title bar */
 .titleArtwork {
   position: absolute;
   inset: 0;
   z-index: -1;
+
   width: 100%;
   height: 100%;
   max-width: none;
-  object-fit: fill;
+
+  object-fit: cover;
+  object-position: center;
+
   pointer-events: none;
+  user-select: none;
 }
 
 .titleBand h2 {
   margin: 0;
-  color: var(--color-ink);
-  font-size: 1.75rem;
-  font-weight: 700;
-  line-height: 1.1;
+
+  color: #000;
+  font-size: clamp(3rem, 3.7vw, 4rem);
+  font-weight: 500;
+  line-height: 1;
   text-align: center;
-  letter-spacing: 0;
+  letter-spacing: -0.035em;
+}
+
+/* Main centered content */
+.inner {
+  position: relative;
+  z-index: 1;
+
+  width: min(calc(100% - 4rem), 96rem);
+  margin: 0 auto;
 }
 
 .list {
-  display: grid;
-  gap: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
+/*
+  Default profile:
+  image on the left
+  text on the right
+*/
 .profile {
-  /* width: min(78%, 43rem); */
   display: grid;
-  grid-template-columns: 13.25rem minmax(0, 1fr);
+  grid-template-columns: 27.5rem minmax(0, 1fr);
   align-items: center;
-  gap: 2.25rem;
-  margin: 0 auto 0 8%;
+  column-gap: clamp(4rem, 7vw, 8rem);
+
+  width: 100%;
+  min-height: 38rem;
+  margin: 0;
 }
 
+/*
+  Mirrored profile:
+  text on the left
+  image on the right
+*/
 .profileMirrored {
-  width: min(74%, 40rem);
-  grid-template-columns: minmax(0, 1fr) 13.25rem;
-  margin: 0 8% 0 auto;
+  grid-template-columns: minmax(0, 1fr) 27.5rem;
 }
 
-.profileMirrored .portrait {
-  order: 2;
+/* Default image position */
+.profile .portrait {
+  grid-column: 1;
+  grid-row: 1;
+
+  justify-self: start;
 }
 
+/* Default text position */
+.profile .copy {
+  grid-column: 2;
+  grid-row: 1;
+
+  justify-self: start;
+  text-align: left;
+}
+
+/* Mirrored text position */
 .profileMirrored .copy {
-  order: 1;
+  grid-column: 1;
+  grid-row: 1;
+
   justify-self: end;
   text-align: right;
 }
 
-.portrait {
-  width: 13.25rem;
-  justify-self: start;
-}
-
+/* Mirrored image position */
 .profileMirrored .portrait {
+  grid-column: 2;
+  grid-row: 1;
+
   justify-self: end;
 }
 
+/* Founder image */
+.portrait {
+  display: block;
+
+  width: 27.5rem;
+  height: 34.5rem;
+
+  object-fit: cover;
+  object-position: center;
+
+  border-radius: 0.75rem;
+
+  box-shadow:
+    0.5rem 0.65rem 0 0.15rem rgb(255 255 255 / 95%),
+    0.8rem 1rem 1.1rem rgb(0 0 0 / 20%);
+}
+
+/* Founder text */
 .copy {
-  max-width: 24rem;
+  width: 100%;
+  max-width: 43rem;
 }
 
 .copy h3 {
   margin: 0;
-  color: #5b3270;
-  font-size: 1.05rem;
+
+  color: #542865;
+  font-size: 2.05rem;
   font-weight: 700;
-  line-height: 1.08;
-  letter-spacing: 0;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
 }
 
 .role {
-  margin: 0.2rem 0 0;
-  color: var(--color-ink);
-  font-size: 0.88rem;
-  font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: 0;
+  margin: 0.6rem 0 0;
+
+  color: #050505;
+  font-size: 1.65rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
 }
 
 .bio {
-  margin: 0.28rem 0 0;
-  color: #6d6d6d;
-  font-size: 0.64rem;
+  max-width: 43rem;
+  margin: 0.85rem 0 0;
+
+  color: #707070;
+  font-size: 1rem;
   font-weight: 400;
-  line-height: 1.35;
-  letter-spacing: 0;
+  line-height: 1.45;
 }
 
-@media (max-width: 68rem) {
-  .section {
-    padding: 2.35rem 0 2rem;
-  }
-
+/* Medium desktop and tablet */
+@media (max-width: 75rem) {
   .inner {
-    width: min(100%, 48rem);
-  }
-
-  .titleBand {
-    min-height: 3.4rem;
-    margin-bottom: 3.25rem;
-  }
-
-  .titleBand h2 {
-    font-size: 1.45rem;
-  }
-
-  .list {
-    gap: 3.1rem;
+    width: min(calc(100% - 3rem), 68rem);
   }
 
   .profile {
-    width: min(80%, 36rem);
-    grid-template-columns: 10rem minmax(0, 1fr);
-    gap: 1.75rem;
+    grid-template-columns: 21rem minmax(0, 1fr);
+    column-gap: 3rem;
+    min-height: 31rem;
   }
 
   .profileMirrored {
-    width: min(76%, 34rem);
-    grid-template-columns: minmax(0, 1fr) 10rem;
+    grid-template-columns: minmax(0, 1fr) 21rem;
   }
 
   .portrait {
-    width: 10rem;
+    width: 21rem;
+    height: 27rem;
   }
 
   .copy h3 {
-    font-size: 0.88rem;
+    font-size: 1.65rem;
   }
 
   .role {
-    font-size: 0.75rem;
-  }
-
-  .bio {
-    font-size: 0.5rem;
-  }
-}
-
-@media (max-width: 46rem) {
-  .section {
-    padding: 1.35rem 0 1rem;
-  }
-
-  .titleBand {
-    min-height: 2.35rem;
-    margin-bottom: 1.6rem;
-    padding: 0.5rem 0.75rem;
-  }
-
-  .titleBand h2 {
     font-size: 1.25rem;
   }
 
-  .list {
-    gap: 0.95rem;
-  }
-
-  .profile {
-    width: min(82%, 24rem);
-    grid-template-columns: 7.2rem minmax(0, 1fr);
-    gap: 1.15rem;
-    margin-left: 8%;
-  }
-
-  .profileMirrored {
-    width: min(76%, 22.5rem);
-    grid-template-columns: minmax(0, 1fr) 7.2rem;
-    margin-right: 8%;
-  }
-
-  .portrait {
-    width: 7.2rem;
-  }
-
-  .copy h3 {
-    font-size: 0.62rem;
-  }
-
-  .role {
-    margin-top: 0.13rem;
-    font-size: 0.54rem;
-  }
-
   .bio {
-    margin-top: 0.16rem;
-    font-size: 0.36rem;
-    line-height: 1.32;
+    font-size: 0.9rem;
   }
 }
 
-@media (max-width: 30rem) {
+/* Small tablet */
+@media (max-width: 56rem) {
   .section {
-    scroll-margin-top: var(--header-height-mobile);
+    padding-bottom: 4rem;
+  }
+
+  .titleBand {
+    min-height: 5rem;
   }
 
   .titleBand h2 {
-    font-size: 1.05rem;
+    font-size: clamp(2rem, 5vw, 2.8rem);
   }
 
-  .profile {
-    width: min(88%, 21rem);
-    grid-template-columns: 6.25rem minmax(0, 1fr);
-    gap: 0.85rem;
-    margin-left: 6%;
+  .ribbon {
+    inset: 5rem 0 0;
+    height: calc(100% - 5rem);
+    object-fit: cover;
+    object-position: center;
   }
 
+  .inner {
+    width: min(calc(100% - 2.5rem), 42rem);
+  }
+
+  .list {
+    gap: 5rem;
+    padding-top: 4rem;
+  }
+
+  .profile,
   .profileMirrored {
-    width: min(84%, 20rem);
-    grid-template-columns: minmax(0, 1fr) 6.25rem;
-    margin-right: 6%;
+    grid-template-columns: 1fr;
+    min-height: auto;
+    row-gap: 2rem;
+  }
+
+  .profile .portrait,
+  .profileMirrored .portrait {
+    grid-column: 1;
+    grid-row: 1;
+
+    justify-self: center;
+  }
+
+  .profile .copy,
+  .profileMirrored .copy {
+    grid-column: 1;
+    grid-row: 2;
+
+    justify-self: center;
+    max-width: 35rem;
+
+    text-align: center;
   }
 
   .portrait {
-    width: 6.25rem;
+    width: min(100%, 22rem);
+    height: auto;
+    aspect-ratio: 0.79;
+
+    object-fit: cover;
+  }
+}
+
+/* Mobile */
+@media (max-width: 36rem) {
+  .section {
+    padding-bottom: 3rem;
+    scroll-margin-top: var(--header-height-mobile);
+  }
+
+  .titleBand {
+    min-height: 4.2rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .titleBand h2 {
+    font-size: clamp(1.55rem, 7vw, 2rem);
+  }
+
+  .ribbon {
+    inset: 4.2rem 0 0;
+    height: calc(100% - 4.2rem);
+
+    object-position: center;
+  }
+
+  .inner {
+    width: min(calc(100% - 2rem), 30rem);
+  }
+
+  .list {
+    gap: 4rem;
+    padding-top: 3rem;
+  }
+
+  .profile,
+  .profileMirrored {
+    row-gap: 1.5rem;
+  }
+
+  .portrait {
+    width: min(82vw, 20rem);
+
+    border-radius: 0.65rem;
+
+    box-shadow:
+      0.35rem 0.45rem 0 0.1rem rgb(255 255 255 / 95%),
+      0.55rem 0.7rem 0.9rem rgb(0 0 0 / 18%);
   }
 
   .copy h3 {
-    font-size: 0.58rem;
+    font-size: 1.4rem;
   }
 
   .role {
-    font-size: 0.48rem;
+    margin-top: 0.45rem;
+    font-size: 1.05rem;
   }
 
   .bio {
-    font-size: 0.33rem;
+    margin-top: 0.65rem;
+    font-size: 0.87rem;
+    line-height: 1.5;
+  }
+}
+
+/* Very small mobile */
+@media (max-width: 25rem) {
+  .titleBand h2 {
+    font-size: 1.35rem;
+  }
+
+  .inner {
+    width: calc(100% - 1.5rem);
+  }
+
+  .list {
+    gap: 3.5rem;
+    padding-top: 2.5rem;
+  }
+
+  .portrait {
+    width: min(84vw, 18rem);
+  }
+
+  .copy h3 {
+    font-size: 1.25rem;
+  }
+
+  .role {
+    font-size: 0.95rem;
+  }
+
+  .bio {
+    font-size: 0.82rem;
   }
 }
