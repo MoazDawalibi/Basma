@@ -62,7 +62,7 @@
 }
 
 .profile {
-  width: min(78%, 43rem);
+  /* width: min(78%, 43rem); */
   display: grid;
   grid-template-columns: 13.25rem minmax(0, 1fr);
   align-items: center;

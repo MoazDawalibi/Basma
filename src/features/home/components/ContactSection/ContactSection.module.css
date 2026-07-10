@@ -221,7 +221,7 @@
   .panel {
     width: min(100% - 2.25rem, 28rem);
     gap: 1.55rem;
-    padding: 1rem;
+    padding: 2rem;
   }
 
   .formWrap h3 {

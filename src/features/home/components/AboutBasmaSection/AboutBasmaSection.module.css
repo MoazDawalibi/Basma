@@ -5,7 +5,7 @@
   background: linear-gradient(90deg, #ffffff 0%, #ffffff 54%, #f3f3f3 100%);
 }
 
-.section::before {
+/* .section::before {
   position: absolute;
   top: -15rem;
   bottom: -12rem;
@@ -15,7 +15,7 @@
   content: '';
   transform: rotate(42deg);
   transform-origin: top center;
-}
+} */
 
 .copy {
   position: relative;
