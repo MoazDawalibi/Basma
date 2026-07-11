@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { HomePage } from '@/features/home/pages/HomePage'
+import { LocaleProvider } from '@/i18n/LocaleProvider'
 
 export function App() {
   useEffect(() => {
@@ -20,5 +21,9 @@ export function App() {
     return () => window.clearTimeout(timeoutId)
   }, [])
 
-  return <HomePage />
+  return (
+    <LocaleProvider>
+      <HomePage />
+    </LocaleProvider>
+  )
 }

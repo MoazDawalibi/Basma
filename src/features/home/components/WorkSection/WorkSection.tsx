@@ -1,12 +1,13 @@
 import { useRef } from 'react'
-import { homeContent } from '@/features/home/data/homeContent'
+import type { HomeContent } from '@/features/home/data/homeContent'
+import { useLocale } from '@/i18n/useLocale'
 import styles from './WorkSection.module.css'
 
-type Project = (typeof homeContent.work.projects)[number]
+type Project = HomeContent['work']['projects'][number]
 
-function ProjectCard({ project }: { project: Project }) {
+function ProjectCard({ project, index, viewProject, keyFeatures }: { project: Project; index: number; viewProject: string; keyFeatures: string }) {
   return (
-    <article className={styles.card}>
+    <article data-reveal data-reveal-delay={Math.min(index, 4)} className={styles.card}>
       {'projectUrl' in project && project.projectUrl ? (
         <a
           href={project.projectUrl}
@@ -19,7 +20,7 @@ function ProjectCard({ project }: { project: Project }) {
             src={project.image}
             alt={project.imageAlt}
           />
-          <span className={styles.imageOverlay}>View Project</span>
+          <span className={styles.imageOverlay}>{viewProject}</span>
         </a>
       ) : (
         <img
@@ -37,7 +38,7 @@ function ProjectCard({ project }: { project: Project }) {
         </p>
 
         <p className={styles.featuresLabel}>
-          Key Features :
+          {keyFeatures}
         </p>
 
         <ul className={styles.features}>
@@ -51,7 +52,7 @@ function ProjectCard({ project }: { project: Project }) {
 }
 
 export function WorkSection() {
-  const { work } = homeContent
+  const { content: { work, ui }, direction } = useLocale()
   const trackRef = useRef<HTMLDivElement>(null)
 
   const scrollSlider = (direction: -1 | 1) => {
@@ -64,31 +65,39 @@ export function WorkSection() {
     const firstCard = track.querySelector<HTMLElement>(`.${styles.card}`)
     const distance = firstCard ? firstCard.offsetWidth + 36 : track.clientWidth * 0.8
 
-    track.scrollBy({ left: direction * distance, behavior: 'smooth' })
+    const directionMultiplier = getComputedStyle(track).direction === 'rtl' ? -1 : 1
+
+    track.scrollBy({ left: direction * distance * directionMultiplier, behavior: 'smooth' })
   }
 
   return (
     <section id="work" className={styles.section} aria-labelledby="work-title">
-      <div className={styles.header}>
+      <div data-reveal className={styles.header}>
         <h2 id="work-title" className='gradiant_text'>
           <span>{work.titleStart}</span> <span className={styles.titleAccent}>{work.titleAccent}</span>
         </h2>
         <p>{work.subtitle}</p>
       </div>
 
-      <div className={styles.slider} aria-label="Project slider">
+      <div className={styles.slider} aria-label={ui.projectSlider}>
         <div ref={trackRef} className={styles.track} tabIndex={0}>
-          {work.projects.map((project) => (
-            <ProjectCard key={project.title} project={project} />
+          {work.projects.map((project, index) => (
+            <ProjectCard
+              key={project.title}
+              project={project}
+              index={index}
+              viewProject={ui.viewProject}
+              keyFeatures={ui.keyFeatures}
+            />
           ))}
         </div>
 
-        <div className={styles.controls} aria-label="Project slider controls">
-          <button type="button" aria-label="Previous project" onClick={() => scrollSlider(-1)}>
-            <span aria-hidden="true">‹</span>
+        <div className={styles.controls} aria-label={ui.projectSliderControls}>
+          <button data-reveal type="button" aria-label={ui.previousProject} onClick={() => scrollSlider(-1)}>
+            <span aria-hidden="true">{direction === 'rtl' ? '›' : '‹'}</span>
           </button>
-          <button type="button" aria-label="Next project" onClick={() => scrollSlider(1)}>
-            <span aria-hidden="true">›</span>
+          <button data-reveal data-reveal-delay="1" type="button" aria-label={ui.nextProject} onClick={() => scrollSlider(1)}>
+            <span aria-hidden="true">{direction === 'rtl' ? '‹' : '›'}</span>
           </button>
         </div>
       </div>

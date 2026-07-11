@@ -1,9 +1,9 @@
 import type { FormEvent } from 'react'
-import { homeContent } from '@/features/home/data/homeContent'
+import { useHomeContent } from '@/i18n/useLocale'
 import styles from './ContactSection.module.css'
 
 export function ContactSection() {
-  const { contact } = homeContent
+  const { contact, ui } = useHomeContent()
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -11,7 +11,7 @@ export function ContactSection() {
 
   return (
     <section id="contact" className={styles.section} aria-labelledby="contact-title">
-      <div className={styles.header}>
+      <div data-reveal className={styles.header}>
         <h2 id="contact-title" className="gradiant_text">
           <span>{contact.titleStart} </span> 
         </h2>
@@ -19,42 +19,42 @@ export function ContactSection() {
       </div>
 
       <div className={styles.panel}>
-        <div className={styles.formWrap}>
+        <div data-reveal className={styles.formWrap}>
           <h3>{contact.formTitle}</h3>
           <p>{contact.formBody}</p>
 
           <form className={styles.form} onSubmit={handleSubmit}>
             <div className={styles.nameRow}>
               <label>
-                <span>First Name</span>
-                <input name="firstName" type="text" placeholder="First Name" autoComplete="given-name" />
+                <span>{ui.firstName}</span>
+                <input name="firstName" type="text" placeholder={ui.firstName} autoComplete="given-name" />
               </label>
               <label>
-                <span>Last Name</span>
-                <input name="lastName" type="text" placeholder="Last Name" autoComplete="family-name" />
+                <span>{ui.lastName}</span>
+                <input name="lastName" type="text" placeholder={ui.lastName} autoComplete="family-name" />
               </label>
             </div>
 
             <label>
-              <span>Email</span>
-              <input name="email" type="email" placeholder="Email" autoComplete="email" />
+              <span>{ui.email}</span>
+              <input name="email" type="email" placeholder={ui.email} autoComplete="email" />
             </label>
 
             <label>
-              <span>Phone Number</span>
-              <input name="phone" type="tel" placeholder="Phone Number" autoComplete="tel" />
+              <span>{ui.phoneNumber}</span>
+              <input name="phone" type="tel" placeholder={ui.phoneNumber} autoComplete="tel" />
             </label>
 
             <label>
-              <span>Message</span>
-              <textarea name="message" placeholder="Message" rows={5} />
+              <span>{ui.message}</span>
+              <textarea name="message" placeholder={ui.message} rows={5} />
             </label>
 
-            <button type="submit">{contact.submitLabel}</button>
+            <button data-reveal data-reveal-delay="1" type="submit">{contact.submitLabel}</button>
           </form>
         </div>
 
-        <div className={styles.imageFrame}>
+        <div data-reveal data-reveal-delay="1" className={styles.imageFrame}>
           <img src={contact.image} alt={contact.imageAlt} loading="lazy" decoding="async" />
         </div>
       </div>

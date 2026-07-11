@@ -18,7 +18,7 @@ export function LinkButton({
   const classes = [styles.root, styles[variant], className].filter(Boolean).join(' ')
 
   return (
-    <a className={classes} {...anchorProps}>
+    <a data-reveal className={classes} {...anchorProps}>
       {children}
     </a>
   )

@@ -1,9 +1,10 @@
 import foundersNav from '@/assets/Founders-nav.png'
 import foundersRibbon from '@/assets/Founders-nav2.png'
-import { homeContent } from '@/features/home/data/homeContent'
+import type { HomeContent } from '@/features/home/data/homeContent'
+import { useHomeContent } from '@/i18n/useLocale'
 import styles from './FoundersSection.module.css'
 
-type Founder = (typeof homeContent.founders.people)[number]
+type Founder = HomeContent['founders']['people'][number]
 
 type FounderProfileProps = {
   founder: Founder
@@ -20,7 +21,7 @@ function FounderProfile({
         mirrored ? styles.profileMirrored : ''
       }`}
     >
-      <div className={styles.copy}>
+      <div data-reveal data-reveal-delay="1" className={styles.copy}>
         <h3>{founder.name}</h3>
 
         <p className={styles.role}>
@@ -33,6 +34,7 @@ function FounderProfile({
       </div>
 
       <img
+        data-reveal
         className={styles.portrait}
         src={founder.image}
         alt={founder.imageAlt}
@@ -44,7 +46,7 @@ function FounderProfile({
 }
 
 export function FoundersSection() {
-  const { founders } = homeContent
+  const { founders } = useHomeContent()
 
   return (
     <section
@@ -67,7 +69,7 @@ export function FoundersSection() {
           aria-hidden="true"
         />
 
-        <h2 id="founders-title">
+        <h2 data-reveal id="founders-title">
           {founders.title}
         </h2>
       </div>
@@ -76,7 +78,7 @@ export function FoundersSection() {
         <div className={styles.list}>
           {founders.people.map((founder, index) => (
             <FounderProfile
-              key={founder.name}
+              key={index}
               founder={founder}
               mirrored={index % 2 === 0}
             />

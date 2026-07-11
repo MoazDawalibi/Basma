@@ -27,6 +27,33 @@ import nokhbehProject from '@/assets/images/projects/Nokhbeh.png'
 import sdnoneProject from '@/assets/images/projects/Sdnone.png'
 
 export const homeContent = {
+  ui: {
+    skipToContent: 'Skip to content',
+    primaryNavigation: 'Primary navigation',
+    projectActions: 'Project actions',
+    statistics: 'Basma statistics',
+    projectSlider: 'Project slider',
+    projectSliderControls: 'Project slider controls',
+    previousProject: 'Previous project',
+    nextProject: 'Next project',
+    viewProject: 'View Project',
+    firstName: 'First Name',
+    lastName: 'Last Name',
+    email: 'Email',
+    phoneNumber: 'Phone Number',
+    message: 'Message',
+    socialLinks: 'Social links',
+    footerNavigation: 'Footer navigation',
+    home: 'home',
+    languageSelection: 'Language selection',
+    lightMode: 'Light',
+    darkMode: 'Dark',
+    switchToLightMode: 'Switch to light mode',
+    switchToDarkMode: 'Switch to dark mode',
+    keyFeatures: 'Key Features:',
+    pageTitle: 'Basma — Where Ideas Become Real',
+    pageDescription: 'Basma turns ambitious ideas into thoughtful, effective digital products.',
+  },
   brand: {
     name: 'Basma',
     mark: brandMark,
@@ -71,6 +98,7 @@ export const homeContent = {
     title: 'Basma',
     body: 'Basma creates a new step for your project and leaves a lifelong impact. We turn your idea into a realistic project that reaches people and increases your income and profit.',
     artwork: basmaAbout,
+    imageAlt: 'Basma visual identity',
   },
   stats: [
     { value: 6, suffix: '+', label: 'years of experience' },
@@ -389,3 +417,15 @@ export const homeContent = {
     ],
   },
 } as const
+
+type DeepWiden<T> = T extends string
+  ? string
+  : T extends number
+    ? number
+    : T extends readonly (infer Item)[]
+      ? ReadonlyArray<DeepWiden<Item>>
+      : T extends object
+        ? { [Key in keyof T]: Key extends 'icon' ? T[Key] : DeepWiden<T[Key]> }
+        : T
+
+export type HomeContent = DeepWiden<typeof homeContent>

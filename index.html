@@ -9,6 +9,24 @@
       content="Basma turns ambitious ideas into thoughtful, effective digital products."
     />
     <meta name="theme-color" content="#ffffff" />
+    <script>
+      (() => {
+        const requestedLocale = new URLSearchParams(window.location.search).get('lang')
+        const savedLocale = localStorage.getItem('basma-locale')
+        const locale = requestedLocale === 'ar' || requestedLocale === 'en'
+          ? requestedLocale
+          : savedLocale === 'ar' ? 'ar' : 'en'
+        const savedTheme = localStorage.getItem('basma-theme')
+        const theme = savedTheme === 'light' || savedTheme === 'dark'
+          ? savedTheme
+          : window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+
+        document.documentElement.lang = locale
+        document.documentElement.dir = locale === 'ar' ? 'rtl' : 'ltr'
+        document.documentElement.dataset.theme = theme
+        document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#101014' : '#ffffff'
+      })()
+    </script>
     <title>Basma — Where Ideas Become Real</title>
   </head>
   <body>

@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+# Local backend/dashboard workspaces
+basma-backend/
+basma-dashboard/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

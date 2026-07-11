@@ -1,4 +1,4 @@
-import { homeContent } from '@/features/home/data/homeContent'
+import { useHomeContent } from '@/i18n/useLocale'
 import styles from './SiteFooter.module.css'
 
 type IconProps = {
@@ -44,20 +44,28 @@ const socialIcons = {
 } as const
 
 export function SiteFooter() {
-  const { footer } = homeContent
+  const { footer, ui } = useHomeContent()
 
   return (
     <footer className={styles.footer} aria-labelledby="footer-title">
-      <img className={styles.artwork} src={footer.artwork} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+      <img
+        data-reveal="from-left"
+        className={styles.artwork}
+        src={footer.artwork}
+        alt=""
+        aria-hidden="true"
+        loading="lazy"
+        decoding="async"
+      />
 
       <div className={styles.inner}>
-        <div className={styles.brandBlock}>
+        <div data-reveal className={styles.brandBlock}>
           <a id="footer-title" className={styles.brandName} href="#top">
             {footer.brandName}
           </a>
           <p className={styles.description}>{footer.description}</p>
 
-          <ul className={styles.socialList} aria-label="Social links">
+          <ul className={styles.socialList} aria-label={ui.socialLinks}>
             {footer.socialLinks.map((item) => {
               const Icon = socialIcons[item.icon]
               const isExternal = item.href.startsWith('http')
@@ -79,9 +87,14 @@ export function SiteFooter() {
           </ul>
         </div>
 
-        <nav className={styles.linksGrid} aria-label="Footer navigation">
-          {footer.columns.map((column) => (
-            <div key={column.title} className={styles.linkColumn}>
+        <nav className={styles.linksGrid} aria-label={ui.footerNavigation}>
+          {footer.columns.map((column, index) => (
+            <div
+              key={index}
+              data-reveal
+              data-reveal-delay={Math.min(index + 1, 4)}
+              className={styles.linkColumn}
+            >
               <h2>{column.title}</h2>
               <ul>
                 {column.links.map((link) => (

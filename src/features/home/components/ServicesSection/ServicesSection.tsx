@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
-import { homeContent } from '@/features/home/data/homeContent'
+import type { HomeContent } from '@/features/home/data/homeContent'
+import { useHomeContent } from '@/i18n/useLocale'
 import styles from './ServicesSection.module.css'
 
-type Stat = (typeof homeContent.stats)[number]
+type Stat = HomeContent['stats'][number]
 
-function AnimatedStat({ stat, shouldAnimate }: { stat: Stat; shouldAnimate: boolean }) {
+function AnimatedStat({ stat, shouldAnimate, index }: { stat: Stat; shouldAnimate: boolean; index: number }) {
   const [displayValue, setDisplayValue] = useState(0)
 
   useEffect(() => {
@@ -41,7 +42,7 @@ function AnimatedStat({ stat, shouldAnimate }: { stat: Stat; shouldAnimate: bool
   }, [shouldAnimate, stat.value])
 
   return (
-    <li className={styles.stat}>
+    <li data-reveal data-reveal-delay={Math.min(index, 4)} className={styles.stat}>
       <strong>
         {displayValue}
         {stat.suffix}
@@ -52,7 +53,7 @@ function AnimatedStat({ stat, shouldAnimate }: { stat: Stat; shouldAnimate: bool
 }
 
 export function ServicesSection() {
-  const { services, stats } = homeContent
+  const { services, stats, ui } = useHomeContent()
   const statsRef = useRef<HTMLUListElement>(null)
   const [shouldAnimateStats, setShouldAnimateStats] = useState(false)
 
@@ -80,20 +81,25 @@ export function ServicesSection() {
 
   return (
     <section id="services" className={styles.section} aria-labelledby="services-title">
-      <ul ref={statsRef} className={styles.stats} aria-label="Basma statistics">
-        {stats.map((stat) => (
-          <AnimatedStat key={stat.label} stat={stat} shouldAnimate={shouldAnimateStats} />
+      <ul ref={statsRef} className={styles.stats} aria-label={ui.statistics}>
+        {stats.map((stat, index) => (
+          <AnimatedStat key={index} stat={stat} shouldAnimate={shouldAnimateStats} index={index} />
         ))}
       </ul>
 
-      <div className={styles.header}>
+      <div data-reveal className={styles.header}>
         <h2 id="services-title" className='gradiant_text'>{services.title}</h2>
         <p>{services.body}</p>
       </div>
 
       <ol className={styles.timeline}>
         {services.items.map((service, index) => (
-          <li key={service.title} className={styles.service}>
+          <li
+            key={index}
+            data-reveal
+            data-reveal-delay={Math.min(index, 4)}
+            className={styles.service}
+          >
             <h3>
               {index + 1}. {service.title}
             </h3>

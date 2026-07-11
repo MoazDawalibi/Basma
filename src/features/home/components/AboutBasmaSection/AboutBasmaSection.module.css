@@ -2,7 +2,7 @@
   position: relative;
   overflow: hidden;
   padding: clamp(5rem, 8vw, 8rem) clamp(1.25rem, 8.95vw, 10.3125rem) 4.5rem;
-  background: linear-gradient(90deg, #ffffff 0%, #ffffff 54%, #f3f3f3 100%);
+  background: linear-gradient(90deg, var(--color-surface) 0%, var(--color-surface) 54%, var(--color-surface-soft) 100%);
 }
 
 /* .section::before {
@@ -27,7 +27,7 @@
 
 .copy h2 {
   margin: 0;
-  color: #5b3270;
+  color: var(--color-accent);
   font-size: clamp(3.1rem, 4vw, 4.65rem);
   font-weight: 700;
   line-height: 1;
@@ -36,7 +36,7 @@
 
 .copy p {
   margin: 1.5rem 0 0;
-  color: #6d6d6d;
+  color: var(--color-text-muted);
   font-size: clamp(1.1rem, 1.35vw, 1.4rem);
   font-weight: 400;
   line-height: 1.35;

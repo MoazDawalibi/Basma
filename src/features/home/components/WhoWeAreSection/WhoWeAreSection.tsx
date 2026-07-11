@@ -1,18 +1,18 @@
 import { LinkButton } from '@/components/ui/LinkButton/LinkButton'
-import { homeContent } from '@/features/home/data/homeContent'
+import { useHomeContent } from '@/i18n/useLocale'
 import styles from './WhoWeAreSection.module.css'
 
 export function WhoWeAreSection() {
-  const { about } = homeContent
+  const { about } = useHomeContent()
 
   return (
     <section id="about" className={styles.section} aria-labelledby="about-title">
       <div className={styles.inner}>
-        <h2 id="about-title" className={styles.title}>
+        <h2 data-reveal id="about-title" className={styles.title}>
           {about.title}
         </h2>
-        <p className={styles.body}>{about.body}</p>
-        <LinkButton className={styles.action} href={about.action.href} variant="dark">
+        <p data-reveal data-reveal-delay="1" className={styles.body}>{about.body}</p>
+        <LinkButton data-reveal-delay="2" className={styles.action} href={about.action.href} variant="dark">
           {about.action.label}
         </LinkButton>
       </div>

@@ -1,13 +1,14 @@
 import { LinkButton } from '@/components/ui/LinkButton/LinkButton'
-import { homeContent } from '@/features/home/data/homeContent'
+import { useHomeContent } from '@/i18n/useLocale'
 import styles from './HeroSection.module.css'
 
 export function HeroSection() {
-  const { hero } = homeContent
+  const { hero, ui } = useHomeContent()
 
   return (
     <section className={styles.hero} aria-labelledby="hero-title">
       <img
+        data-reveal
         className={styles.artwork}
         src={hero.artwork}
         alt=""
@@ -17,18 +18,18 @@ export function HeroSection() {
       <div className={styles.scrim} aria-hidden="true" />
 
       <div className={styles.content}>
-        <h1 id="hero-title" className={styles.title}>
+        <h1 data-reveal id="hero-title" className={styles.title}>
           {hero.title}
         </h1>
 
         <div className={styles.lowerRow}>
-          <p className={styles.subtitle}>{hero.subtitle}</p>
+          <p data-reveal data-reveal-delay="1" className={styles.subtitle}>{hero.subtitle}</p>
 
-          <div className={styles.actions} aria-label="Project actions">
-            <LinkButton className={styles.actionButton} href={hero.primaryAction.href}>
+          <div className={styles.actions} aria-label={ui.projectActions}>
+            <LinkButton data-reveal-delay="2" className={styles.actionButton} href={hero.primaryAction.href}>
               {hero.primaryAction.label}
             </LinkButton>
-            <LinkButton className={styles.actionButton} href={hero.secondaryAction.href} variant="dark">
+            <LinkButton data-reveal-delay="3" className={styles.actionButton} href={hero.secondaryAction.href} variant="dark">
               {hero.secondaryAction.label}
             </LinkButton>
           </div>

@@ -1,17 +1,17 @@
-import { homeContent } from '@/features/home/data/homeContent'
+import { useHomeContent } from '@/i18n/useLocale'
 import styles from './AboutBasmaSection.module.css'
 
 export function AboutBasmaSection() {
-  const { basma } = homeContent
+  const { basma } = useHomeContent()
 
   return (
     <section id="about-basma" className={styles.section} aria-labelledby="basma-title">
-      <div className={styles.copy}>
+      <div data-reveal className={styles.copy}>
         <h2 id="basma-title" className='gradiant_text'>{basma.title}</h2>
         <p>{basma.body}</p>
       </div>
 
-      <img className={styles.artwork} src={basma.artwork} alt="Basma visual identity" loading="eager" />
+      <img data-reveal data-reveal-delay="1" className={styles.artwork} src={basma.artwork} alt={basma.imageAlt} loading="eager" />
     </section>
   )
 }
