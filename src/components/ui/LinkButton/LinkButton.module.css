@@ -48,12 +48,19 @@
   background: rgb(0 0 0 / 46%);
 }
 
-.root:active {
+.root:active,
+.root.pressed {
   border-color: var(--color-interaction);
   color: var(--color-on-interaction);
   background: var(--color-interaction);
   box-shadow: 0 0.2rem 0.5rem rgb(0 0 0 / 12%);
   transform: translateY(0) scale(0.98);
+}
+
+:global(html[data-theme='dark']) .root.pressed {
+  border-color: var(--color-interaction);
+  color: var(--color-on-interaction);
+  background: var(--color-interaction);
 }
 
 @media (max-width: 40rem) {
