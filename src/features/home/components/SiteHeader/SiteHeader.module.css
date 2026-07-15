@@ -102,6 +102,11 @@
     transform 180ms ease;
 }
 
+.link:active {
+  color: var(--color-interaction);
+  transform: translateY(0) scale(0.96);
+}
+
 .link::after {
   position: absolute;
   right: 0;
@@ -277,6 +282,12 @@
   border-radius: 0.7rem;
   padding: 0 0.85rem;
   font-size: 0.98rem;
+}
+
+.mobileMenu .link:active {
+  color: var(--color-on-interaction);
+  background: var(--color-interaction);
+  transform: scale(0.98);
 }
 
 :global(html[dir='rtl']) .mobileMenu {
