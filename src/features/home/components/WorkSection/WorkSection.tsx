@@ -55,7 +55,7 @@ export function WorkSection() {
   const { content: { work, ui }, direction } = useLocale()
   const trackRef = useRef<HTMLDivElement>(null)
 
-  const scrollSlider = (direction: -1 | 1) => {
+  const scrollSlider = (directionStep: -1 | 1) => {
     const track = trackRef.current
 
     if (!track) {
@@ -67,7 +67,7 @@ export function WorkSection() {
 
     const directionMultiplier = getComputedStyle(track).direction === 'rtl' ? -1 : 1
 
-    track.scrollBy({ left: direction * distance * directionMultiplier, behavior: 'smooth' })
+    track.scrollBy({ left: directionStep * distance * directionMultiplier, behavior: 'smooth' })
   }
 
   return (
@@ -92,7 +92,7 @@ export function WorkSection() {
           ))}
         </div>
 
-        <div className={styles.controls} aria-label={ui.projectSliderControls}>
+        <div className={styles.controls} data-direction={direction} aria-label={ui.projectSliderControls}>
           <button data-reveal type="button" aria-label={ui.previousProject} onClick={() => scrollSlider(-1)}>
             <span aria-hidden="true">{direction === 'rtl' ? '›' : '‹'}</span>
           </button>

@@ -1,12 +1,32 @@
-import type { FormEvent } from 'react'
+import { useState, type FormEvent } from 'react'
+import { submitContactSubmission } from '@/features/home/api/backendContent'
 import { useHomeContent } from '@/i18n/useLocale'
 import styles from './ContactSection.module.css'
 
 export function ContactSection() {
   const { contact, ui } = useHomeContent()
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    const form = event.currentTarget
+    const formData = new FormData(form)
+
+    setSubmitStatus('sending')
+
+    try {
+      await submitContactSubmission({
+        firstName: String(formData.get('firstName') ?? ''),
+        lastName: String(formData.get('lastName') ?? ''),
+        email: String(formData.get('email') ?? ''),
+        phone: String(formData.get('phone') ?? ''),
+        message: String(formData.get('message') ?? ''),
+      })
+      form.reset()
+      setSubmitStatus('success')
+    } catch {
+      setSubmitStatus('error')
+    }
   }
 
   return (
@@ -27,30 +47,40 @@ export function ContactSection() {
             <div className={styles.nameRow}>
               <label>
                 <span>{ui.firstName}</span>
-                <input name="firstName" type="text" placeholder={ui.firstName} autoComplete="given-name" />
+                <input name="firstName" type="text" placeholder={ui.firstName} autoComplete="given-name" required />
               </label>
               <label>
                 <span>{ui.lastName}</span>
-                <input name="lastName" type="text" placeholder={ui.lastName} autoComplete="family-name" />
+                <input name="lastName" type="text" placeholder={ui.lastName} autoComplete="organization" required />
               </label>
             </div>
 
             <label>
               <span>{ui.email}</span>
-              <input name="email" type="email" placeholder={ui.email} autoComplete="email" />
+              <input name="email" type="email" placeholder={ui.email} autoComplete="email" required />
             </label>
 
             <label>
               <span>{ui.phoneNumber}</span>
-              <input name="phone" type="tel" placeholder={ui.phoneNumber} autoComplete="tel" />
+              <input name="phone" type="text" placeholder={ui.phoneNumber} autoComplete="off" />
             </label>
 
             <label>
               <span>{ui.message}</span>
-              <textarea name="message" placeholder={ui.message} rows={5} />
+              <textarea name="message" placeholder={ui.message} rows={5} required />
             </label>
 
-            <button data-reveal data-reveal-delay="1" type="submit">{contact.submitLabel}</button>
+            {submitStatus !== 'idle' ? (
+              <p className={styles.formStatus} role="status">
+                {submitStatus === 'sending' ? ui.contactSending : null}
+                {submitStatus === 'success' ? ui.contactSuccess : null}
+                {submitStatus === 'error' ? ui.contactError : null}
+              </p>
+            ) : null}
+
+            <button data-reveal data-reveal-delay="1" type="submit" disabled={submitStatus === 'sending'}>
+              {submitStatus === 'sending' ? ui.contactSending : contact.submitLabel}
+            </button>
           </form>
         </div>
 

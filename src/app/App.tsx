@@ -1,8 +1,24 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import { fetchBackendContent } from '@/features/home/api/backendContent'
 import { HomePage } from '@/features/home/pages/HomePage'
+import type { LocalizedContentCatalog } from '@/i18n/catalog'
 import { LocaleProvider } from '@/i18n/LocaleProvider'
 
 export function App() {
+  const [contentCatalog, setContentCatalog] = useState<LocalizedContentCatalog | undefined>()
+
+  useEffect(() => {
+    const controller = new AbortController()
+
+    void fetchBackendContent(controller.signal)
+      .then(setContentCatalog)
+      .catch(() => {
+        setContentCatalog(undefined)
+      })
+
+    return () => controller.abort()
+  }, [])
+
   useEffect(() => {
     const hash = window.location.hash
 
@@ -22,7 +38,7 @@ export function App() {
   }, [])
 
   return (
-    <LocaleProvider>
+    <LocaleProvider contentCatalog={contentCatalog}>
       <HomePage />
     </LocaleProvider>
   )

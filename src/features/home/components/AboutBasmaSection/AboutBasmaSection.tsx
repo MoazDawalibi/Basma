@@ -11,7 +11,9 @@ export function AboutBasmaSection() {
         <p>{basma.body}</p>
       </div>
 
-      <img data-reveal data-reveal-delay="1" className={styles.artwork} src={basma.artwork} alt={basma.imageAlt} loading="eager" />
+      <div data-reveal data-reveal-delay="1" className={styles.artworkFrame}>
+        <img className={styles.artwork} src={basma.artwork} alt={basma.imageAlt} loading="eager" />
+      </div>
     </section>
   )
 }

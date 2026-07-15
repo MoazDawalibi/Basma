@@ -37,11 +37,38 @@ function XIcon({ className }: IconProps) {
   )
 }
 
+function FacebookIcon({ className }: IconProps) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path
+        d="M14.2 8.15h2.25V4.9c-.39-.05-1.73-.17-3.28-.17-3.24 0-5.46 2.03-5.46 5.76v3.24H4.05v3.64h3.66v9.18h4.49v-9.18h3.51l.56-3.64H12.2v-2.88c0-1.05.29-1.77 2-1.77Z"
+        fill="currentColor"
+        transform="translate(0 -3.55)"
+      />
+    </svg>
+  )
+}
+
+function WebsiteIcon({ className }: IconProps) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <circle cx="12" cy="12" r="8.4" fill="none" stroke="currentColor" strokeWidth="1.8" />
+      <path d="M3.9 12h16.2M12 3.6c2.05 2.24 3.1 5.05 3.1 8.4s-1.05 6.16-3.1 8.4c-2.05-2.24-3.1-5.05-3.1-8.4S9.95 5.84 12 3.6Z" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    </svg>
+  )
+}
+
 const socialIcons = {
   instagram: InstagramIcon,
   linkedin: LinkedInIcon,
   x: XIcon,
+  facebook: FacebookIcon,
+  website: WebsiteIcon,
 } as const
+
+function getSocialIcon(icon: string) {
+  return socialIcons[icon as keyof typeof socialIcons] ?? WebsiteIcon
+}
 
 export function SiteFooter() {
   const { footer, ui } = useHomeContent()
@@ -67,7 +94,7 @@ export function SiteFooter() {
 
           <ul className={styles.socialList} aria-label={ui.socialLinks}>
             {footer.socialLinks.map((item) => {
-              const Icon = socialIcons[item.icon]
+              const Icon = getSocialIcon(item.icon)
               const isExternal = item.href.startsWith('http')
 
               return (

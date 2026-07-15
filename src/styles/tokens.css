@@ -7,6 +7,8 @@
   --color-text-muted: #6f6f6f;
   --color-text-soft: #777777;
   --color-accent: #6f4384;
+  --color-interaction: #ffdb0d;
+  --color-on-interaction: #070707;
   --color-control-border: #9d9d9d;
   --color-on-media: #ffffff;
   --color-frame: #292929;
@@ -34,6 +36,8 @@
   --color-text-muted: #b9b3bf;
   --color-text-soft: #9f98a8;
   --color-accent: #c58cdd;
+  --color-interaction: #ffdb0d;
+  --color-on-interaction: #070707;
   --color-control-border: #5d5864;
   --color-frame: #08080a;
   --color-divider: #37343d;

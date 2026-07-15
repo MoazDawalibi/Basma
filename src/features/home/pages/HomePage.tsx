@@ -12,7 +12,7 @@ import { useRevealOnScroll } from '@/hooks/useRevealOnScroll'
 import { useHomeContent } from '@/i18n/useLocale'
 import styles from './HomePage.module.css'
 
-export function HomePage() {
+export function   HomePage() {
   const pageRef = useRef<HTMLDivElement>(null)
   const { ui } = useHomeContent()
 

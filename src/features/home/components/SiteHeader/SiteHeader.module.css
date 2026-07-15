@@ -41,17 +41,39 @@
 }
 
 .wordmark {
-  width: 4.5625rem;
-  height: 1.125rem;
-  object-fit: contain;
+  display: inline-flex;
+  align-items: baseline;
+  overflow: visible;
+  color: var(--color-ink);
+  font-size: 1.55rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+  white-space: nowrap;
+  transform-origin: left center;
+  animation: basma-wordmark-float 4200ms ease-in-out 1550ms infinite;
+  will-change: transform;
 }
 
-:global(html[data-theme='dark']) .mark,
-:global(html[data-theme='dark']) .wordmark {
+.wordmarkLetter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.28em);
+  animation: basma-wordmark-letter 560ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  will-change: opacity, transform;
+}
+
+:global(html[data-theme='dark']) .mark {
   filter: invert(1) brightness(1.08);
 }
 
 .links {
+  display: flex;
+  align-items: center;
+  gap: 2.625rem;
+}
+
+.desktopLinks {
   display: flex;
   align-items: center;
   gap: 2.625rem;
@@ -66,6 +88,9 @@
   font-size: 1.25rem;
   font-weight: 400;
   line-height: 1.2;
+  transition:
+    color 180ms ease,
+    transform 180ms ease;
 }
 
 .link::after {
@@ -84,6 +109,11 @@
 .link:hover::after {
   transform: scaleX(1);
   transform-origin: left;
+}
+
+.link:hover {
+  color: var(--color-interaction);
+  transform: translateY(-1px);
 }
 
 .themeToggle {
@@ -108,9 +138,11 @@
 }
 
 .themeToggle:hover {
-  border-color: var(--color-accent);
+  border-color: var(--color-interaction);
+  color: var(--color-on-interaction);
+  background: var(--color-interaction);
   box-shadow: 0 0.45rem 1rem rgb(0 0 0 / 14%);
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.04);
 }
 
 .themeToggle:active {
@@ -172,14 +204,21 @@
 }
 
 .languageOption:hover:not([data-active='true']) {
-  color: var(--color-ink);
-  transform: translateY(-1px);
+  color: var(--color-on-interaction);
+  background: var(--color-interaction);
+  transform: translateY(-1px) scale(1.04);
 }
 
 .languageOption[data-active='true'] {
   color: var(--color-ink);
   background: var(--color-surface-elevated);
   box-shadow: 0 0.18rem 0.55rem rgb(0 0 0 / 16%);
+}
+
+.languageOption[data-active='true']:hover {
+  color: var(--color-on-interaction);
+  background: var(--color-interaction);
+  transform: scale(1.04);
 }
 
 .languageOption:focus-visible {
@@ -189,6 +228,84 @@
   outline-offset: 2px;
 }
 
+.menuButton {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: none;
+  place-items: center;
+  gap: 0.18rem;
+  border: 1px solid var(--color-divider);
+  border-radius: 999px;
+  padding: 0.58rem;
+  color: var(--color-ink);
+  background: var(--color-surface-soft);
+  cursor: pointer;
+  transition:
+    color 200ms ease,
+    background-color 200ms ease,
+    border-color 200ms ease,
+    box-shadow 200ms ease,
+    transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.menuButton span {
+  width: 1rem;
+  height: 2px;
+  display: block;
+  border-radius: 999px;
+  background: currentcolor;
+}
+
+.menuButton:hover {
+  border-color: var(--color-interaction);
+  color: var(--color-on-interaction);
+  background: var(--color-interaction);
+  box-shadow: 0 0.45rem 1rem rgb(0 0 0 / 14%);
+  transform: translateY(-2px) scale(1.04);
+}
+
+.menuButton:active {
+  box-shadow: none;
+  transform: scale(0.95);
+}
+
+.menuButton:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+.mobileMenu {
+  position: absolute;
+  top: calc(100% + 0.55rem);
+  right: var(--header-gutter);
+  width: min(14rem, calc(100vw - 1.5rem));
+  display: none;
+  border: 1px solid var(--color-divider);
+  border-radius: 1rem;
+  padding: 0.6rem;
+  background: color-mix(in srgb, var(--color-surface-elevated) 94%, transparent);
+  box-shadow: 0 1rem 2.5rem rgb(0 0 0 / 18%);
+  backdrop-filter: blur(16px);
+}
+
+.mobileMenu .link {
+  width: 100%;
+  min-height: 2.75rem;
+  border-radius: 0.7rem;
+  padding: 0 0.85rem;
+  font-size: 0.98rem;
+}
+
+.mobileMenu .link:hover {
+  color: var(--color-on-interaction);
+  background: var(--color-interaction);
+}
+
+:global(html[dir='rtl']) .mobileMenu {
+  right: auto;
+  left: var(--header-gutter);
+}
+
 @media (max-width: 40rem) {
   .header {
     height: var(--header-height-mobile);
@@ -196,6 +313,7 @@
   }
 
   .nav {
+    position: relative;
     padding-inline: 0.75rem;
   }
 
@@ -209,17 +327,15 @@
   }
 
   .wordmark {
-    width: 4.05rem;
-    height: 1rem;
+    font-size: 1.38rem;
   }
 
   .links {
     gap: 0.4rem;
   }
 
-  .link {
-    min-height: 2.75rem;
-    font-size: 0.84rem;
+  .desktopLinks {
+    display: none;
   }
 
   .themeToggle {
@@ -248,19 +364,32 @@
     clip-path: inset(50%);
     white-space: nowrap;
   }
+
+  .menuButton {
+    display: grid;
+  }
+
+  .mobileMenu[data-open='true'] {
+    display: grid;
+    gap: 0.25rem;
+  }
 }
 
 @media (max-width: 30rem) {
   .wordmark {
-    display: none;
+    font-size: 1.28rem;
   }
 
   .links {
     gap: 0.35rem;
   }
 
-  .link {
-    font-size: 0.8rem;
+  .mobileMenu {
+    right: 0.75rem;
+  }
+
+  :global(html[dir='rtl']) .mobileMenu {
+    left: 0.75rem;
   }
 }
 
@@ -269,12 +398,36 @@
     padding-inline: 0.6rem;
   }
 
-  .link {
-    font-size: 0.74rem;
-  }
-
   .languageOption {
     min-width: 1.8rem;
+  }
+
+  .wordmark {
+    font-size: 1.18rem;
+  }
+}
+
+@keyframes basma-wordmark-letter {
+  from {
+    opacity: 0;
+    transform: translateY(0.28em);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes basma-wordmark-float {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  45%,
+  55% {
+    transform: translateX(0.16rem);
   }
 }
 
@@ -284,12 +437,23 @@
   }
 
   .themeToggle,
-  .languageOption {
+  .languageOption,
+  .menuButton,
+  .wordmark,
+  .wordmarkLetter {
     transition: none;
+    animation: none;
+  }
+
+  .wordmarkLetter {
+    opacity: 1;
+    transform: none;
   }
 
   .themeToggle:hover,
-  .themeToggle:active {
+  .themeToggle:active,
+  .menuButton:hover,
+  .menuButton:active {
     transform: none;
   }
 

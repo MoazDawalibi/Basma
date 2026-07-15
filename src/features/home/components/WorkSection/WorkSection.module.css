@@ -1,6 +1,6 @@
 .section {
   overflow: hidden;
-  padding: clamp(5.25rem, 6vw, 6.75rem) 0 1.25rem;
+  padding: clamp(5.25rem, 6vw, 6.75rem) 0 clamp(3.75rem, 5vw, 5rem);
   background: var(--color-white);
 }
 
@@ -114,18 +114,19 @@
 }
 
 .controls {
-  position: absolute;
-  right: clamp(1.25rem, 4vw, 4rem);
-  bottom: -3.5rem;
   display: flex;
+  justify-content: center;
   gap: 0.75rem;
-  opacity: 0;
-  transition: opacity 180ms ease;
+  margin-top: 1.25rem;
+  opacity: 1;
 }
 
-.section:hover .controls,
-.controls:focus-within {
-  opacity: 1;
+.controls[data-direction='rtl'] {
+  flex-direction: row-reverse;
+}
+
+.controls[data-direction='rtl'] span {
+  transform: scaleX(-1);
 }
 
 .controls button {
@@ -147,8 +148,9 @@
 }
 
 .controls button:hover {
-  color: var(--color-white);
-  background: var(--color-ink);
+  border-color: var(--color-interaction);
+  color: var(--color-on-interaction);
+  background: var(--color-interaction);
   box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 20%);
   transform: translateY(-3px) scale(1.06);
 }
@@ -248,7 +250,7 @@
   }
 
   .controls {
-    display: none;
+    margin-top: 1rem;
   }
 }
 
@@ -272,7 +274,7 @@
   }
 
   .track {
-    --work-card-width: min(82vw, 22rem);
+    --work-card-width: min(62vw, 17rem);
 
     gap: 1rem;
     scroll-padding-inline: 1.125rem;
@@ -280,12 +282,12 @@
   }
 
   .card {
-    min-height: 21.5rem;
+    min-height: 19.25rem;
     border-radius: 0.65rem;
   }
 
   .image {
-    height: 9.25rem;
+    height: 7.75rem;
   }
 
   .cardBody {
@@ -298,18 +300,32 @@
 
   .description {
     margin-top: 1rem;
-    font-size: 0.98rem;
+    font-size: 0.88rem;
   }
 
   .featuresLabel {
-    margin-top: 1rem;
-    font-size: 0.98rem;
+    margin-top: 0.8rem;
+    font-size: 0.88rem;
   }
 
   .features {
-    margin-top: 0.85rem;
+    margin-top: 0.65rem;
     padding-left: 1.25rem;
-    font-size: 0.88rem;
+    font-size: 0.78rem;
     line-height: 1.25;
+  }
+
+  .controls {
+    gap: 0.55rem;
+    margin-top: 0.85rem;
+  }
+
+  .controls button {
+    width: 2.35rem;
+    height: 2.35rem;
+  }
+
+  .controls span {
+    font-size: 1.65rem;
   }
 }

@@ -37,11 +37,11 @@ export const homeContent = {
     previousProject: 'Previous project',
     nextProject: 'Next project',
     viewProject: 'View Project',
-    firstName: 'First Name',
-    lastName: 'Last Name',
+    firstName: 'Your Name',
+    lastName: 'Company / Brand',
     email: 'Email',
-    phoneNumber: 'Phone Number',
-    message: 'Message',
+    phoneNumber: 'Project Type, Budget, Timeline',
+    message: 'Tell us about the website, app, or digital product you want to build',
     socialLinks: 'Social links',
     footerNavigation: 'Footer navigation',
     home: 'home',
@@ -53,6 +53,9 @@ export const homeContent = {
     keyFeatures: 'Key Features:',
     pageTitle: 'Basma — Where Ideas Become Real',
     pageDescription: 'Basma turns ambitious ideas into thoughtful, effective digital products.',
+    contactSending: 'Sending...',
+    contactSuccess: 'Thank you. Your message was sent successfully.',
+    contactError: 'Something went wrong. Please try again.',
   },
   brand: {
     name: 'Basma',
@@ -371,10 +374,10 @@ export const homeContent = {
     titleStart: 'Let’s Build Something Together',
     // titleAccent: 'Together',
     subtitle:
-      'We believe that every project starts with a simple idea and grows through collaboration. If you’re ready to turn your concept into a clear, functional design, we’re here to make it real. Contact us to start shaping your next project.',
-    formTitle: 'Let’s connect constellations',
+      'Have an idea for a website, mobile app, dashboard, or digital product? Tell us what you want to build and we’ll help shape it into a clear product plan.',
+    formTitle: 'Start your digital project',
     formBody:
-      "Let's align our constellations! Reach out and let the magic of collaboration illuminate our skies.",
+      'Share the essentials: your business, project type, timeline, budget range, and the main goal. We’ll reply with the next practical step.',
     image: contactHandshake,
     imageAlt: 'Business handshake over a bright yellow circle',
     submitLabel: 'Let’s Talk!!',
@@ -425,7 +428,7 @@ type DeepWiden<T> = T extends string
     : T extends readonly (infer Item)[]
       ? ReadonlyArray<DeepWiden<Item>>
       : T extends object
-        ? { [Key in keyof T]: Key extends 'icon' ? T[Key] : DeepWiden<T[Key]> }
+        ? { [Key in keyof T]: DeepWiden<T[Key]> }
         : T
 
 export type HomeContent = DeepWiden<typeof homeContent>

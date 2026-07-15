@@ -67,6 +67,15 @@
   letter-spacing: -0.035em;
 }
 
+:global(html[data-theme='dark']) .ribbon,
+:global(html[data-theme='dark']) .titleArtwork {
+  filter: brightness(0.55) saturate(0.65) sepia(0.15);
+}
+
+:global(html[data-theme='dark']) .titleBand h2 {
+  color: #0d0d0d;
+}
+
 /* Main centered content */
 .inner {
   position: relative;
