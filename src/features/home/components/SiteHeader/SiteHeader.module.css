@@ -137,6 +137,9 @@
 }
 
 .themeToggle:active {
+  border-color: var(--color-interaction);
+  color: var(--color-on-interaction);
+  background: var(--color-interaction);
   box-shadow: none;
   transform: scale(0.95);
 }
@@ -200,6 +203,12 @@
   box-shadow: 0 0.18rem 0.55rem rgb(0 0 0 / 16%);
 }
 
+.languageOption:active {
+  color: var(--color-on-interaction);
+  background: var(--color-interaction);
+  transform: scale(0.95);
+}
+
 .languageOption:focus-visible {
   position: relative;
   z-index: 1;
@@ -236,6 +245,9 @@
 }
 
 .menuButton:active {
+  border-color: var(--color-interaction);
+  color: var(--color-on-interaction);
+  background: var(--color-interaction);
   box-shadow: none;
   transform: scale(0.95);
 }

@@ -20,21 +20,28 @@ export function App() {
   }, [])
 
   useEffect(() => {
-    const hash = window.location.hash
+    const previousScrollRestoration = window.history.scrollRestoration
 
-    if (!hash) {
-      return
+    window.history.scrollRestoration = 'manual'
+
+    if (window.location.search || window.location.hash) {
+      window.history.replaceState(window.history.state, '', window.location.pathname)
     }
 
-    const timeoutId = window.setTimeout(() => {
-      const target = document.querySelector<HTMLElement>(hash)
+    const scrollToHero = () => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+    }
 
-      if (target) {
-        window.scrollTo({ top: target.offsetTop, behavior: 'auto' })
-      }
+    scrollToHero()
+
+    const timeoutId = window.setTimeout(() => {
+      scrollToHero()
     }, 50)
 
-    return () => window.clearTimeout(timeoutId)
+    return () => {
+      window.clearTimeout(timeoutId)
+      window.history.scrollRestoration = previousScrollRestoration
+    }
   }, [])
 
   useEffect(() => {

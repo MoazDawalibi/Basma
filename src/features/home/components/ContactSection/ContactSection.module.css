@@ -164,6 +164,9 @@
 }
 
 .form button:active {
+  border-color: var(--color-interaction);
+  color: var(--color-on-interaction);
+  background: var(--color-interaction);
   box-shadow: 0 0.2rem 0.5rem rgb(0 0 0 / 12%);
   transform: translateY(0) scale(0.98);
 }
