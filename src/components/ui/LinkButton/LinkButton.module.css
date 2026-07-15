@@ -48,19 +48,12 @@
   background: rgb(0 0 0 / 46%);
 }
 
-.root:active,
-.root.pressed {
-  border-color: var(--color-interaction);
-  color: var(--color-on-interaction);
-  background: var(--color-interaction);
+.root:active {
+  border-color: var(--color-interaction) !important;
+  color: var(--color-on-interaction) !important;
+  background: var(--color-interaction) !important;
   box-shadow: 0 0.2rem 0.5rem rgb(0 0 0 / 12%);
-  transform: translateY(0) scale(0.98);
-}
-
-:global(html[data-theme='dark']) .root.pressed {
-  border-color: var(--color-interaction);
-  color: var(--color-on-interaction);
-  background: var(--color-interaction);
+  transform: translateY(0) scale(0.97);
 }
 
 @media (max-width: 40rem) {
@@ -73,17 +66,17 @@
 
 @media (hover: hover) and (pointer: fine) {
   .root:hover {
-    border-color: var(--color-interaction);
-    color: var(--color-on-interaction);
-    background: var(--color-interaction);
+    border-color: var(--color-interaction) !important;
+    color: var(--color-on-interaction) !important;
+    background: var(--color-interaction) !important;
     box-shadow: 0 0.65rem 1.35rem rgb(0 0 0 / 16%);
     transform: translateY(-3px) scale(1.04);
   }
 
   :global(html[data-theme='dark']) .root:hover {
-    border-color: var(--color-interaction);
-    color: var(--color-on-interaction);
-    background: var(--color-interaction);
+    border-color: var(--color-interaction) !important;
+    color: var(--color-on-interaction) !important;
+    background: var(--color-interaction) !important;
   }
 }
 

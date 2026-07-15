@@ -23,12 +23,6 @@ html[dir='rtl'] body {
   text-align: start;
 }
 
-html[data-release-hover='true'] a,
-html[data-release-hover='true'] button,
-html[data-release-hover='true'] [role='button'] {
-  pointer-events: none;
-}
-
 ::selection {
   color: var(--color-white);
   background: var(--color-ink);
