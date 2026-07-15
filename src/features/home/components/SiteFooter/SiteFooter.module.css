@@ -90,11 +90,6 @@
   height: 1.65rem;
 }
 
-.socialLink:hover {
-  color: var(--color-ink);
-  transform: translateY(-2px);
-}
-
 .brandName:focus-visible,
 .socialLink:focus-visible,
 .linkColumn a:focus-visible {
@@ -138,10 +133,6 @@
   transition: color 180ms ease;
 }
 
-.linkColumn a:hover {
-  color: var(--color-ink);
-}
-
 @media (max-width: 68rem) {
   .footer {
     --footer-artwork-top: clamp(-5rem, -8vw, -3rem);
@@ -165,6 +156,17 @@
   .linksGrid {
     width: min(100%, 38rem);
     justify-self: start;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .socialLink:hover {
+    color: var(--color-ink);
+    transform: translateY(-2px);
+  }
+
+  .linkColumn a:hover {
+    color: var(--color-ink);
   }
 }
 

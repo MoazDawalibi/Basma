@@ -65,10 +65,21 @@
 }
 
 .artwork {
+  position: absolute;
+  /* inset: 0; */
   width: 100%;
   height: 100%;
   object-fit: contain;
-  transition: filter 250ms ease;
+  opacity: 1;
+  transition:
+    filter 250ms ease,
+    opacity 250ms ease;
+}
+
+.artworkDark {
+  object-fit: cover;
+  object-position: center 50%;
+  opacity: 0;
 }
 
 :global(html[data-theme='dark']) .artworkFrame {
@@ -77,13 +88,16 @@
 }
 
 :global(html[data-theme='dark']) .artworkFrame::after {
-  background:
-    linear-gradient(rgb(12 10 14 / 52%), rgb(12 10 14 / 52%)),
-    radial-gradient(circle at center, transparent 0%, rgb(0 0 0 / 24%) 100%);
+  background: radial-gradient(circle at center, transparent 0%, rgb(0 0 0 / 10%) 100%);
 }
 
-:global(html[data-theme='dark']) .artwork {
-  filter: brightness(0.58) saturate(0.74) contrast(0.96);
+:global(html[data-theme='dark']) .artworkLight {
+  opacity: 0;
+}
+
+:global(html[data-theme='dark']) .artworkDark {
+  opacity: 1;
+  filter: brightness(0.94) saturate(0.94) contrast(0.98);
 }
 
 @media (max-width: 68rem) {

@@ -155,22 +155,6 @@
   transform: none;
 }
 
-.form button:hover {
-  border-color: var(--color-interaction);
-  color: var(--color-on-interaction);
-  background: var(--color-interaction);
-  box-shadow: 0 0.65rem 1.35rem rgb(0 0 0 / 16%);
-  transform: translateY(-3px) scale(1.04);
-}
-
-.form button:disabled:hover {
-  border-color: var(--color-control-border);
-  color: var(--color-ink);
-  background: var(--color-surface-elevated);
-  box-shadow: none;
-  transform: none;
-}
-
 .formStatus {
   margin: 0.35rem 0 0;
   color: var(--color-ink);
@@ -204,12 +188,12 @@
 
 :global(html[data-theme='dark']) .imageFrame::after {
   background:
-    linear-gradient(rgb(0 0 0 / 52%), rgb(0 0 0 / 52%)),
-    rgb(20 16 24 / 36%);
+    linear-gradient(rgb(0 0 0 / 5%), rgb(0 0 0 / 5%)),
+    rgb(20 16 24 / 18%);
 }
 
 :global(html[data-theme='dark']) .imageFrame img {
-  filter: brightness(0.6) saturate(0.76) contrast(0.94);
+  /* filter: brightness(0.78) saturate(0.86) contrast(0.96); */
 }
 
 .imageFrame img {
@@ -306,6 +290,24 @@
   .form button {
     min-height: 3rem;
     margin-top: 1rem;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .form button:hover {
+    border-color: var(--color-interaction);
+    color: var(--color-on-interaction);
+    background: var(--color-interaction);
+    box-shadow: 0 0.65rem 1.35rem rgb(0 0 0 / 16%);
+    transform: translateY(-3px) scale(1.04);
+  }
+
+  .form button:disabled:hover {
+    border-color: var(--color-control-border);
+    color: var(--color-ink);
+    background: var(--color-surface-elevated);
+    box-shadow: none;
+    transform: none;
   }
 }
 

@@ -63,6 +63,15 @@
   will-change: opacity, transform;
 }
 
+.wordmarkText {
+  display: inline-block;
+  direction: rtl;
+  opacity: 0;
+  transform: translateY(0.2em);
+  animation: basma-wordmark-letter 680ms cubic-bezier(0.22, 1, 0.36, 1) 140ms both;
+  will-change: opacity, transform;
+}
+
 :global(html[data-theme='dark']) .mark {
   filter: invert(1) brightness(1.08);
 }
@@ -106,16 +115,6 @@
   transition: transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.link:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
-}
-
-.link:hover {
-  color: var(--color-interaction);
-  transform: translateY(-1px);
-}
-
 .themeToggle {
   min-width: 5.75rem;
   min-height: 2.75rem;
@@ -135,14 +134,6 @@
     border-color 200ms ease,
     box-shadow 200ms ease,
     transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.themeToggle:hover {
-  border-color: var(--color-interaction);
-  color: var(--color-on-interaction);
-  background: var(--color-interaction);
-  box-shadow: 0 0.45rem 1rem rgb(0 0 0 / 14%);
-  transform: translateY(-2px) scale(1.04);
 }
 
 .themeToggle:active {
@@ -203,22 +194,10 @@
     transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.languageOption:hover:not([data-active='true']) {
-  color: var(--color-on-interaction);
-  background: var(--color-interaction);
-  transform: translateY(-1px) scale(1.04);
-}
-
 .languageOption[data-active='true'] {
   color: var(--color-ink);
   background: var(--color-surface-elevated);
   box-shadow: 0 0.18rem 0.55rem rgb(0 0 0 / 16%);
-}
-
-.languageOption[data-active='true']:hover {
-  color: var(--color-on-interaction);
-  background: var(--color-interaction);
-  transform: scale(1.04);
 }
 
 .languageOption:focus-visible {
@@ -256,14 +235,6 @@
   background: currentcolor;
 }
 
-.menuButton:hover {
-  border-color: var(--color-interaction);
-  color: var(--color-on-interaction);
-  background: var(--color-interaction);
-  box-shadow: 0 0.45rem 1rem rgb(0 0 0 / 14%);
-  transform: translateY(-2px) scale(1.04);
-}
-
 .menuButton:active {
   box-shadow: none;
   transform: scale(0.95);
@@ -294,11 +265,6 @@
   border-radius: 0.7rem;
   padding: 0 0.85rem;
   font-size: 0.98rem;
-}
-
-.mobileMenu .link:hover {
-  color: var(--color-on-interaction);
-  background: var(--color-interaction);
 }
 
 :global(html[dir='rtl']) .mobileMenu {
@@ -407,6 +373,51 @@
   }
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  .link:hover {
+    color: var(--color-interaction);
+    transform: translateY(-1px);
+  }
+
+  .themeToggle:hover {
+    border-color: var(--color-interaction);
+    color: var(--color-on-interaction);
+    background: var(--color-interaction);
+    box-shadow: 0 0.45rem 1rem rgb(0 0 0 / 14%);
+    transform: translateY(-2px) scale(1.04);
+  }
+
+  .languageOption:hover:not([data-active='true']) {
+    color: var(--color-on-interaction);
+    background: var(--color-interaction);
+    transform: translateY(-1px) scale(1.04);
+  }
+
+  .languageOption[data-active='true']:hover {
+    color: var(--color-on-interaction);
+    background: var(--color-interaction);
+    transform: scale(1.04);
+  }
+
+  .menuButton:hover {
+    border-color: var(--color-interaction);
+    color: var(--color-on-interaction);
+    background: var(--color-interaction);
+    box-shadow: 0 0.45rem 1rem rgb(0 0 0 / 14%);
+    transform: translateY(-2px) scale(1.04);
+  }
+
+  .mobileMenu .link:hover {
+    color: var(--color-on-interaction);
+    background: var(--color-interaction);
+  }
+}
+
 @keyframes basma-wordmark-letter {
   from {
     opacity: 0;
@@ -440,12 +451,14 @@
   .languageOption,
   .menuButton,
   .wordmark,
-  .wordmarkLetter {
+  .wordmarkLetter,
+  .wordmarkText {
     transition: none;
     animation: none;
   }
 
-  .wordmarkLetter {
+  .wordmarkLetter,
+  .wordmarkText {
     opacity: 1;
     transform: none;
   }

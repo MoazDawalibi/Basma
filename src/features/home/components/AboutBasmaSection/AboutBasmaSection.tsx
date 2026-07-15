@@ -1,4 +1,5 @@
 import { useHomeContent } from '@/i18n/useLocale'
+import basmaAboutDark from '@/assets/images/basma-about-dark.png'
 import styles from './AboutBasmaSection.module.css'
 
 export function AboutBasmaSection() {
@@ -12,7 +13,8 @@ export function AboutBasmaSection() {
       </div>
 
       <div data-reveal data-reveal-delay="1" className={styles.artworkFrame}>
-        <img className={styles.artwork} src={basma.artwork} alt={basma.imageAlt} loading="eager" />
+        <img className={`${styles.artwork} ${styles.artworkLight}`} src={basma.artwork} alt={basma.imageAlt} loading="eager" />
+        <img className={`${styles.artwork} ${styles.artworkDark}`} src={basmaAboutDark} alt="" aria-hidden="true" loading="eager" />
       </div>
     </section>
   )

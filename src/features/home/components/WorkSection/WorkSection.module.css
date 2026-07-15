@@ -125,10 +125,6 @@
   flex-direction: row-reverse;
 }
 
-.controls[data-direction='rtl'] span {
-  transform: scaleX(-1);
-}
-
 .controls button {
   width: 2.75rem;
   height: 2.75rem;
@@ -145,14 +141,6 @@
     background-color 200ms ease,
     box-shadow 200ms ease,
     transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.controls button:hover {
-  border-color: var(--color-interaction);
-  color: var(--color-on-interaction);
-  background: var(--color-interaction);
-  box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 20%);
-  transform: translateY(-3px) scale(1.06);
 }
 
 .controls button:active {
@@ -206,18 +194,28 @@
   transition: opacity 0.35s ease;
 }
 
-.imageLink:hover .image {
-  transform: scale(1.04);
-  filter: brightness(0.75);
-}
-
-.imageLink:hover .imageOverlay {
-  opacity: 1;
-}
-
 .imageLink:focus-visible {
   outline: 3px solid #8d49a8;
   outline-offset: 4px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .controls button:hover {
+    border-color: var(--color-interaction);
+    color: var(--color-on-interaction);
+    background: var(--color-interaction);
+    box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 20%);
+    transform: translateY(-3px) scale(1.06);
+  }
+
+  .imageLink:hover .image {
+    transform: scale(1.04);
+    filter: brightness(0.75);
+  }
+
+  .imageLink:hover .imageOverlay {
+    opacity: 1;
+  }
 }
 
 @media (max-width: 68rem) {

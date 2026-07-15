@@ -1,11 +1,11 @@
 import { useState, type CSSProperties } from 'react'
-import { useHomeContent } from '@/i18n/useLocale'
+import { useLocale } from '@/i18n/useLocale'
 import { LanguageToggle } from './LanguageToggle'
 import { ThemeToggle } from './ThemeToggle'
 import styles from './SiteHeader.module.css'
 
 export function SiteHeader() {
-  const { brand, navigation, ui } = useHomeContent()
+  const { content: { brand, navigation, ui }, locale } = useLocale()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
@@ -14,15 +14,19 @@ export function SiteHeader() {
         <a data-reveal className={styles.brand} href="#top" aria-label={`${brand.name} ${ui.home}`}>
           <img className={styles.mark} src={brand.mark} alt="" aria-hidden="true" />
           <span className={styles.wordmark} aria-hidden="true">
-            {Array.from(brand.name).map((letter, index) => (
-              <span
-                key={`${letter}-${index}`}
-                className={styles.wordmarkLetter}
-                style={{ animationDelay: `${140 + index * 95}ms` } as CSSProperties}
-              >
-                {letter === ' ' ? '\u00A0' : letter}
-              </span>
-            ))}
+            {locale === 'ar' ? (
+              <span className={styles.wordmarkText}>{brand.name}</span>
+            ) : (
+              Array.from(brand.name).map((letter, index) => (
+                <span
+                  key={`${letter}-${index}`}
+                  className={styles.wordmarkLetter}
+                  style={{ animationDelay: `${140 + index * 95}ms` } as CSSProperties}
+                >
+                  {letter === ' ' ? '\u00A0' : letter}
+                </span>
+              ))
+            )}
           </span>
         </a>
 
