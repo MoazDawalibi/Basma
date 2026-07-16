@@ -8,7 +8,7 @@ export function HowWeWorkSection() {
     <section id="process" className={styles.section} aria-labelledby="process-title">
       <div data-reveal className={styles.header}>
         <p className={styles.eyebrow}>{process.eyebrow}</p>
-        <h2 id="process-title">{process.title}</h2>
+        <h2 id="process-title" className="gradiant_text">{process.title}</h2>
         <p>{process.subtitle}</p>
       </div>
 

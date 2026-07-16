@@ -103,7 +103,7 @@ export function CollaborationSection() {
       <div className={styles.inner}>
         <header data-reveal className={styles.header}>
           <p className={styles.eyebrow}>{collaboration.eyebrow}</p>
-          <h2 id="collaboration-title">
+          <h2 id="collaboration-title" className="gradiant_text">
             <span>{collaboration.titleLead}</span>{' '}
             <span className={styles.titleAccent}>{collaboration.titleAccent}</span>
           </h2>
