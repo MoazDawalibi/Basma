@@ -1,11 +1,11 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import type { HomeContent } from '@/features/home/data/homeContent'
 import { useLocale } from '@/i18n/useLocale'
 import styles from './WorkSection.module.css'
 
 type Project = HomeContent['work']['projects'][number]
 
-function ProjectCard({ project, index, viewProject, keyFeatures }: { project: Project; index: number; viewProject: string; keyFeatures: string }) {
+function ProjectCard({ project, index, viewProject, keyFeatures, categoryLabel }: { project: Project; index: number; viewProject: string; keyFeatures: string; categoryLabel: string }) {
   return (
     <article data-reveal data-reveal-delay={Math.min(index, 4)} className={styles.card}>
       {'projectUrl' in project && project.projectUrl ? (
@@ -19,14 +19,19 @@ function ProjectCard({ project, index, viewProject, keyFeatures }: { project: Pr
             className={styles.image}
             src={project.image}
             alt={project.imageAlt}
+            loading="lazy"
+            decoding="async"
           />
           <span className={styles.imageOverlay}>{viewProject}</span>
+          <span className={styles.categoryBadge}>{categoryLabel}</span>
         </a>
       ) : (
         <img
           className={styles.image}
           src={project.image}
           alt={project.imageAlt}
+          loading="lazy"
+          decoding="async"
         />
       )}
 
@@ -54,6 +59,15 @@ function ProjectCard({ project, index, viewProject, keyFeatures }: { project: Pr
 export function WorkSection() {
   const { content: { work, ui }, direction } = useLocale()
   const trackRef = useRef<HTMLDivElement>(null)
+  const [activeCategory, setActiveCategory] = useState('all')
+  const visibleProjects = activeCategory === 'all'
+    ? work.projects
+    : work.projects.filter((project) => project.category === activeCategory)
+
+  const selectCategory = (category: string) => {
+    setActiveCategory(category)
+    trackRef.current?.scrollTo({ left: 0, behavior: 'smooth' })
+  }
 
   const scrollSlider = (directionStep: -1 | 1) => {
     const track = trackRef.current
@@ -79,15 +93,29 @@ export function WorkSection() {
         <p>{work.subtitle}</p>
       </div>
 
+      <div data-reveal className={styles.filters} role="group" aria-label={work.filtersLabel}>
+        {work.filters.map((filter) => (
+          <button
+            key={filter.value}
+            type="button"
+            aria-pressed={activeCategory === filter.value}
+            onClick={() => selectCategory(filter.value)}
+          >
+            {filter.label}
+          </button>
+        ))}
+      </div>
+
       <div className={styles.slider} aria-label={ui.projectSlider}>
-        <div ref={trackRef} className={styles.track} tabIndex={0}>
-          {work.projects.map((project, index) => (
+        <div ref={trackRef} className={styles.track} tabIndex={0} aria-live="polite">
+          {visibleProjects.map((project, index) => (
             <ProjectCard
-              key={project.title}
+              key={`${activeCategory}-${project.title}`}
               project={project}
               index={index}
               viewProject={ui.viewProject}
               keyFeatures={ui.keyFeatures}
+              categoryLabel={work.filters.find((filter) => filter.value === project.category)?.label ?? project.category}
             />
           ))}
         </div>

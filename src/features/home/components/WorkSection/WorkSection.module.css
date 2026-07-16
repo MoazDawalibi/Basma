@@ -1,22 +1,23 @@
 .section {
   overflow: hidden;
+  scroll-margin-top: var(--header-height);
   padding: clamp(5.25rem, 6vw, 6.75rem) 0 clamp(3.75rem, 5vw, 5rem);
   background: var(--color-white);
 }
 
 .header {
-  width: min(100% - 2.5rem, 78rem);
-  margin: 0 auto clamp(5rem, 7.2vw, 7.5rem);
+  width: min(100% - 2.5rem, 68rem);
+  margin: 0 auto clamp(2.25rem, 4vw, 3.5rem);
   text-align: center;
 }
 
 .header h2 {
   margin: 0;
   color: var(--color-ink);
-  font-size: clamp(3.1rem, 4vw, 4.65rem);
+  font-size: var(--section-title-size);
   font-weight: 700;
-  line-height: 1.02;
-  letter-spacing: 0;
+  line-height: var(--section-title-line-height);
+  letter-spacing: var(--section-title-letter-spacing);
 }
 
 .header p {
@@ -30,6 +31,50 @@
 
 .slider {
   position: relative;
+}
+
+.filters {
+  width: min(100% - 2.5rem, 70rem);
+  display: flex;
+  justify-content: center;
+  gap: 0.65rem;
+  overflow-x: auto;
+  margin: 0 auto clamp(3rem, 5vw, 4.5rem);
+  padding: 0.25rem;
+  scrollbar-width: none;
+}
+
+.filters::-webkit-scrollbar { display: none; }
+
+.filters button {
+  flex: 0 0 auto;
+  min-height: 2.75rem;
+  border: 1px solid var(--color-divider);
+  border-radius: 999px;
+  padding: 0.6rem 1.2rem;
+  color: var(--color-text-muted);
+  background: var(--color-surface-elevated);
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    color 200ms ease,
+    background-color 200ms ease,
+    border-color 200ms ease,
+    box-shadow 200ms ease,
+    transform 200ms ease;
+}
+
+.filters button[aria-pressed='true'] {
+  border-color: var(--color-interaction);
+  color: var(--color-on-interaction);
+  background: var(--color-interaction);
+  box-shadow: 0 0.35rem 0.9rem rgb(255 219 13 / 20%);
+}
+
+.filters button:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
 }
 
 .track {
@@ -63,6 +108,9 @@
   background: var(--color-surface-elevated);
   box-shadow: 0 0.35rem 0.8rem rgb(0 0 0 / 28%);
   scroll-snap-align: start;
+  transition:
+    box-shadow 240ms ease,
+    transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .image {
@@ -198,12 +246,41 @@
   transition: opacity 0.35s ease;
 }
 
+.categoryBadge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  border-radius: 999px;
+  padding: 0.45rem 0.75rem;
+  color: var(--color-on-interaction);
+  background: var(--color-interaction);
+  box-shadow: 0 0.35rem 0.85rem rgb(0 0 0 / 18%);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+:global(html[dir='rtl']) .categoryBadge {
+  right: 1rem;
+  left: auto;
+}
+
 .imageLink:focus-visible {
   outline: 3px solid #8d49a8;
   outline-offset: 4px;
 }
 
 @media (hover: hover) and (pointer: fine) {
+  .card:hover {
+    box-shadow: 0 1.25rem 2.8rem rgb(0 0 0 / 22%);
+    transform: translateY(-0.5rem);
+  }
+
+  .filters button:hover:not([aria-pressed='true']) {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    transform: translateY(-2px);
+  }
   .controls button:hover {
     border-color: var(--color-interaction);
     color: var(--color-on-interaction);
@@ -228,12 +305,10 @@
   }
 
   .header {
-    margin-bottom: 3.75rem;
+    margin-bottom: 2.5rem;
   }
 
-  .header h2 {
-    font-size: clamp(2.35rem, 6vw, 3.6rem);
-  }
+  .header h2 { font-size: var(--section-title-size); }
 
   .header p {
     font-size: clamp(0.98rem, 2.2vw, 1.15rem);
@@ -258,17 +333,16 @@
 
 @media (max-width: 40rem) {
   .section {
+    scroll-margin-top: var(--header-height-mobile);
     padding-top: 3rem;
   }
 
   .header {
     width: min(100% - 2.25rem, 28rem);
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
   }
 
-  .header h2 {
-    font-size: clamp(1.85rem, 9.5vw, 2.55rem);
-  }
+  .header h2 { font-size: var(--section-title-size-mobile); }
 
   .header p {
     margin-top: 1rem;
@@ -281,6 +355,19 @@
     gap: 1rem;
     scroll-padding-inline: 1.125rem;
     padding-inline: 1.125rem;
+  }
+
+  .filters {
+    width: 100%;
+    justify-content: flex-start;
+    margin-bottom: 2.5rem;
+    padding-inline: 1.125rem;
+  }
+
+  .filters button {
+    min-height: 2.5rem;
+    padding-inline: 1rem;
+    font-size: 0.82rem;
   }
 
   .card {
@@ -329,5 +416,19 @@
 
   .controls span {
     font-size: 1.65rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .filters button,
+  .image {
+    transition: none;
+  }
+
+  .card:hover,
+  .filters button:hover,
+  .imageLink:hover .image {
+    transform: none;
   }
 }

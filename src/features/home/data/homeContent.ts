@@ -1,11 +1,9 @@
-import  mariaFounder  from '@/assets/images/maria-founder.png';
 import brandMark from '@/assets/images/basma-mark.png'
 import basmaAbout from '@/assets/images/basma-about.png'
 import brandWordmark from '@/assets/images/basma-wordmark.png'
 import contactHandshake from '@/assets/Contact-Image.png'
 import footerTentacle from '@/assets/Footer-Image.png'
 import heroArtwork from '@/assets/images/hero-brain.png'
-import moazFounder from '@/assets/images/moaz-founder.png'
 import brightDentProject from '@/assets/images/projects/Bright.png'
 import etaxiProject from '@/assets/images/projects/Etaxi.png'
 import misbarProject from '@/assets/images/projects/Misbar.png'
@@ -74,32 +72,58 @@ export const homeContent = {
     secondaryAction: { label: 'View Our Work', href: '#work' },
   },
   about: {
-    title: 'Who We Are & What We Offer',
-    body: 'At Basma, We turn ideas into digital products that are clear, functionl, and built to grow. We help individuals, startups, and businesses bring their vision to life with smart design and solid development.',
+    title: 'Digital Products With A Clear Business Purpose',
+    body: 'Basma helps ambitious teams turn complex ideas into useful digital products. We connect business thinking, thoughtful design, and dependable development so every decision moves the product—and the business—forward.',
     action: { label: 'Start Your Project', href: '#contact' },
   },
-  founders: {
-    title: 'Meet The Founders Of Basma',
-    people: [
+  collaboration: {
+    eyebrow: 'Our Partnership',
+    titleLead: 'Two Minds.',
+    titleAccent: 'One Vision.',
+    subtitle: 'Basma brings technology and creativity together to transform ideas into clear, functional, and memorable digital experiences.',
+    areas: [
       {
-        name: 'Moaz Dawalibi',
-        role: 'Technical Lead & Project Manager',
-        bio: 'With a strong experience in programming and development, Moaz leads each project with precision and strategy.',
-        image: moazFounder,
-        imageAlt: 'Moaz Dawalibi seated in a blue chair',
+        kind: 'technology',
+        title: 'Technology & Strategy',
+        description: 'We build reliable digital foundations and manage every stage from planning to launch.',
+        items: ['Website Development', 'Mobile Applications', 'Technical Architecture', 'Project Planning', 'Performance & Security'],
       },
       {
-        name: 'Maria Al-Samman',
-        role: 'Graphic Designer, UI/UX Designer & Project Manager',
-        bio: 'With strong experience in graphic design and user experience, Maria manages the creative and operational direction at Basma.',
-        image: mariaFounder,
-        imageAlt: 'Maria Al-Samman seated in a blue chair',
+        kind: 'design',
+        title: 'Design & Experience',
+        description: 'We create thoughtful experiences that are visually distinctive and easy to use.',
+        items: ['UI/UX Design', 'Branding', 'Visual Identity', 'User Experience', 'Creative Direction'],
       },
+    ],
+    statementLead: 'Strategy + Creativity =',
+    statementAccent: 'Digital Products Built to Grow',
+  },
+  process: {
+    eyebrow: 'How We Work',
+    title: 'Clarity Before Complexity',
+    subtitle: 'A focused process that connects every decision to your business goals—and keeps momentum from first conversation to launch.',
+    steps: [
+      { title: 'Discovery', description: 'Understand your business, goals, audience, and the challenge worth solving.' },
+      { title: 'Strategy', description: 'Create a focused product roadmap before writing a single line of code.' },
+      { title: 'Design', description: 'Shape intuitive experiences that make complex ideas feel clear and useful.' },
+      { title: 'Development', description: 'Build a scalable, fast, and maintainable product with care.' },
+      { title: 'Launch', description: 'Test, deploy, measure, and support the product beyond release.' },
+    ],
+  },
+  whyBasma: {
+    eyebrow: 'Why Basma',
+    title: 'Built Around What Moves You Forward',
+    subtitle: 'Small enough to stay close. Experienced enough to see the whole product.',
+    items: [
+      { kind: 'speed', title: 'Fast Delivery', description: 'Focused scopes and direct communication keep work moving without sacrificing quality.' },
+      { kind: 'business', title: 'Business First', description: 'Every product decision starts with the result it needs to create for your business.' },
+      { kind: 'experience', title: 'Modern User Experience', description: 'Clear, accessible interfaces help people understand your product and act with confidence.' },
+      { kind: 'partnership', title: 'Long-Term Partnership', description: 'We stay accountable after launch, helping the product adapt, improve, and grow.' },
     ],
   },
   basma: {
     title: 'Basma',
-    body: 'Basma creates a new step for your project and leaves a lifelong impact. We turn your idea into a realistic project that reaches people and increases your income and profit.',
+    body: 'Basma means a lasting mark. We create products people understand, trust, and remember—built to make a measurable difference after launch.',
     artwork: basmaAbout,
     imageAlt: 'Basma visual identity',
   },
@@ -109,8 +133,8 @@ export const homeContent = {
     { value: 35, suffix: '+', label: 'Projects delivered' },
   ],
   services: {
-    title: 'Our Services',
-    body: 'We design and build digital products that are clear, functional, and easy to use. Our work combines clean UI/UX design with solid development to deliver complete solutions.',
+    title: 'From First Decision to Final Detail',
+    body: 'Strategy, experience, and engineering work as one system—giving you fewer handoffs, clearer decisions, and a stronger product.',
     items: [
       {
         title: 'UI/UX Design',
@@ -139,9 +163,17 @@ export const homeContent = {
     ],
   },
  work: {
-  titleStart: 'What We’ve',
-  titleAccent: 'Worked On',
-  subtitle: 'A look at the projects we’ve built and the ideas we brought to life.',
+  titleStart: 'Selected',
+  titleAccent: 'Projects',
+  subtitle: 'Products shaped around real goals—from focused launches to platforms built for daily use.',
+  filtersLabel: 'Filter projects by category',
+  filters: [
+    { value: 'all', label: 'All' },
+    { value: 'landing-pages', label: 'Landing Pages' },
+    { value: 'websites', label: 'Websites' },
+    { value: 'dashboards', label: 'Dashboards' },
+    { value: 'mobile-apps', label: 'Mobile Apps' },
+  ],
 
   projects: [
   {
@@ -150,6 +182,7 @@ export const homeContent = {
     image: qtrendProject,
     imageAlt: 'Qtrend landing page screenshot',
     projectUrl: 'https://qtrend.vercel.app/',
+    category: 'dashboards',
     features: [
       'Real-time data visualization',
       'User-friendly interface for market tracking',
@@ -162,6 +195,7 @@ export const homeContent = {
     image: misbarProject,
     imageAlt: 'Misbar landing page screenshot',
     projectUrl: 'https://misbar-landingpage.vercel.app/',
+    category: 'landing-pages',
     features: [
       'Sleek and modern design',
       'Mobile-friendly responsiveness',
@@ -174,6 +208,7 @@ export const homeContent = {
     image: brightDentProject,
     imageAlt: 'Bright Dent website screenshot',
     projectUrl: 'https://bright-dent-website.vercel.app/',
+    category: 'websites',
     features: [
       'Appointment booking system',
       'Detailed service descriptions',
@@ -186,6 +221,7 @@ export const homeContent = {
     image: talabeeProject,
     imageAlt: 'Talabee website screenshot',
     projectUrl: 'https://talabee.vercel.app/',
+    category: 'mobile-apps',
     features: [
       'Seamless online food ordering',
       'Secure payment integration',
@@ -198,6 +234,7 @@ export const homeContent = {
     image: aheldubaiProject,
     imageAlt: 'AhlDubai website screenshot',
     projectUrl: 'https://medical-landing-page-iota.vercel.app/',
+    category: 'landing-pages',
     features: [
       'Healthcare services',
       'Health blog',
@@ -210,6 +247,7 @@ export const homeContent = {
     image: recoProject,
     imageAlt: 'Reco website screenshot',
     projectUrl: 'https://recoproject.org/',
+    category: 'websites',
     features: [
       'Environmental education',
       'Eco-friendly tips',
@@ -222,6 +260,7 @@ export const homeContent = {
     image: etaxiProject,
     imageAlt: 'Etaxi landing page screenshot',
     projectUrl: 'https://taxi-app-landing-page.vercel.app/',
+    category: 'landing-pages',
     features: [
       'Service area overview',
       'Contactless booking',
@@ -234,6 +273,7 @@ export const homeContent = {
     image: zakerProject,
     imageAlt: 'Zaker website screenshot',
     projectUrl: 'https://zaker.vercel.app/',
+    category: 'dashboards',
     features: [
       'AI recommendations',
       'Interactive quizzes',
@@ -246,6 +286,7 @@ export const homeContent = {
     image: fsheinProject,
     imageAlt: '4Leaf landing page screenshot',
     projectUrl: 'https://4-leaf.vercel.app/',
+    category: 'landing-pages',
     features: [
       'Collection showcase',
       'Promotional videos',
@@ -258,6 +299,7 @@ export const homeContent = {
     image: recoV2Project,
     imageAlt: 'Reco V2 website screenshot',
     projectUrl: 'https://reco-website.vercel.app/',
+    category: 'websites',
     features: [
       'Educational resources',
       'Carbon reduction tools',
@@ -270,6 +312,7 @@ export const homeContent = {
     image: karmaV2Project,
     imageAlt: 'KarmaCoin V2 screenshot',
     projectUrl: 'https://new-karma-coin.vercel.app/',
+    category: 'dashboards',
     features: [
       'Trading algorithms',
       'Modern dashboard',
@@ -282,6 +325,7 @@ export const homeContent = {
     image: sdnoneProject,
     imageAlt: 'SDNone website screenshot',
     projectUrl: 'https://sdnone.vercel.app/',
+    category: 'websites',
     features: [
       'Portfolio showcase',
       'Image gallery',
@@ -293,6 +337,7 @@ export const homeContent = {
     description: 'Corporate website for an industrial group.',
     image: optimumProject,
     imageAlt: 'Optimum website screenshot',
+    category: 'websites',
     features: [
       'Corporate services',
       'Company updates',
@@ -304,6 +349,7 @@ export const homeContent = {
     description: 'Cryptocurrency trading platform.',
     image: karmaProject,
     imageAlt: 'KarmaCoin screenshot',
+    category: 'dashboards',
     features: [
       'Market rates',
       'Wallet integration',
@@ -316,6 +362,7 @@ export const homeContent = {
     image: kareemProject,
     imageAlt: 'Kareem Ecommerce screenshot',
     projectUrl: 'https://ecommerce-structure-six.vercel.app/',
+    category: 'websites',
     features: [
       'Shopping cart',
       'Secure payments',
@@ -328,6 +375,7 @@ export const homeContent = {
     image: dmProject,
     imageAlt: 'DM website screenshot',
     projectUrl: 'https://dm-f9z6.vercel.app/',
+    category: 'dashboards',
     features: [
       'Team management',
       'Chat',
@@ -340,6 +388,7 @@ export const homeContent = {
     image: mnsProject,
     imageAlt: 'MNS website screenshot',
     projectUrl: 'https://mns-ecommerce.vercel.app/',
+    category: 'landing-pages',
     features: [
       'Startup showcase',
       'Investor section',
@@ -351,6 +400,7 @@ export const homeContent = {
     description: 'Regional business networking platform.',
     image: narabiaProject,
     imageAlt: 'Nokhbeh Arabia screenshot',
+    category: 'websites',
     features: [
       'User profiles',
       'Discussion forums',
@@ -362,6 +412,7 @@ export const homeContent = {
     description: 'Premium online auction platform.',
     image: nokhbehProject,
     imageAlt: 'Elite Auction screenshot',
+    category: 'dashboards',
     features: [
       'Real-time bidding',
       'Secure payments',
@@ -371,20 +422,18 @@ export const homeContent = {
 ]
   },
   contact: {
-    titleStart: 'Let’s Build Something Together',
-    // titleAccent: 'Together',
-    subtitle:
-      'Have an idea for a website, mobile app, dashboard, or digital product? Tell us what you want to build and we’ll help shape it into a clear product plan.',
-    formTitle: 'Start your digital project',
-    formBody:
-      'Share the essentials: your business, project type, timeline, budget range, and the main goal. We’ll reply with the next practical step.',
+    titleStart: 'Ready To Build Something Bigger?',
+    subtitle: 'Your next successful digital product starts with one conversation.',
+    formTitle: 'Tell us what you’re building',
+    formBody: 'Share the goal, the challenge, and where you are today. We’ll help define the clearest next step.',
     image: contactHandshake,
     imageAlt: 'Business handshake over a bright yellow circle',
-    submitLabel: 'Let’s Talk!!',
+    submitLabel: 'Start Your Project',
+    responseTime: 'Usually we reply within 24 hours.',
   },
   footer: {
     brandName: 'Basma',
-    description: 'Descriptive line about what your company does.',
+    description: 'Business thinking, thoughtful design, and dependable technology—working together.',
     artwork: footerTentacle,
     socialLinks: [
       { label: 'Instagram', href: 'https://www.instagram.com/', icon: 'instagram' },
@@ -393,28 +442,26 @@ export const homeContent = {
     ],
     columns: [
       {
-        title: 'Features',
+        title: 'Services',
         links: [
-          { label: 'Core features', href: '#services' },
-          { label: 'Pro experience', href: '#services' },
-          { label: 'Integrations', href: '#services' },
+          { label: 'Product strategy', href: '#services' },
+          { label: 'UI/UX design', href: '#services' },
+          { label: 'Development', href: '#services' },
         ],
       },
       {
-        title: 'Learn more',
+        title: 'Explore',
         links: [
-          { label: 'Blog', href: '#work' },
-          { label: 'Case studies', href: '#work' },
-          { label: 'Customer stories', href: '#work' },
-          { label: 'Best practices', href: '#about' },
+          { label: 'Selected work', href: '#work' },
+          { label: 'Our process', href: '#process' },
+          { label: 'Why Basma', href: '#why-basma' },
         ],
       },
       {
-        title: 'Support',
+        title: 'Start',
         links: [
-          { label: 'Contact', href: '#contact' },
-          { label: 'Support', href: '#contact' },
-          { label: 'Legal', href: '#top' },
+          { label: 'Start a project', href: '#contact' },
+          { label: 'About Basma', href: '#about' },
         ],
       },
     ],

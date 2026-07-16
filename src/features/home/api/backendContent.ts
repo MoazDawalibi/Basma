@@ -12,14 +12,6 @@ type MediaAsset = {
   alt: LocalizedText
 }
 
-type BackendFounder = {
-  id: string
-  name: LocalizedText
-  role: LocalizedText
-  bio: LocalizedText
-  image: MediaAsset
-}
-
 type BackendService = {
   id: string
   title: LocalizedText
@@ -38,9 +30,6 @@ type BackendProject = {
 type BackendContent = {
   whoWeAre: {
     body: LocalizedText
-  }
-  founders: {
-    cards: BackendFounder[]
   }
   aboutBasma: {
     body: LocalizedText
@@ -114,16 +103,6 @@ function mapBackendContentForLocale(
       ...fallbackContent.about,
       body: backendContent.whoWeAre.body[locale],
     },
-    founders: {
-      ...fallbackContent.founders,
-      people: backendContent.founders.cards.map((founder) => ({
-        name: founder.name[locale],
-        role: founder.role[locale],
-        bio: founder.bio[locale],
-        image: mediaUrl(founder.image.url),
-        imageAlt: founder.image.alt[locale],
-      })),
-    },
     basma: {
       ...fallbackContent.basma,
       body: backendContent.aboutBasma.body[locale],
@@ -142,12 +121,13 @@ function mapBackendContentForLocale(
     work: {
       ...fallbackContent.work,
       subtitle: backendContent.projects.body[locale],
-      projects: backendContent.projects.cards.map((project) => ({
+      projects: backendContent.projects.cards.map((project, index) => ({
         title: project.title[locale],
         description: project.body[locale],
         image: mediaUrl(project.image.url),
         imageAlt: project.image.alt[locale],
         projectUrl: project.projectUrl,
+        category: fallbackContent.work.projects[index]?.category ?? 'websites',
         features: project.features[locale],
       })),
     },

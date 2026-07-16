@@ -1,0 +1,192 @@
+.section {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  scroll-margin-top: var(--header-height);
+  padding: clamp(4rem, 5vw, 5rem) clamp(1.25rem, 4vw, 4rem) clamp(5rem, 8vw, 8rem);
+  background: transparent;
+}
+
+.section::before {
+  position: absolute;
+  top: -5rem;
+  left: -7rem;
+  z-index: -1;
+  width: min(36vw, 30rem);
+  height: clamp(4rem, 5vw, 5rem);
+  /* background: linear-gradient(90deg, #ffd600, var(--color-interaction)); */
+  box-shadow: 0 0 2rem rgb(255 219 13 / 16%);
+  clip-path: polygon(0 0, 90% 0, 100% 50%, 90% 100%, 0 100%);
+  content: '';
+  transform: rotate(13deg);
+  transform-origin: left center;
+}
+
+:global(html[dir='rtl']) .section::before {
+  right: -7rem;
+  left: auto;
+  transform: rotate(-13deg);
+  transform-origin: right center;
+}
+
+.header {
+  width: min(100%, 54rem);
+  margin: 0 auto clamp(4rem, 6vw, 6rem);
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0 0 1rem !important;
+  color: var(--color-accent) !important;
+  font-size: 0.8rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.16em !important;
+  text-transform: uppercase;
+}
+
+.header h2 {
+  margin: 0;
+  color: var(--color-ink);
+  font-size: var(--section-title-size);
+  font-weight: 700;
+  line-height: var(--section-title-line-height);
+  letter-spacing: var(--section-title-letter-spacing);
+}
+
+.header > p:last-child {
+  max-width: 43rem;
+  margin: 1.4rem auto 0;
+  color: var(--color-text-muted);
+  font-size: clamp(1rem, 1.35vw, 1.2rem);
+  line-height: 1.5;
+}
+
+.timeline {
+  position: relative;
+  width: min(100%, 88rem);
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 2rem);
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+
+.timeline::before {
+  position: absolute;
+  top: 2rem;
+  right: 8%;
+  left: 8%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-interaction), var(--color-accent));
+  content: '';
+}
+
+.step {
+  position: relative;
+  z-index: 1;
+}
+
+.stepMarker {
+  height: 4rem;
+  display: grid;
+  place-items: center;
+}
+
+.stepMarker span {
+  width: 4rem;
+  height: 4rem;
+  display: grid;
+  place-items: center;
+  border: 0.15rem solid var(--color-accent);
+  border-radius: 50%;
+  color: var(--color-on-interaction);
+  background: var(--color-interaction);
+  box-shadow: 0 0 0 0.45rem var(--color-white);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.stepCard {
+  min-height: 13rem;
+  margin-top: 1.75rem;
+  border: 1px solid var(--color-divider);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  background: var(--color-surface-elevated);
+  box-shadow: 0 0.75rem 2rem rgb(34 22 42 / 7%);
+  cursor: pointer;
+  transition:
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.stepCard h3 {
+  margin: 0;
+  color: var(--color-accent);
+  font-size: clamp(1.2rem, 1.5vw, 1.45rem);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.stepCard p {
+  margin: 1rem 0 0;
+  color: var(--color-text-muted);
+  font-size: clamp(0.9rem, 1vw, 1rem);
+  line-height: 1.5;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .step:hover .stepCard {
+    border-color: rgb(111 67 132 / 34%);
+    box-shadow: 0 1.25rem 2.75rem rgb(34 22 42 / 12%);
+    transform: translateY(-0.5rem);
+  }
+}
+
+@media (max-width: 68rem) {
+  .timeline {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+  }
+
+  .timeline::before { display: none; }
+
+  .step {
+    display: grid;
+    grid-template-columns: 4rem minmax(0, 1fr);
+    align-items: start;
+    gap: 1rem;
+  }
+
+  .stepMarker { height: 4rem; }
+  .stepMarker span { box-shadow: none; }
+  .stepCard { min-height: 12rem; margin-top: 0; }
+}
+
+@media (max-width: 40rem) {
+  .section { scroll-margin-top: var(--header-height-mobile); padding: 3rem 1rem 4rem; }
+  .section::before { width: 70vw; height: 3.5rem; }
+  .header { margin-bottom: 3rem; }
+  .header h2 { font-size: var(--section-title-size-mobile); }
+  .timeline { grid-template-columns: 1fr; gap: 1.25rem; }
+  .timeline::before {
+    top: 2rem;
+    bottom: 2rem;
+    left: 1.95rem;
+    width: 2px;
+    height: auto;
+    display: block;
+    background: linear-gradient(var(--color-interaction), var(--color-accent));
+  }
+  :global(html[dir='rtl']) .timeline::before { right: 1.95rem; left: auto; }
+  .step { grid-template-columns: 4rem minmax(0, 1fr); }
+  .stepMarker span { box-shadow: 0 0 0 0.35rem var(--color-white); }
+  .stepCard { min-height: 0; padding: 1.35rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stepCard { transition: none; }
+}

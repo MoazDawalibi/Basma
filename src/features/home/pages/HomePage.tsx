@@ -1,18 +1,20 @@
 import { useRef } from 'react'
 import { AboutBasmaSection } from '@/features/home/components/AboutBasmaSection/AboutBasmaSection'
+import { CollaborationSection } from '@/features/home/components/CollaborationSection/CollaborationSection'
 import { ContactSection } from '@/features/home/components/ContactSection/ContactSection'
-import { FoundersSection } from '@/features/home/components/FoundersSection/FoundersSection'
 import { HeroSection } from '@/features/home/components/HeroSection/HeroSection'
+import { HowWeWorkSection } from '@/features/home/components/HowWeWorkSection/HowWeWorkSection'
 import { ServicesSection } from '@/features/home/components/ServicesSection/ServicesSection'
 import { SiteFooter } from '@/features/home/components/SiteFooter/SiteFooter'
 import { SiteHeader } from '@/features/home/components/SiteHeader/SiteHeader'
 import { WhoWeAreSection } from '@/features/home/components/WhoWeAreSection/WhoWeAreSection'
 import { WorkSection } from '@/features/home/components/WorkSection/WorkSection'
+import { WhyBasmaSection } from '@/features/home/components/WhyBasmaSection/WhyBasmaSection'
 import { useRevealOnScroll } from '@/hooks/useRevealOnScroll'
 import { useHomeContent } from '@/i18n/useLocale'
 import styles from './HomePage.module.css'
 
-export function   HomePage() {
+export function HomePage() {
   const pageRef = useRef<HTMLDivElement>(null)
   const { ui } = useHomeContent()
 
@@ -27,10 +29,14 @@ export function   HomePage() {
       <main id="main-content">
         <HeroSection />
         <WhoWeAreSection />
-        <FoundersSection />
         <AboutBasmaSection />
         <ServicesSection />
+        <div className={styles.partnershipStory}>
+          <CollaborationSection />
+          <HowWeWorkSection />
+        </div>
         <WorkSection />
+        <WhyBasmaSection />
         <ContactSection />
       </main>
       <SiteFooter />

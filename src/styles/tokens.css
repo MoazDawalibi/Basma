@@ -24,6 +24,10 @@
   --frame-border-width: 2px;
   --button-height: 3.4375rem;
   --button-radius: 0.75rem;
+  --section-title-size: clamp(2.75rem, 5vw, 5rem);
+  --section-title-size-mobile: clamp(2.35rem, 11vw, 3.2rem);
+  --section-title-line-height: 0.98;
+  --section-title-letter-spacing: -0.05em;
 }
 
 :root[data-theme='dark'] {

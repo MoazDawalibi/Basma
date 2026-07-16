@@ -4,6 +4,15 @@
   background: var(--color-white);
 }
 
+.partnershipStory {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 28%, rgb(111 67 132 / 7%), transparent 36rem),
+    var(--color-white);
+}
+
 .skipLink {
   position: fixed;
   top: 0.75rem;

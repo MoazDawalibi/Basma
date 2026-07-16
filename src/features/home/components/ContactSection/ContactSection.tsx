@@ -81,6 +81,7 @@ export function ContactSection() {
             <button data-reveal data-reveal-delay="1" type="submit" disabled={submitStatus === 'sending'}>
               {submitStatus === 'sending' ? ui.contactSending : contact.submitLabel}
             </button>
+            <p className={styles.responseTime}>{contact.responseTime}</p>
           </form>
         </div>
 
