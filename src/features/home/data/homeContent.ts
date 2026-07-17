@@ -73,7 +73,7 @@ export const homeContent = {
   },
   about: {
     title: 'Digital Products With A Clear Business Purpose',
-    body: 'Basma helps ambitious teams turn complex ideas into useful digital products. We connect business thinking, thoughtful design, and dependable development so every decision moves the product—and the business—forward.',
+    body: 'Basma helps ambitious teams turn complex ideas into useful digital products. We connect business thinking, thoughtful design, and dependable development so every decision moves the product and the business forward.',
     action: { label: 'Start Your Project', href: '#contact' },
   },
   collaboration: {
@@ -101,7 +101,7 @@ export const homeContent = {
   process: {
     eyebrow: 'How We Work',
     title: 'Clarity Before Complexity',
-    subtitle: 'A focused process that connects every decision to your business goals—and keeps momentum from first conversation to launch.',
+    subtitle: 'A focused process that connects every decision to your business goals and keeps momentum from first conversation to launch.',
     steps: [
       { title: 'Discovery', description: 'Understand your business, goals, audience, and the challenge worth solving.' },
       { title: 'Strategy', description: 'Create a focused product roadmap before writing a single line of code.' },
@@ -123,7 +123,7 @@ export const homeContent = {
   },
   basma: {
     title: 'Basma',
-    body: 'Basma means a lasting mark. We create products people understand, trust, and remember—built to make a measurable difference after launch.',
+    body: 'Basma means a lasting mark. We create products people understand, trust, and remember built to make a measurable difference after launch.',
     artwork: basmaAbout,
     imageAlt: 'Basma visual identity',
   },
@@ -134,11 +134,11 @@ export const homeContent = {
   ],
   services: {
     title: 'From First Decision to Final Detail',
-    body: 'Strategy, experience, and engineering work as one system—giving you fewer handoffs, clearer decisions, and a stronger product.',
+    body: 'Strategy, experience, and engineering work as one system giving you fewer handoffs, clearer decisions, and a stronger product.',
     items: [
       {
         title: 'UI/UX Design',
-        description: 'User-centered interfaces that are simple, intuitive, and visually consistent.',
+        description: 'User centered interfaces that are simple, intuitive, and visually consistent.',
       },
       {
         title: 'Website Development',
@@ -165,7 +165,7 @@ export const homeContent = {
  work: {
   titleStart: 'Selected',
   titleAccent: 'Projects',
-  subtitle: 'Products shaped around real goals—from focused launches to platforms built for daily use.',
+  subtitle: 'Products shaped around real goals from focused launches to platforms built for daily use.',
   filtersLabel: 'Filter projects by category',
   filters: [
     { value: 'all', label: 'All' },
@@ -433,7 +433,7 @@ export const homeContent = {
   },
   footer: {
     brandName: 'Basma',
-    description: 'Business thinking, thoughtful design, and dependable technology—working together.',
+    description: 'Business thinking, thoughtful design, and dependable technology working together.',
     artwork: footerTentacle,
     socialLinks: [
       { label: 'Instagram', href: 'https://www.instagram.com/', icon: 'instagram' },

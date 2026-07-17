@@ -57,7 +57,7 @@ function ProjectCard({ project, index, viewProject, keyFeatures, categoryLabel }
 }
 
 export function WorkSection() {
-  const { content: { work, ui }, direction } = useLocale()
+  const { content: { work, ui } } = useLocale()
   const trackRef = useRef<HTMLDivElement>(null)
   const [activeCategory, setActiveCategory] = useState('all')
   const visibleProjects = activeCategory === 'all'
@@ -120,12 +120,12 @@ export function WorkSection() {
           ))}
         </div>
 
-        <div className={styles.controls} data-direction={direction} aria-label={ui.projectSliderControls}>
+        <div className={styles.controls} aria-label={ui.projectSliderControls}>
           <button data-reveal type="button" aria-label={ui.previousProject} onClick={() => scrollSlider(-1)}>
-            <span aria-hidden="true">{direction === 'rtl' ? '›' : '‹'}</span>
+            <span aria-hidden="true">‹</span>
           </button>
           <button data-reveal data-reveal-delay="1" type="button" aria-label={ui.nextProject} onClick={() => scrollSlider(1)}>
-            <span aria-hidden="true">{direction === 'rtl' ? '‹' : '›'}</span>
+            <span aria-hidden="true">›</span>
           </button>
         </div>
       </div>

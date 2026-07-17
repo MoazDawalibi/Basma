@@ -1,4 +1,4 @@
-import { useState, type CSSProperties } from 'react'
+import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import { useLocale } from '@/i18n/useLocale'
 import { LanguageToggle } from './LanguageToggle'
 import { ThemeToggle } from './ThemeToggle'
@@ -7,6 +7,46 @@ import styles from './SiteHeader.module.css'
 export function SiteHeader() {
   const { content: { brand, navigation, ui }, locale } = useLocale()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const menuButtonRef = useRef<HTMLButtonElement>(null)
+  const mobileMenuRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!isMenuOpen) {
+      return
+    }
+
+    const closeFromOutside = (event: PointerEvent) => {
+      const target = event.target
+
+      if (!(target instanceof Node)) {
+        return
+      }
+
+      if (
+        menuButtonRef.current?.contains(target)
+        || mobileMenuRef.current?.contains(target)
+      ) {
+        return
+      }
+
+      setIsMenuOpen(false)
+    }
+
+    const closeFromKeyboard = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsMenuOpen(false)
+        menuButtonRef.current?.focus()
+      }
+    }
+
+    document.addEventListener('pointerdown', closeFromOutside)
+    document.addEventListener('keydown', closeFromKeyboard)
+
+    return () => {
+      document.removeEventListener('pointerdown', closeFromOutside)
+      document.removeEventListener('keydown', closeFromKeyboard)
+    }
+  }, [isMenuOpen])
 
   return (
     <header className={styles.header}>
@@ -47,6 +87,7 @@ export function SiteHeader() {
           <LanguageToggle />
           <ThemeToggle />
           <button
+            ref={menuButtonRef}
             type="button"
             className={styles.menuButton}
             aria-expanded={isMenuOpen}
@@ -59,7 +100,7 @@ export function SiteHeader() {
           </button>
         </div>
 
-        <div className={styles.mobileMenu} data-open={isMenuOpen}>
+        <div ref={mobileMenuRef} className={styles.mobileMenu} data-open={isMenuOpen}>
           {navigation.map((item) => (
             <a
               key={item.href}

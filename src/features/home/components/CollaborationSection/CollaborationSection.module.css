@@ -35,8 +35,8 @@
 
 .eyebrow {
   margin: 0 0 1rem;
-  color: var(--color-accent);
-  font-size: clamp(0.75rem, 1vw, 0.9rem);
+  color: var(--color-eyebrow);
+  font-size: var(--eyebrow-size);
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: 0.16em;
@@ -335,7 +335,7 @@
   .cards { width: min(100%, 36rem); grid-template-columns: 1fr; margin: 0 auto; }
   .card { min-height: auto; }
   .connector { width: 5rem; height: 5.5rem; justify-self: center; }
-  .connectorLine { top: 0; bottom: 0; left: calc(50% - 0.14rem); width: 0.28rem; height: auto; }
+  .connectorLine { top: 0; right: auto; bottom: 0; left: calc(50% - 0.14rem); width: 0.28rem; height: auto; }
   .connectorLine::before { transform: scaleY(0); }
   .sequence:global(.is-revealed) .connectorLine::before { animation-name: connect-vertical; }
   .statement { width: min(100%, 36rem); }
@@ -349,11 +349,16 @@
 @media (max-width: 36rem) {
   .section { padding: 3.75rem 1rem 3rem; scroll-margin-top: var(--header-height-mobile); }
   .header h2 { font-size: var(--section-title-size-mobile); }
+  .eyebrow { font-size: var(--eyebrow-size-mobile); }
   .cardHeading { grid-template-columns: auto minmax(0, 1fr); }
   .areaIcon { grid-column: 2; grid-row: 2; margin-top: 0.5rem; }
   .cardDescription { min-height: 0; margin-top: 1.4rem; }
   .statement { gap: 0.85rem; padding: 1rem; text-align: start; }
   .statementIcon { width: 2.8rem; }
+}
+
+:global(html[data-theme='dark']) .connectorLine {
+  box-shadow: 0 0 0 1px #070707;
 }
 
 @media (prefers-reduced-motion: reduce) {

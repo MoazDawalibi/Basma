@@ -169,10 +169,6 @@
   opacity: 1;
 }
 
-.controls[data-direction='rtl'] {
-  flex-direction: row-reverse;
-}
-
 .controls button {
   width: 2.75rem;
   height: 2.75rem;

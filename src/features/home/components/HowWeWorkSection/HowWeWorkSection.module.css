@@ -37,8 +37,8 @@
 
 .eyebrow {
   margin: 0 0 1rem !important;
-  color: var(--color-accent) !important;
-  font-size: 0.8rem !important;
+  color: var(--color-eyebrow) !important;
+  font-size: var(--eyebrow-size) !important;
   font-weight: 700 !important;
   letter-spacing: 0.16em !important;
   text-transform: uppercase;
@@ -171,6 +171,7 @@
   .section::before { width: 70vw; height: 3.5rem; }
   .header { margin-bottom: 3rem; }
   .header h2 { font-size: var(--section-title-size-mobile); }
+  .eyebrow { font-size: var(--eyebrow-size-mobile) !important; }
   .timeline { grid-template-columns: 1fr; gap: 1.25rem; }
   .timeline::before {
     top: 2rem;

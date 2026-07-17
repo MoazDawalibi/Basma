@@ -7,6 +7,7 @@
   --color-text-muted: #6f6f6f;
   --color-text-soft: #777777;
   --color-accent: #6f4384;
+  --color-eyebrow: #6f4384;
   --color-interaction: #ffdb0d;
   --color-on-interaction: #070707;
   --color-control-border: #9d9d9d;
@@ -26,8 +27,10 @@
   --button-radius: 0.75rem;
   --section-title-size: clamp(2.75rem, 5vw, 5rem);
   --section-title-size-mobile: clamp(2.35rem, 11vw, 3.2rem);
-  --section-title-line-height: 0.98;
+  --section-title-line-height: 1.05;
   --section-title-letter-spacing: -0.05em;
+  --eyebrow-size: clamp(0.9rem, 1.1vw, 1rem);
+  --eyebrow-size-mobile: 0.9rem;
 }
 
 :root[data-theme='dark'] {
@@ -40,6 +43,7 @@
   --color-text-muted: #b9b3bf;
   --color-text-soft: #9f98a8;
   --color-accent: #c58cdd;
+  --color-eyebrow: #8f5aa2;
   --color-interaction: #ffdb0d;
   --color-on-interaction: #070707;
   --color-control-border: #5d5864;

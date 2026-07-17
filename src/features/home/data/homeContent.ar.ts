@@ -7,7 +7,7 @@ const projectTranslations = [
     features: ['تصوّر البيانات لحظيًا', 'واجهة سهلة لمتابعة السوق', 'تنبيهات وإشعارات قابلة للتخصيص'],
   },
   {
-    description: 'صفحة هبوط لعرض المشاريع الإبداعية.',
+    description: 'صفحة تعريفية لعرض المشاريع الإبداعية.',
     imageAlt: 'لقطة شاشة للصفحة الرئيسية لمنصة مسبار',
     features: ['تصميم عصري وأنيق', 'تجاوب كامل مع الهاتف', 'ربط بمنصات التواصل الاجتماعي'],
   },
@@ -22,7 +22,7 @@ const projectTranslations = [
     features: ['طلب طعام بسهولة', 'دفع إلكتروني آمن', 'تتبع الطلب لحظيًا'],
   },
   {
-    description: 'صفحة هبوط طبية احترافية.',
+    description: 'صفحة تعريفية طبية احترافية.',
     imageAlt: 'لقطة شاشة لموقع AhlDubai',
     features: ['الخدمات الصحية', 'مدونة طبية', 'التواصل والموقع'],
   },
@@ -32,7 +32,7 @@ const projectTranslations = [
     features: ['التثقيف البيئي', 'نصائح صديقة للبيئة', 'مشاركة المجتمع'],
   },
   {
-    description: 'صفحة هبوط لمزود خدمات سيارات الأجرة.',
+    description: 'صفحة تعريفية لمزود خدمات سيارات الأجرة.',
     imageAlt: 'لقطة شاشة لموقع Etaxi',
     features: ['عرض مناطق الخدمة', 'حجز دون تلامس', 'عروض ترويجية'],
   },
@@ -42,7 +42,7 @@ const projectTranslations = [
     features: ['توصيات ذكية', 'اختبارات تفاعلية', 'مصادر دراسية'],
   },
   {
-    description: 'صفحة هبوط لعلامة أزياء.',
+    description: 'صفحة تعريفية لعلامة أزياء.',
     imageAlt: 'لقطة شاشة لموقع 4Leaf',
     features: ['عرض المجموعات', 'فيديوهات ترويجية', 'نموذج آراء العملاء'],
   },
@@ -82,7 +82,7 @@ const projectTranslations = [
     features: ['إدارة الفريق', 'المحادثات', 'مشاركة الملفات'],
   },
   {
-    description: 'صفحة هبوط لشركة تقنية ناشئة.',
+    description: 'صفحة تعريفية لشركة تقنية ناشئة.',
     imageAlt: 'لقطة شاشة لموقع MNS',
     features: ['عرض الشركة الناشئة', 'قسم المستثمرين', 'مدونة الأخبار'],
   },
@@ -227,10 +227,10 @@ export const arabicHomeContent: HomeContent = {
     filtersLabel: 'تصفية المشاريع حسب الفئة',
     filters: [
       { value: 'all', label: 'الكل' },
-      { value: 'landing-pages', label: 'صفحات الهبوط' },
+      { value: 'landing-pages', label: 'المواقع التعريفية' },
       { value: 'websites', label: 'المواقع' },
       { value: 'dashboards', label: 'لوحات التحكم' },
-      { value: 'mobile-apps', label: 'تطبيقات الهاتف' },
+      { value: 'mobile-apps', label: 'التطبيقات' },
     ],
     projects,
   },
