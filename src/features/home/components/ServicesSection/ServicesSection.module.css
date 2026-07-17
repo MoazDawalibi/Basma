@@ -10,7 +10,7 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(2rem, 8vw, 8.75rem);
-  margin: 0 auto clamp(9rem, 13vw, 14rem);
+  margin: 0 auto clamp(6.5rem, 9vw, 9.5rem);
   padding: 0;
   list-style: none;
 }
@@ -40,25 +40,18 @@
 
 .header {
   width: min(100%, 61rem);
-  margin: 0 auto clamp(7rem, 10vw, 9.25rem);
+  margin: 0 auto clamp(5rem, 7vw, 7rem);
   text-align: center;
 }
 
-.header h2 {
-  margin: 0;
-  color: var(--color-accent);
-  font-size: var(--section-title-size);
-  font-weight: 700;
-  line-height: var(--section-title-line-height);
-  letter-spacing: var(--section-title-letter-spacing);
-}
-
 .header p {
+  max-width: 54rem;
   margin: 1.5rem 0 0;
+  margin-inline: auto;
   color: var(--color-text-muted);
-  font-size: clamp(1.1rem, 1.35vw, 1.4rem);
+  font-size: var(--section-intro-size);
   font-weight: 400;
-  line-height: 1.35;
+  line-height: var(--section-intro-line-height);
   letter-spacing: 0;
 }
 
@@ -89,11 +82,16 @@
   display: grid;
   justify-items: center;
   gap: 1.625rem;
-  border: 1.5px solid var(--color-ink);
+  border: 1px solid var(--color-divider);
   border-radius: 0.875rem;
   padding: 1.55rem 2rem 1.45rem;
   background: var(--color-white);
+  box-shadow: var(--shadow-card);
   text-align: center;
+  transition:
+    border-color 240ms ease,
+    box-shadow 240ms ease,
+    transform 240ms var(--ease-out);
 }
 
 .service h3 {
@@ -112,6 +110,16 @@
   font-weight: 400;
   line-height: 1.35;
   letter-spacing: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .service:hover {
+    border-color: var(--color-interaction);
+    box-shadow:
+      var(--shadow-card-hover),
+      inset 0 0.2rem 0 var(--color-interaction);
+    transform: translateY(-0.5rem);
+  }
 }
 
 @media (max-width: 68rem) {
@@ -169,12 +177,6 @@
     margin-bottom: 3.5rem;
   }
 
-  .header h2 { font-size: var(--section-title-size-mobile); }
-
-  .header p {
-    font-size: 0.95rem;
-  }
-
   .timeline {
     gap: 2.25rem;
   }
@@ -196,5 +198,15 @@
 
   .service p {
     font-size: 0.88rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service {
+    transition: none;
+  }
+
+  .service:hover {
+    transform: none;
   }
 }

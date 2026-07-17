@@ -22,8 +22,8 @@ export function WhyBasmaSection() {
   return (
     <section id="why-basma" className={styles.section} aria-labelledby="why-basma-title">
       <div data-reveal className={styles.header}>
-        <p className={styles.eyebrow}>{whyBasma.eyebrow}</p>
-        <h2 id="why-basma-title" className="gradiant_text">{whyBasma.title}</h2>
+        <p className="section-eyebrow">{whyBasma.eyebrow}</p>
+        <h2 id="why-basma-title" className="section-title gradient-text">{whyBasma.title}</h2>
         <p>{whyBasma.subtitle}</p>
       </div>
 

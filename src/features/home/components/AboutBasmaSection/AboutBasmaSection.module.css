@@ -5,17 +5,17 @@
   background: linear-gradient(90deg, var(--color-surface) 0%, var(--color-surface) 54%, var(--color-surface-soft) 100%);
 }
 
-/* .section::before {
+.section::before {
   position: absolute;
-  top: -15rem;
-  bottom: -12rem;
-  left: 20%;
-  width: clamp(6rem, 11vw, 12rem);
-  background: linear-gradient(90deg, rgb(255 235 54 / 14%), rgb(255 216 0 / 70%));
+  inset: 0;
+  background-image: radial-gradient(circle, rgb(111 67 132 / 13%) 1px, transparent 1.2px);
+  background-size: 1.5rem 1.5rem;
   content: '';
-  transform: rotate(42deg);
-  transform-origin: top center;
-} */
+  opacity: 0.42;
+  -webkit-mask-image: linear-gradient(110deg, transparent 4%, #000 38%, transparent 72%);
+  mask-image: linear-gradient(110deg, transparent 4%, #000 38%, transparent 72%);
+  pointer-events: none;
+}
 
 .copy {
   position: relative;
@@ -25,21 +25,14 @@
   text-align: center;
 }
 
-.copy h2 {
-  margin: 0;
-  color: var(--color-accent);
-  font-size: var(--section-title-size);
-  font-weight: 700;
-  line-height: var(--section-title-line-height);
-  letter-spacing: var(--section-title-letter-spacing);
-}
-
 .copy p {
+  max-width: 58rem;
   margin: 1.5rem 0 0;
+  margin-inline: auto;
   color: var(--color-text-muted);
-  font-size: clamp(1.1rem, 1.35vw, 1.4rem);
+  font-size: var(--section-intro-size);
   font-weight: 400;
-  line-height: 1.35;
+  line-height: var(--section-intro-line-height);
   letter-spacing: 0;
 }
 
@@ -53,6 +46,7 @@
   border-radius: 1.375rem;
   overflow: hidden;
   background: var(--color-surface-elevated);
+  box-shadow: 0 1.25rem 3.25rem rgb(34 22 42 / 9%);
 }
 
 .artworkFrame::after {
@@ -66,14 +60,15 @@
 
 .artwork {
   position: absolute;
-  /* inset: 0; */
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: contain;
   opacity: 1;
   transition:
     filter 250ms ease,
-    opacity 250ms ease;
+    opacity 250ms ease,
+    transform 500ms var(--ease-out);
 }
 
 .artworkDark {
@@ -100,51 +95,45 @@
   filter: brightness(0.94) saturate(0.94) contrast(0.98);
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .artworkFrame:hover .artwork {
+    transform: scale(1.012);
+  }
+}
+
 @media (max-width: 68rem) {
   .section {
     padding: 4rem clamp(1.25rem, 4vw, 2rem) 3.5rem;
-  }
-
-  .section::before {
-    left: 28%;
-    width: 6.5rem;
   }
 
   .copy {
     margin-bottom: 3.75rem;
   }
 
-  .copy h2 { font-size: var(--section-title-size); }
-
-  .copy p {
-    font-size: clamp(0.95rem, 2.2vw, 1.1rem);
-  }
 }
 
 @media (max-width: 40rem) {
   .section {
-    padding: 1.5rem 1.125rem 2.75rem;
-  }
-
-  .section::before {
-    top: -8rem;
-    bottom: -8rem;
-    left: 46%;
-    width: 4.75rem;
+    padding: 3.75rem 1.125rem 3.5rem;
   }
 
   .copy {
     margin-bottom: 2rem;
   }
 
-  .copy h2 { font-size: var(--section-title-size-mobile); }
-
-  .copy p {
-    margin-top: 1rem;
-    font-size: clamp(0.88rem, 3.8vw, 1rem);
-  }
+  .copy p { margin-top: 1rem; }
 
   .artworkFrame {
     border-radius: 0.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .artwork {
+    transition: none;
+  }
+
+  .artworkFrame:hover .artwork {
+    transform: none;
   }
 }

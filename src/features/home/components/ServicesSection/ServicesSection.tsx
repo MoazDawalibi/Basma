@@ -64,6 +64,11 @@ export function ServicesSection() {
       return
     }
 
+    if (!('IntersectionObserver' in window)) {
+      setShouldAnimateStats(true)
+      return
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry?.isIntersecting) {
@@ -83,19 +88,19 @@ export function ServicesSection() {
     <section id="services" className={styles.section} aria-labelledby="services-title">
       <ul ref={statsRef} className={styles.stats} aria-label={ui.statistics}>
         {stats.map((stat, index) => (
-          <AnimatedStat key={index} stat={stat} shouldAnimate={shouldAnimateStats} index={index} />
+          <AnimatedStat key={stat.label} stat={stat} shouldAnimate={shouldAnimateStats} index={index} />
         ))}
       </ul>
 
       <div data-reveal className={styles.header}>
-        <h2 id="services-title" className='gradiant_text'>{services.title}</h2>
+        <h2 id="services-title" className="section-title gradient-text">{services.title}</h2>
         <p>{services.body}</p>
       </div>
 
       <ol className={styles.timeline}>
         {services.items.map((service, index) => (
           <li
-            key={index}
+            key={service.title}
             data-reveal
             data-reveal-delay={Math.min(index, 4)}
             className={styles.service}

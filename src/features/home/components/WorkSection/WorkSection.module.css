@@ -11,21 +11,12 @@
   text-align: center;
 }
 
-.header h2 {
-  margin: 0;
-  color: var(--color-ink);
-  font-size: var(--section-title-size);
-  font-weight: 700;
-  line-height: var(--section-title-line-height);
-  letter-spacing: var(--section-title-letter-spacing);
-}
-
 .header p {
   margin: 1.65rem 0 0;
   color: var(--color-text-muted);
-  font-size: clamp(1.1rem, 1.35vw, 1.4rem);
+  font-size: var(--section-intro-size);
   font-weight: 400;
-  line-height: 1.35;
+  line-height: var(--section-intro-line-height);
   letter-spacing: 0;
 }
 
@@ -104,21 +95,22 @@
 .card {
   min-height: clamp(31.5rem, 34vw, 34.5rem);
   overflow: hidden;
+  border: 1px solid transparent;
   border-radius: 0.75rem;
   background: var(--color-surface-elevated);
-  box-shadow: 0 0.35rem 0.8rem rgb(0 0 0 / 28%);
+  box-shadow: var(--shadow-card);
   scroll-snap-align: start;
   transition:
+    border-color 240ms ease,
     box-shadow 240ms ease,
-    transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+    transform 240ms var(--ease-out);
 }
 
 .image {
   width: 100%;
-  height: clamp(13.5rem, 14vw, 16.25rem);
+  height: clamp(14.75rem, 15.5vw, 17.5rem);
   object-fit: cover;
   object-position: top center;
-  cursor: pointer;
 }
 
 .cardBody {
@@ -127,7 +119,7 @@
 
 .card h3 {
   margin: 0;
-  color: #ffc107;
+  color: var(--color-accent);
   font-size: clamp(1.25rem, 1.35vw, 1.5rem);
   font-weight: 700;
   line-height: 1.1;
@@ -145,7 +137,7 @@
 
 .featuresLabel {
   margin: 1.25rem 0 0;
-  color: #ffc107;
+  color: var(--color-accent);
   font-size: clamp(1.15rem, 1.25vw, 1.4rem);
   font-weight: 700;
   line-height: 1.2;
@@ -185,7 +177,7 @@
     background-color 200ms ease,
     border-color 200ms ease,
     box-shadow 200ms ease,
-    transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform 200ms var(--ease-spring);
 }
 
 .controls button:active {
@@ -194,6 +186,16 @@
   background: var(--color-interaction);
   box-shadow: 0 0.15rem 0.4rem rgb(0 0 0 / 14%);
   transform: translateY(0) scale(0.94);
+}
+
+.controls button:disabled {
+  border-color: var(--color-divider);
+  color: var(--color-text-soft);
+  background: var(--color-surface-soft);
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+  transform: none;
 }
 
 .controls span {
@@ -208,10 +210,14 @@
   outline-offset: 3px;
 }
 
-.imageLink {
+.imageLink,
+.imageMedia {
   position: relative;
   display: block;
   overflow: hidden;
+}
+
+.imageLink {
   cursor: pointer;
   text-decoration: none;
 }
@@ -232,12 +238,13 @@
   align-items: center;
   justify-content: center;
 
-  color: #ffffff;
+  color: var(--color-on-media);
   font-size: 1rem;
   font-weight: 600;
 
   background: rgb(0 0 0 / 45%);
   opacity: 0;
+  z-index: 1;
 
   transition: opacity 0.35s ease;
 }
@@ -254,6 +261,7 @@
   font-size: 0.75rem;
   font-weight: 700;
   line-height: 1;
+  z-index: 2;
 }
 
 :global(html[dir='rtl']) .categoryBadge {
@@ -262,22 +270,23 @@
 }
 
 .imageLink:focus-visible {
-  outline: 3px solid #8d49a8;
-  outline-offset: 4px;
+  outline: 3px solid var(--color-focus);
+  outline-offset: -3px;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .card:hover {
-    box-shadow: 0 1.25rem 2.8rem rgb(0 0 0 / 22%);
+    border-color: color-mix(in srgb, var(--color-interaction) 65%, transparent);
+    box-shadow: var(--shadow-card-hover);
     transform: translateY(-0.5rem);
   }
 
-  .filters button:hover:not([aria-pressed='true']) {
+  .filters button:hover:not([aria-pressed='true']):not(:active) {
     border-color: var(--color-accent);
     color: var(--color-accent);
     transform: translateY(-2px);
   }
-  .controls button:hover {
+  .controls button:hover:not(:active):not(:disabled) {
     border-color: var(--color-interaction);
     color: var(--color-on-interaction);
     background: var(--color-interaction);
@@ -286,7 +295,7 @@
   }
 
   .imageLink:hover .image {
-    transform: scale(1.04);
+    transform: scale(1.05);
     filter: brightness(0.75);
   }
 
@@ -304,11 +313,6 @@
     margin-bottom: 2.5rem;
   }
 
-  .header h2 { font-size: var(--section-title-size); }
-
-  .header p {
-    font-size: clamp(0.98rem, 2.2vw, 1.15rem);
-  }
 
   .track {
     --work-card-width: min(72vw, 34rem);
@@ -338,12 +342,7 @@
     margin-bottom: 2rem;
   }
 
-  .header h2 { font-size: var(--section-title-size-mobile); }
-
-  .header p {
-    margin-top: 1rem;
-    font-size: 0.92rem;
-  }
+  .header p { margin-top: 1rem; }
 
   .track {
     --work-card-width: min(62vw, 17rem);
@@ -361,7 +360,7 @@
   }
 
   .filters button {
-    min-height: 2.5rem;
+    min-height: 2.75rem;
     padding-inline: 1rem;
     font-size: 0.82rem;
   }
@@ -372,7 +371,7 @@
   }
 
   .image {
-    height: 7.75rem;
+    height: 9.25rem;
   }
 
   .cardBody {
@@ -395,7 +394,7 @@
 
   .features {
     margin-top: 0.65rem;
-    padding-left: 1.25rem;
+    padding-inline-start: 1.25rem;
     font-size: 0.78rem;
     line-height: 1.25;
   }
@@ -403,11 +402,6 @@
   .controls {
     gap: 0.55rem;
     margin-top: 0.85rem;
-  }
-
-  .controls button {
-    width: 2.35rem;
-    height: 2.35rem;
   }
 
   .controls span {
@@ -418,12 +412,15 @@
 @media (prefers-reduced-motion: reduce) {
   .card,
   .filters button,
+  .controls button,
+  .imageOverlay,
   .image {
     transition: none;
   }
 
   .card:hover,
   .filters button:hover,
+  .controls button:hover,
   .imageLink:hover .image {
     transform: none;
   }

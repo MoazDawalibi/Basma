@@ -7,12 +7,12 @@ export function HowWeWorkSection() {
   return (
     <section id="process" className={styles.section} aria-labelledby="process-title">
       <div data-reveal className={styles.header}>
-        <p className={styles.eyebrow}>{process.eyebrow}</p>
-        <h2 id="process-title" className="gradiant_text">{process.title}</h2>
+        <p className="section-eyebrow">{process.eyebrow}</p>
+        <h2 id="process-title" className="section-title gradient-text">{process.title}</h2>
         <p>{process.subtitle}</p>
       </div>
 
-      <ol className={styles.timeline}>
+      <ol data-reveal className={styles.timeline}>
         {process.steps.map((step, index) => (
           <li
             key={step.title}

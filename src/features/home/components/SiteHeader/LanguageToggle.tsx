@@ -2,9 +2,9 @@ import type { Locale } from '@/i18n/catalog'
 import { useLocale } from '@/i18n/useLocale'
 import styles from './SiteHeader.module.css'
 
-const options: Array<{ locale: Locale; label: string; accessibleLabel: string }> = [
-  { locale: 'en', label: 'EN', accessibleLabel: 'Switch to English' },
-  { locale: 'ar', label: 'AR', accessibleLabel: 'التبديل إلى العربية' },
+const options: Array<{ locale: Locale; label: string }> = [
+  { locale: 'en', label: 'EN' },
+  { locale: 'ar', label: 'AR' },
 ]
 
 export function LanguageToggle() {
@@ -18,7 +18,7 @@ export function LanguageToggle() {
           type="button"
           className={styles.languageOption}
           data-active={locale === option.locale}
-          aria-label={option.accessibleLabel}
+          aria-label={option.locale === 'en' ? content.ui.switchToEnglish : content.ui.switchToArabic}
           aria-pressed={locale === option.locale}
           lang={option.locale}
           onClick={() => setLocale(option.locale)}

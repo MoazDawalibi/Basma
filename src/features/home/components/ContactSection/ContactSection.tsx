@@ -32,7 +32,7 @@ export function ContactSection() {
   return (
     <section id="contact" className={styles.section} aria-labelledby="contact-title">
       <div data-reveal className={styles.header}>
-        <h2 id="contact-title" className="gradiant_text">
+        <h2 id="contact-title" className="section-title gradient-text">
           <span>{contact.titleStart} </span> 
         </h2>
         <p>{contact.subtitle}</p>
@@ -43,35 +43,44 @@ export function ContactSection() {
           <h3>{contact.formTitle}</h3>
           <p>{contact.formBody}</p>
 
-          <form className={styles.form} onSubmit={handleSubmit}>
+          <form
+            className={styles.form}
+            aria-busy={submitStatus === 'sending'}
+            onInput={() => {
+              if (submitStatus === 'success' || submitStatus === 'error') {
+                setSubmitStatus('idle')
+              }
+            }}
+            onSubmit={handleSubmit}
+          >
             <div className={styles.nameRow}>
               <label>
-                <span>{ui.firstName}</span>
+                <span className="sr-only">{ui.firstName}</span>
                 <input name="firstName" type="text" placeholder={ui.firstName} autoComplete="given-name" required />
               </label>
               <label>
-                <span>{ui.lastName}</span>
+                <span className="sr-only">{ui.lastName}</span>
                 <input name="lastName" type="text" placeholder={ui.lastName} autoComplete="organization" required />
               </label>
             </div>
 
             <label>
-              <span>{ui.email}</span>
+              <span className="sr-only">{ui.email}</span>
               <input name="email" type="email" placeholder={ui.email} autoComplete="email" required />
             </label>
 
             <label>
-              <span>{ui.phoneNumber}</span>
-              <input name="phone" type="text" placeholder={ui.phoneNumber} autoComplete="off" />
+              <span className="sr-only">{ui.phoneNumber}</span>
+              <input name="phone" type="tel" inputMode="tel" placeholder={ui.phoneNumber} autoComplete="tel" />
             </label>
 
             <label>
-              <span>{ui.message}</span>
+              <span className="sr-only">{ui.message}</span>
               <textarea name="message" placeholder={ui.message} rows={5} required />
             </label>
 
             {submitStatus !== 'idle' ? (
-              <p className={styles.formStatus} role="status">
+              <p className={styles.formStatus} role={submitStatus === 'error' ? 'alert' : 'status'}>
                 {submitStatus === 'sending' ? ui.contactSending : null}
                 {submitStatus === 'success' ? ui.contactSuccess : null}
                 {submitStatus === 'error' ? ui.contactError : null}

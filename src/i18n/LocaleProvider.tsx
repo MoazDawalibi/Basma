@@ -25,7 +25,9 @@ export function LocaleProvider({
     document.documentElement.lang = nextLocale
     document.documentElement.dir = direction
     localStorage.setItem('basma-locale', nextLocale)
-    window.history.replaceState(window.history.state, '', window.location.pathname)
+    const url = new URL(window.location.href)
+    url.searchParams.set('lang', nextLocale)
+    window.history.replaceState(window.history.state, '', url)
     setLocaleState(nextLocale)
   }
 

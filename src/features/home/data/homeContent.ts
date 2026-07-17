@@ -1,6 +1,4 @@
-import brandMark from '@/assets/images/basma-mark.png'
 import basmaAbout from '@/assets/images/basma-about.png'
-import brandWordmark from '@/assets/images/basma-wordmark.png'
 import contactHandshake from '@/assets/Contact-Image.png'
 import footerTentacle from '@/assets/Footer-Image.png'
 import heroArtwork from '@/assets/images/hero-brain.png'
@@ -32,13 +30,14 @@ export const homeContent = {
     statistics: 'Basma statistics',
     projectSlider: 'Project slider',
     projectSliderControls: 'Project slider controls',
+    projectsShown: 'projects shown',
     previousProject: 'Previous project',
     nextProject: 'Next project',
     viewProject: 'View Project',
     firstName: 'Your Name',
     lastName: 'Company / Brand',
     email: 'Email',
-    phoneNumber: 'Project Type, Budget, Timeline',
+    phoneNumber: 'Phone number (optional)',
     message: 'Tell us about the website, app, or digital product you want to build',
     socialLinks: 'Social links',
     footerNavigation: 'Footer navigation',
@@ -48,6 +47,10 @@ export const homeContent = {
     darkMode: 'Dark',
     switchToLightMode: 'Switch to light mode',
     switchToDarkMode: 'Switch to dark mode',
+    switchToEnglish: 'Switch to English',
+    switchToArabic: 'Switch to Arabic',
+    openMenu: 'Open menu',
+    closeMenu: 'Close menu',
     keyFeatures: 'Key Features:',
     pageTitle: 'Basma — Where Ideas Become Real',
     pageDescription: 'Basma turns ambitious ideas into thoughtful, effective digital products.',
@@ -57,8 +60,7 @@ export const homeContent = {
   },
   brand: {
     name: 'Basma',
-    mark: brandMark,
-    wordmark: brandWordmark,
+    mark: '/favicon.png',
   },
   navigation: [
     { label: 'About Us', href: '#about' },
@@ -66,7 +68,7 @@ export const homeContent = {
   ],
   hero: {
     title: 'Where Ideas Become Real',
-    subtitle: 'Deep expertise, decisive courtroom presence',
+    subtitle: 'We design and build digital products that help businesses grow.',
     artwork: heroArtwork,
     primaryAction: { label: 'Start Project', href: '#contact' },
     secondaryAction: { label: 'View Our Work', href: '#work' },
@@ -123,7 +125,7 @@ export const homeContent = {
   },
   basma: {
     title: 'Basma',
-    body: 'Basma means a lasting mark. We create products people understand, trust, and remember built to make a measurable difference after launch.',
+    body: 'Basma means a lasting mark. We create products people understand, trust, and remember—built to make a measurable difference after launch.',
     artwork: basmaAbout,
     imageAlt: 'Basma visual identity',
   },

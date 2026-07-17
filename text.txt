@@ -1,0 +1,15 @@
+now we need to edit the dashboard and backend so i will write all the section from zero that i need to be exist in the back and dash     
+first section: key and value : (key:hero title ,value:Where Ideas Become Real) (key:hero subtitle ,value:Deep expertise, decisive courtroom presence)
+second section : key and value : (key:Digital Products With A Clear Business Purpose , value:Basma helps ambitious teams turn complex ideas into useful digital products. We connect business thinking, thoughtful design, and dependable development so every decision moves the product and the business forward.)
+third section : key and value : (key About Basma , value:Basma means a lasting mark. We create products people understand, trust, and remember built to make a measurable difference after launch.)
+and put the image in about basma section (key about image ,value :image)
+fourth section : the numbers : key and value : (key: 6+ , value:years of experience ) + (key:98% , value:Client satisfaction rate ) + (key:35+ , value: Projects delivered)
+fifth section :From First Decision to Final Detail : put all the services and make it dynamic if i put one more service 
+and put this as  a key and value : (key: service body , value :Strategy, experience, and engineering work as one system giving you fewer handoffs, clearer decisions, and a stronger product.)
+sixth section : Selected Projects make every thing with the project card all of it (image , type like website or dashboard or application or landing page , name , description,Features, and link)
+contact us section delivere to the dashboard
+social media links ( instagram + linkedin + x)
+As a precaution make the Clarity Before Complexity
+and Two Minds. One Vision. and 
+Built Around What Moves You Forward
+if nothings happens to the desgin make them like the design exactly

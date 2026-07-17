@@ -16,6 +16,10 @@
 .artwork {
   object-fit: cover;
   object-position: 50% 62%;
+  transform: scale(1.015);
+  transform-origin: 52% 48%;
+  animation: hero-artwork-drift 14s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+  will-change: transform;
 }
 
 .scrim {
@@ -53,10 +57,11 @@
 }
 
 .subtitle {
+  max-width: 42rem;
   margin: 0;
-  font-size: clamp(1.5rem, 1.67vw, 2rem);
+  font-size: clamp(1.2rem, 1.45vw, 1.65rem);
   font-weight: 400;
-  line-height: 1.15;
+  line-height: 1.35;
   letter-spacing: 0;
 }
 
@@ -69,6 +74,16 @@
 
 .actionButton {
   min-width: 0;
+}
+
+@keyframes hero-artwork-drift {
+  from {
+    transform: scale(1.015) translate3d(-0.25%, 0.2%, 0);
+  }
+
+  to {
+    transform: scale(1.035) translate3d(0.35%, -0.3%, 0);
+  }
 }
 
 @media (max-width: 68rem) {
@@ -109,7 +124,7 @@
   }
 
   .actionButton {
-    min-height: 2.25rem;
+    min-height: 2.75rem;
     border-width: 1px;
     border-radius: 0.35rem;
     padding-inline: 0.85rem;
@@ -147,8 +162,8 @@
 
   .subtitle {
     max-width: 18.5rem;
-    font-size: clamp(0.72rem, 3.3vw, 0.92rem);
-    line-height: 1.25;
+    font-size: clamp(0.875rem, 3.7vw, 1rem);
+    line-height: 1.35;
   }
 
   .lowerRow {
@@ -158,17 +173,25 @@
   }
 
   .actions {
-    width: min(100%, 12.75rem);
+    width: min(100%, 17rem);
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.5rem;
   }
 
   .actionButton {
     width: auto;
-    min-height: 2rem;
+    min-height: 2.75rem;
     border-width: 1px;
     border-radius: 0.25rem;
-    padding-inline: 0.55rem;
-    font-size: 0.62rem;
+    padding-inline: 0.65rem;
+    font-size: 0.78rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .artwork {
+    animation: none;
+    transform: none;
+    will-change: auto;
   }
 }

@@ -7,9 +7,12 @@ type Theme = 'light' | 'dark'
 function applyTheme(theme: Theme) {
   document.documentElement.dataset.theme = theme
   localStorage.setItem('basma-theme', theme)
+  const themeColor = getComputedStyle(document.documentElement)
+    .getPropertyValue('--color-white')
+    .trim()
   document.querySelector<HTMLMetaElement>('meta[name="theme-color"]')?.setAttribute(
     'content',
-    theme === 'dark' ? '#101014' : '#ffffff',
+    themeColor,
   )
 }
 

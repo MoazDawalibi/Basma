@@ -102,10 +102,10 @@ export function CollaborationSection() {
 
       <div className={styles.inner}>
         <header data-reveal className={styles.header}>
-          <p className={styles.eyebrow}>{collaboration.eyebrow}</p>
-          <h2 id="collaboration-title" className="gradiant_text">
+          <p className="section-eyebrow">{collaboration.eyebrow}</p>
+          <h2 id="collaboration-title" className="section-title gradient-text">
             <span>{collaboration.titleLead}</span>{' '}
-            <span className={styles.titleAccent}>{collaboration.titleAccent}</span>
+            <span>{collaboration.titleAccent}</span>
           </h2>
           <p className={styles.subtitle}>{collaboration.subtitle}</p>
           <span className={styles.headerRule} aria-hidden="true" />

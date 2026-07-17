@@ -26,7 +26,7 @@
   max-width: none;
   object-fit: contain;
   transform: translateX(var(--footer-artwork-resting-x));
-  /* opacity: var(--footer-artwork-opacity); */
+  opacity: var(--footer-artwork-opacity);
   pointer-events: none;
   user-select: none;
 }
@@ -49,7 +49,7 @@
 .brandName {
   display: inline-flex;
   color: var(--color-ink);
-  font-size: clamp(1.25rem, 1.35vw, 1.5rem);
+  font-size: clamp(1.75rem, 2vw, 2.25rem);
   font-weight: 700;
   line-height: 1.15;
 }
@@ -74,14 +74,19 @@
 }
 
 .socialLink {
-  width: 2.25rem;
-  height: 2.25rem;
+  width: 2.75rem;
+  height: 2.75rem;
   display: grid;
   place-items: center;
-  border-radius: 0.35rem;
+  border: 1px solid var(--color-divider);
+  border-radius: 0.65rem;
   color: var(--color-text-muted);
+  background: var(--color-surface-elevated);
   transition:
     color 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
     transform 180ms ease;
 }
 
@@ -124,6 +129,7 @@
 }
 
 .linkColumn a {
+  position: relative;
   display: inline-flex;
   color: var(--color-text-muted);
   font-size: clamp(0.95rem, 1vw, 1rem);
@@ -131,6 +137,34 @@
   line-height: 1.25;
   letter-spacing: 0;
   transition: color 180ms ease;
+}
+
+.linkColumn a::after {
+  position: absolute;
+  right: 0;
+  bottom: -0.2rem;
+  left: 0;
+  height: 1px;
+  background: currentcolor;
+  content: '';
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.socialLink:active {
+  border-color: var(--color-interaction);
+  color: var(--color-on-interaction);
+  background: var(--color-interaction);
+  transform: scale(0.96);
+}
+
+.linkColumn a:active {
+  color: var(--color-accent);
+}
+
+:global(html[dir='rtl']) .linkColumn a::after {
+  transform-origin: left center;
 }
 
 @media (max-width: 68rem) {
@@ -161,12 +195,19 @@
 
 @media (hover: hover) and (pointer: fine) {
   .socialLink:hover {
-    color: var(--color-ink);
-    transform: translateY(-2px);
+    border-color: var(--color-interaction);
+    color: var(--color-on-interaction);
+    background: var(--color-interaction);
+    box-shadow: 0 0.55rem 1.2rem rgb(34 22 42 / 14%);
+    transform: translateY(-3px);
   }
 
   .linkColumn a:hover {
     color: var(--color-ink);
+  }
+
+  .linkColumn a:hover::after {
+    transform: scaleX(1);
   }
 }
 
@@ -208,7 +249,12 @@
 
 @media (prefers-reduced-motion: reduce) {
   .socialLink,
-  .linkColumn a {
+  .linkColumn a,
+  .linkColumn a::after {
     transition: none;
+  }
+
+  .socialLink:active {
+    transform: none;
   }
 }

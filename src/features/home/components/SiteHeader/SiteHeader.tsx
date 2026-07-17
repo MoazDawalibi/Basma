@@ -11,6 +11,19 @@ export function SiteHeader() {
   const mobileMenuRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    const mobileQuery = window.matchMedia('(max-width: 48rem)')
+    const closeMenuOnDesktop = (event: MediaQueryListEvent) => {
+      if (!event.matches) {
+        setIsMenuOpen(false)
+      }
+    }
+
+    mobileQuery.addEventListener('change', closeMenuOnDesktop)
+
+    return () => mobileQuery.removeEventListener('change', closeMenuOnDesktop)
+  }, [])
+
+  useEffect(() => {
     if (!isMenuOpen) {
       return
     }
@@ -91,7 +104,8 @@ export function SiteHeader() {
             type="button"
             className={styles.menuButton}
             aria-expanded={isMenuOpen}
-            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-controls="mobile-navigation"
+            aria-label={isMenuOpen ? ui.closeMenu : ui.openMenu}
             onClick={() => setIsMenuOpen((current) => !current)}
           >
             <span aria-hidden="true" />
@@ -100,7 +114,13 @@ export function SiteHeader() {
           </button>
         </div>
 
-        <div ref={mobileMenuRef} className={styles.mobileMenu} data-open={isMenuOpen}>
+        <div
+          ref={mobileMenuRef}
+          id="mobile-navigation"
+          className={styles.mobileMenu}
+          data-open={isMenuOpen}
+          hidden={!isMenuOpen}
+        >
           {navigation.map((item) => (
             <a
               key={item.href}

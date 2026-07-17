@@ -5,18 +5,31 @@
   --color-surface-soft: #f4f4f4;
   --color-surface-elevated: #ffffff;
   --color-text-muted: #6f6f6f;
-  --color-text-soft: #777777;
+  --color-text-soft: #707070;
   --color-accent: #6f4384;
   --color-eyebrow: #6f4384;
   --color-interaction: #ffdb0d;
   --color-on-interaction: #070707;
-  --color-control-border: #9d9d9d;
+  --color-control-border: #898989;
   --color-on-media: #ffffff;
-  --color-frame: #292929;
   --color-divider: #d8d8d8;
-  --color-focus: #ffd84d;
+  --color-focus: #6f4384;
   --color-hero-fallback: #9f9f9f;
+  --color-interaction-hover: #ffe23a;
+  --heading-gradient-angle: 90deg;
+  --heading-gradient-start: #000000;
+  --heading-gradient-middle: #342042;
+  --heading-gradient-end: #88489d;
   --font-sans: Arial, Helvetica, sans-serif;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-connect: cubic-bezier(0.65, 0, 0.35, 1);
+  --duration-fast: 180ms;
+  --duration-base: 220ms;
+  --shadow-control: 0 0.4rem 1.1rem rgb(0 0 0 / 10%);
+  --shadow-control-hover: 0 0.65rem 1.35rem rgb(0 0 0 / 16%);
+  --shadow-card: 0 0.65rem 1.8rem rgb(34 22 42 / 7%);
+  --shadow-card-hover: 0 1.35rem 2.75rem rgb(34 22 42 / 14%);
   --header-height: 5.75rem;
   --header-height-mobile: 4.5rem;
   --header-gutter: clamp(1.25rem, 3.45vw, 4.125rem);
@@ -29,8 +42,20 @@
   --section-title-size-mobile: clamp(2.35rem, 11vw, 3.2rem);
   --section-title-line-height: 1.05;
   --section-title-letter-spacing: -0.05em;
+  --section-intro-size: clamp(1rem, 1.35vw, 1.25rem);
+  --section-intro-line-height: 1.5;
   --eyebrow-size: clamp(0.9rem, 1.1vw, 1rem);
   --eyebrow-size-mobile: 0.9rem;
+}
+
+@media (max-width: 40rem) {
+  :root {
+    --section-intro-size: 0.95rem;
+  }
+}
+
+:root[dir='rtl'] {
+  --heading-gradient-angle: 270deg;
 }
 
 :root[data-theme='dark'] {
@@ -43,11 +68,14 @@
   --color-text-muted: #b9b3bf;
   --color-text-soft: #9f98a8;
   --color-accent: #c58cdd;
-  --color-eyebrow: #8f5aa2;
+  --color-eyebrow: #a56eb8;
   --color-interaction: #ffdb0d;
   --color-on-interaction: #070707;
-  --color-control-border: #5d5864;
-  --color-frame: #08080a;
+  --color-control-border: #77717d;
   --color-divider: #37343d;
+  --color-focus: #ffdb0d;
   --color-hero-fallback: #6e6e72;
+  --heading-gradient-start: #c58cdd;
+  --heading-gradient-middle: #8f5aa2;
+  --heading-gradient-end: #815091;
 }

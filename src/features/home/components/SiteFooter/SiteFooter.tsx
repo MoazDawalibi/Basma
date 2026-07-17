@@ -104,7 +104,7 @@ export function SiteFooter() {
                     href={item.href}
                     aria-label={item.label}
                     target={isExternal ? '_blank' : undefined}
-                    rel={isExternal ? 'noreferrer' : undefined}
+                    rel={isExternal ? 'noopener noreferrer' : undefined}
                   >
                     <Icon className={styles.socialIcon} />
                   </a>
@@ -117,7 +117,7 @@ export function SiteFooter() {
         <nav className={styles.linksGrid} aria-label={ui.footerNavigation}>
           {footer.columns.map((column, index) => (
             <div
-              key={index}
+              key={column.title}
               data-reveal
               data-reveal-delay={Math.min(index + 1, 4)}
               className={styles.linkColumn}

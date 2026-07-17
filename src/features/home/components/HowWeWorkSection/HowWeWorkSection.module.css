@@ -14,7 +14,6 @@
   z-index: -1;
   width: min(36vw, 30rem);
   height: clamp(4rem, 5vw, 5rem);
-  /* background: linear-gradient(90deg, #ffd600, var(--color-interaction)); */
   box-shadow: 0 0 2rem rgb(255 219 13 / 16%);
   clip-path: polygon(0 0, 90% 0, 100% 50%, 90% 100%, 0 100%);
   content: '';
@@ -35,30 +34,12 @@
   text-align: center;
 }
 
-.eyebrow {
-  margin: 0 0 1rem !important;
-  color: var(--color-eyebrow) !important;
-  font-size: var(--eyebrow-size) !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.16em !important;
-  text-transform: uppercase;
-}
-
-.header h2 {
-  margin: 0;
-  color: var(--color-ink);
-  font-size: var(--section-title-size);
-  font-weight: 700;
-  line-height: var(--section-title-line-height);
-  letter-spacing: var(--section-title-letter-spacing);
-}
-
 .header > p:last-child {
   max-width: 43rem;
   margin: 1.4rem auto 0;
   color: var(--color-text-muted);
-  font-size: clamp(1rem, 1.35vw, 1.2rem);
-  line-height: 1.5;
+  font-size: var(--section-intro-size);
+  line-height: var(--section-intro-line-height);
 }
 
 .timeline {
@@ -72,6 +53,11 @@
   list-style: none;
 }
 
+.timeline:global(.is-revealed) {
+  opacity: 1;
+  animation: none;
+}
+
 .timeline::before {
   position: absolute;
   top: 2rem;
@@ -80,6 +66,16 @@
   height: 2px;
   background: linear-gradient(90deg, var(--color-interaction), var(--color-accent));
   content: '';
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.timeline:global(.is-revealed)::before {
+  animation: process-line-horizontal 1100ms var(--ease-connect) 120ms both;
+}
+
+:global(html[dir='rtl']) .timeline::before {
+  transform-origin: right center;
 }
 
 .step {
@@ -115,12 +111,12 @@
   border-radius: 1rem;
   padding: 1.5rem;
   background: var(--color-surface-elevated);
-  box-shadow: 0 0.75rem 2rem rgb(34 22 42 / 7%);
+  box-shadow: var(--shadow-card);
   cursor: pointer;
   transition:
     border-color 220ms ease,
     box-shadow 220ms ease,
-    transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+    transform var(--duration-base) var(--ease-out);
 }
 
 .stepCard h3 {
@@ -138,10 +134,22 @@
   line-height: 1.5;
 }
 
+@keyframes process-line-horizontal {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes process-line-vertical {
+  to {
+    transform: scaleY(1);
+  }
+}
+
 @media (hover: hover) and (pointer: fine) {
   .step:hover .stepCard {
     border-color: rgb(111 67 132 / 34%);
-    box-shadow: 0 1.25rem 2.75rem rgb(34 22 42 / 12%);
+    box-shadow: var(--shadow-card-hover);
     transform: translateY(-0.5rem);
   }
 }
@@ -170,8 +178,6 @@
   .section { scroll-margin-top: var(--header-height-mobile); padding: 3rem 1rem 4rem; }
   .section::before { width: 70vw; height: 3.5rem; }
   .header { margin-bottom: 3rem; }
-  .header h2 { font-size: var(--section-title-size-mobile); }
-  .eyebrow { font-size: var(--eyebrow-size-mobile) !important; }
   .timeline { grid-template-columns: 1fr; gap: 1.25rem; }
   .timeline::before {
     top: 2rem;
@@ -181,7 +187,10 @@
     height: auto;
     display: block;
     background: linear-gradient(var(--color-interaction), var(--color-accent));
+    transform: scaleY(0);
+    transform-origin: center top;
   }
+  .timeline:global(.is-revealed)::before { animation-name: process-line-vertical; }
   :global(html[dir='rtl']) .timeline::before { right: 1.95rem; left: auto; }
   .step { grid-template-columns: 4rem minmax(0, 1fr); }
   .stepMarker span { box-shadow: 0 0 0 0.35rem var(--color-white); }
@@ -190,4 +199,5 @@
 
 @media (prefers-reduced-motion: reduce) {
   .stepCard { transition: none; }
+  .timeline:global(.is-revealed)::before { animation: none; transform: none; }
 }

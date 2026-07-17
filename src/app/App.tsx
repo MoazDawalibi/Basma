@@ -24,47 +24,25 @@ export function App() {
 
     window.history.scrollRestoration = 'manual'
 
-    if (window.location.search || window.location.hash) {
-      window.history.replaceState(window.history.state, '', window.location.pathname)
-    }
+    const scrollToInitialLocation = () => {
+      const targetId = decodeURIComponent(window.location.hash.slice(1))
+      const target = targetId ? document.getElementById(targetId) : null
 
-    const scrollToHero = () => {
+      if (target) {
+        target.scrollIntoView({ block: 'start', behavior: 'auto' })
+        return
+      }
+
       window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
     }
 
-    scrollToHero()
-
-    const timeoutId = window.setTimeout(() => {
-      scrollToHero()
-    }, 50)
+    const animationFrameId = window.requestAnimationFrame(scrollToInitialLocation)
+    const timeoutId = window.setTimeout(scrollToInitialLocation, 100)
 
     return () => {
+      window.cancelAnimationFrame(animationFrameId)
       window.clearTimeout(timeoutId)
       window.history.scrollRestoration = previousScrollRestoration
-    }
-  }, [])
-
-  useEffect(() => {
-    const releaseHoverAfterClick = (event: MouseEvent) => {
-      if (event.detail === 0) {
-        return
-      }
-
-      const target = event.target instanceof Element
-        ? event.target.closest<HTMLElement>('a, button, [role="button"]')
-        : null
-
-      if (!target) {
-        return
-      }
-
-      target.blur()
-    }
-
-    document.addEventListener('click', releaseHoverAfterClick, true)
-
-    return () => {
-      document.removeEventListener('click', releaseHoverAfterClick, true)
     }
   }, [])
 

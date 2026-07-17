@@ -8,7 +8,6 @@ export function HeroSection() {
   return (
     <section className={styles.hero} aria-labelledby="hero-title">
       <img
-        data-reveal
         className={styles.artwork}
         src={hero.artwork}
         alt=""
@@ -25,7 +24,7 @@ export function HeroSection() {
         <div className={styles.lowerRow}>
           <p data-reveal data-reveal-delay="1" className={styles.subtitle}>{hero.subtitle}</p>
 
-          <div className={styles.actions} aria-label={ui.projectActions}>
+          <div className={styles.actions} role="group" aria-label={ui.projectActions}>
             <LinkButton data-reveal-delay="2" className={styles.actionButton} href={hero.primaryAction.href}>
               {hero.primaryAction.label}
             </LinkButton>

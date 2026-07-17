@@ -26,7 +26,7 @@ export function HomePage() {
         {ui.skipToContent}
       </a>
       <SiteHeader />
-      <main id="main-content">
+      <main id="main-content" tabIndex={-1}>
         <HeroSection />
         <WhoWeAreSection />
         <AboutBasmaSection />
