@@ -1,9 +1,41 @@
+import { useEffect, useRef, useState } from 'react'
 import { useHomeContent } from '@/i18n/useLocale'
 import basmaAboutDark from '@/assets/images/basma-about-dark.png'
 import styles from './AboutBasmaSection.module.css'
 
 export function AboutBasmaSection() {
   const { basma } = useHomeContent()
+  const [isDark, setIsDark] = useState(() => document.documentElement.dataset.theme === 'dark')
+  const [isArtworkVisible, setIsArtworkVisible] = useState(false)
+  const artworkRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const handleThemeChange = (event: Event) => {
+      setIsDark((event as CustomEvent<'light' | 'dark'>).detail === 'dark')
+    }
+
+    window.addEventListener('basma-theme-change', handleThemeChange)
+    return () => window.removeEventListener('basma-theme-change', handleThemeChange)
+  }, [])
+
+  useEffect(() => {
+    const artwork = artworkRef.current
+
+    if (!artwork || !('IntersectionObserver' in window)) {
+      setIsArtworkVisible(true)
+      return
+    }
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry?.isIntersecting) {
+        setIsArtworkVisible(true)
+        observer.disconnect()
+      }
+    }, { rootMargin: '100px' })
+
+    observer.observe(artwork)
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <section id="about-basma" className={styles.section} aria-labelledby="basma-title">
@@ -12,9 +44,16 @@ export function AboutBasmaSection() {
         <p>{basma.body}</p>
       </div>
 
-      <div data-reveal data-reveal-delay="1" className={styles.artworkFrame}>
-        <img className={`${styles.artwork} ${styles.artworkLight}`} src={basma.artwork} alt={basma.imageAlt} loading="lazy" decoding="async" />
-        <img className={`${styles.artwork} ${styles.artworkDark}`} src={basmaAboutDark} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+      <div ref={artworkRef} data-reveal data-reveal-delay="1" className={styles.artworkFrame}>
+        {isArtworkVisible ? (
+          <img
+            className={`${styles.artwork} ${isDark ? styles.artworkDark : styles.artworkLight}`}
+            src={isDark ? basmaAboutDark : basma.artwork}
+            alt={basma.imageAlt}
+            loading="lazy"
+            decoding="async"
+          />
+        ) : null}
       </div>
     </section>
   )

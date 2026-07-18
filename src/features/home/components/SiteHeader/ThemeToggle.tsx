@@ -7,6 +7,7 @@ type Theme = 'light' | 'dark'
 function applyTheme(theme: Theme) {
   document.documentElement.dataset.theme = theme
   localStorage.setItem('basma-theme', theme)
+  window.dispatchEvent(new CustomEvent<Theme>('basma-theme-change', { detail: theme }))
   const themeColor = getComputedStyle(document.documentElement)
     .getPropertyValue('--color-white')
     .trim()

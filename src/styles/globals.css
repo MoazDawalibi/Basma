@@ -19,6 +19,30 @@ body {
     background-color 250ms ease;
 }
 
+* {
+  scrollbar-color: #ffdb0d var(--color-surface-soft);
+  scrollbar-width: thin;
+}
+
+*::-webkit-scrollbar {
+  width: 0.7rem;
+  height: 0.7rem;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--color-surface-soft);
+}
+
+*::-webkit-scrollbar-thumb {
+  border: 0.125rem solid var(--color-surface-soft);
+  border-radius: 999px;
+  background: #ffdb0d;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #ffdb0d;
+}
+
 html[dir='rtl'] body {
   text-align: start;
 }

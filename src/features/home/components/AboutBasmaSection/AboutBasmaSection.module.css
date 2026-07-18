@@ -74,7 +74,6 @@
 .artworkDark {
   object-fit: cover;
   object-position: center 50%;
-  opacity: 0;
 }
 
 :global(html[data-theme='dark']) .artworkFrame {
@@ -86,12 +85,7 @@
   background: radial-gradient(circle at center, transparent 0%, rgb(0 0 0 / 10%) 100%);
 }
 
-:global(html[data-theme='dark']) .artworkLight {
-  opacity: 0;
-}
-
 :global(html[data-theme='dark']) .artworkDark {
-  opacity: 1;
   filter: brightness(0.94) saturate(0.94) contrast(0.98);
 }
 

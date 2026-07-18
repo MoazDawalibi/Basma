@@ -6,17 +6,25 @@ import { LocaleProvider } from '@/i18n/LocaleProvider'
 
 export function App() {
   const [contentCatalog, setContentCatalog] = useState<LocalizedContentCatalog | undefined>()
+  const [isContentResolved, setIsContentResolved] = useState(false)
 
   useEffect(() => {
     const controller = new AbortController()
+    const requestTimer = window.setTimeout(() => {
+      void fetchBackendContent(controller.signal)
+        .then(setContentCatalog)
+        .catch((error: unknown) => {
+          if (!(error instanceof DOMException && error.name === 'AbortError')) {
+            setContentCatalog(undefined)
+          }
+        })
+        .finally(() => setIsContentResolved(true))
+    }, 0)
 
-    void fetchBackendContent(controller.signal)
-      .then(setContentCatalog)
-      .catch(() => {
-        setContentCatalog(undefined)
-      })
-
-    return () => controller.abort()
+    return () => {
+      window.clearTimeout(requestTimer)
+      controller.abort()
+    }
   }, [])
 
   useEffect(() => {
@@ -45,6 +53,10 @@ export function App() {
       window.history.scrollRestoration = previousScrollRestoration
     }
   }, [])
+
+  if (!isContentResolved) {
+    return null
+  }
 
   return (
     <LocaleProvider contentCatalog={contentCatalog}>
