@@ -88,11 +88,19 @@ export type ContactSubmissionInput = {
   message: string
 }
 
-export const backendBaseUrl = import.meta.env.VITE_API_URL
-  || `${window.location.protocol}//${window.location.hostname}:4000`
+const configuredBackendUrl = (import.meta.env.VITE_API_URL as string | undefined)?.trim().replace(/\/$/, '')
+
+export const backendBaseUrl = configuredBackendUrl
+  || (import.meta.env.DEV ? `${window.location.protocol}//${window.location.hostname}:4000` : '')
+
+function apiUrl(path: string) {
+  if (!backendBaseUrl) throw new Error('VITE_API_URL is not configured.')
+  return `${backendBaseUrl}${path}`
+}
 
 function mediaUrl(url: string) {
   if (!url || url.startsWith('http') || url.startsWith('data:')) return url
+  if (url.startsWith('/media/')) return url
   return `${backendBaseUrl}${url}`
 }
 
@@ -216,16 +224,20 @@ function mapBackendContent(backendContent: BackendContent): LocalizedContentCata
 }
 
 export async function fetchBackendContent(signal?: AbortSignal) {
-  const response = await fetch(`${backendBaseUrl}/api/content`, { signal })
+  const timeoutSignal = AbortSignal.timeout(5000)
+  const response = await fetch(apiUrl('/api/content'), {
+    signal: signal ? AbortSignal.any([signal, timeoutSignal]) : timeoutSignal,
+  })
   if (!response.ok) throw new Error('Could not load backend content.')
   return mapBackendContent(await response.json() as BackendContent)
 }
 
 export async function submitContactSubmission(input: ContactSubmissionInput) {
-  const response = await fetch(`${backendBaseUrl}/api/contact-submissions`, {
+  const response = await fetch(apiUrl('/api/contact-submissions'), {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(input),
+    signal: AbortSignal.timeout(10000),
   })
   if (!response.ok) throw new Error('Could not send contact submission.')
   return response.json()
