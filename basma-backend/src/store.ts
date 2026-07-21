@@ -18,6 +18,7 @@ let initialization: Promise<void> | undefined
 let mutationQueue: Promise<void> = Promise.resolve()
 let activeRead: Promise<Database> | undefined
 let databaseCache: { database: Database; modifiedAt: number } | undefined
+let blobDatabaseCache: { database: Database; etag?: string; expiresAt: number } | undefined
 let lastCacheValidationAt = 0
 
 async function ensureDatabase() {
@@ -89,13 +90,20 @@ async function readDatabase(): Promise<Database> {
   }
 }
 
-async function readBlobDatabase(): Promise<{ database: Database; etag?: string }> {
+async function readBlobDatabase(forceFresh = false): Promise<{ database: Database; etag?: string }> {
+  if (!forceFresh && blobDatabaseCache && blobDatabaseCache.expiresAt > Date.now()) {
+    return blobDatabaseCache
+  }
+
   const result = await get(blobDatabasePath, { access: 'private', useCache: false })
 
   if (!result || result.statusCode !== 200) {
-    return {
+    const emptyDatabase = {
       database: { content: seedContent, contactSubmissions: [] },
+      expiresAt: Date.now() + 5000,
     }
+    blobDatabaseCache = emptyDatabase
+    return emptyDatabase
   }
 
   const database = JSON.parse(await new Response(result.stream).text()) as Partial<Database> & { content?: unknown }
@@ -105,7 +113,13 @@ async function readBlobDatabase(): Promise<{ database: Database; etag?: string }
     ? database as Database
     : { content: seedContent, contactSubmissions: database.contactSubmissions ?? [] }
 
-  return { database: normalizedDatabase, etag: result.blob.etag }
+  const cachedDatabase = {
+    database: normalizedDatabase,
+    etag: result.blob.etag,
+    expiresAt: Date.now() + 5000,
+  }
+  blobDatabaseCache = cachedDatabase
+  return cachedDatabase
 }
 
 async function writeDatabase(database: Database) {
@@ -153,17 +167,22 @@ async function mutateBlobDatabase<Result>(
   mutation: (database: Database) => Promise<{ database: Database; result: Result }> | { database: Database; result: Result },
 ) {
   for (let attempt = 0; attempt < 5; attempt += 1) {
-    const current = await readBlobDatabase()
+    const current = await readBlobDatabase(true)
     const { database, result } = await mutation(current.database)
 
     try {
-      await put(blobDatabasePath, `${JSON.stringify(database, null, 2)}\n`, {
+      const savedBlob = await put(blobDatabasePath, `${JSON.stringify(database, null, 2)}\n`, {
         access: 'private',
         allowOverwrite: Boolean(current.etag),
         contentType: 'application/json',
         cacheControlMaxAge: 60,
         ...(current.etag ? { ifMatch: current.etag } : {}),
       })
+      blobDatabaseCache = {
+        database,
+        etag: savedBlob.etag,
+        expiresAt: Date.now() + 5000,
+      }
       return result
     } catch (error) {
       if (!(error instanceof BlobPreconditionFailedError) || attempt === 4) {

@@ -174,14 +174,14 @@ app.get('/api/media/file/:name', async (request, response, next) => {
       return
     }
 
-    const result = await get(`basma/media/${name}`, { access: 'private' })
+    const result = await get(`basma/media/${name}`, { access: 'private', useCache: false })
     if (!result || result.statusCode !== 200) {
       response.status(404).json({ message: 'Media file not found.' })
       return
     }
 
     response.set({
-      'Cache-Control': 'public, max-age=31536000, immutable',
+      'Cache-Control': 'no-store',
       'Content-Type': result.blob.contentType,
     })
     response.send(Buffer.from(await new Response(result.stream).arrayBuffer()))
