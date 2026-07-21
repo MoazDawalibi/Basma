@@ -4,3 +4,5 @@ dist
 data/database.json
 uploads/*
 !uploads/.gitkeep
+.vercel
+.env*

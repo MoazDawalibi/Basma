@@ -3,8 +3,7 @@ import { del, get, list, put } from '@vercel/blob'
 import compression from 'compression'
 import cors from 'cors'
 import express, { type NextFunction, type Request, type Response } from 'express'
-import rateLimit from 'express-rate-limit'
-import helmet from 'helmet'
+import { rateLimit } from 'express-rate-limit'
 import multer from 'multer'
 import path from 'node:path'
 import { ZodError } from 'zod'
@@ -88,9 +87,18 @@ app.use(cors({
   },
 }))
 app.set('trust proxy', 1)
-app.use(helmet({
-  crossOriginResourcePolicy: { policy: 'cross-origin' },
-}))
+app.disable('x-powered-by')
+app.use((_request, response, next) => {
+  response.set({
+    'Cross-Origin-Opener-Policy': 'same-origin',
+    'Cross-Origin-Resource-Policy': 'cross-origin',
+    'Referrer-Policy': 'no-referrer',
+    'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
+    'X-Content-Type-Options': 'nosniff',
+    'X-Frame-Options': 'SAMEORIGIN',
+  })
+  next()
+})
 app.use(compression())
 app.use(express.json({ limit: '2mb' }))
 
