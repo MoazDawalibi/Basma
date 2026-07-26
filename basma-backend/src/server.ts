@@ -1,5 +1,5 @@
 import 'dotenv/config'
-import { del, get, list, put } from '@vercel/blob'
+import { BlobPreconditionFailedError, del, get, list, put } from '@vercel/blob'
 import compression from 'compression'
 import cors from 'cors'
 import express, { type NextFunction, type Request, type Response } from 'express'
@@ -352,6 +352,10 @@ app.delete('/api/media/:name', requireAdmin, async (request, response, next) => 
   }
 })
 
+app.use((_request, response) => {
+  response.status(404).json({ message: 'API route not found.' })
+})
+
 app.use((error: unknown, _request: Request, response: Response, _next: NextFunction) => {
   if (error instanceof ZodError) {
     response.status(422).json({
@@ -364,11 +368,40 @@ app.use((error: unknown, _request: Request, response: Response, _next: NextFunct
     return
   }
 
-  if (error instanceof Error) {
+  if (
+    error instanceof multer.MulterError
+    || (error instanceof Error && (
+      error.message.startsWith('Only PNG, JPEG, WEBP, GIF, and AVIF')
+      || error.message.startsWith('CORS blocked origin:')
+    ))
+  ) {
     response.status(400).json({ message: error.message })
     return
   }
 
+  if (
+    error instanceof BlobPreconditionFailedError
+    || (error instanceof Error && (
+      error.name === 'BlobPreconditionFailedError'
+      || error.message.includes('Precondition failed')
+      || error.message.includes('ETag mismatch')
+    ))
+  ) {
+    response.status(409).json({ message: 'The content changed while it was being saved. Please try again.' })
+    return
+  }
+
+  if (
+    typeof error === 'object'
+    && error !== null
+    && 'type' in error
+    && error.type === 'entity.parse.failed'
+  ) {
+    response.status(400).json({ message: 'The request body is not valid JSON.' })
+    return
+  }
+
+  console.error('Unhandled API error:', error)
   response.status(500).json({ message: 'Unexpected server error.' })
 })
 

@@ -21,6 +21,25 @@ let databaseCache: { database: Database; modifiedAt: number } | undefined
 let blobDatabaseCache: { database: Database; etag?: string; expiresAt: number } | undefined
 let lastCacheValidationAt = 0
 
+function isBlobPreconditionFailure(error: unknown) {
+  if (error instanceof BlobPreconditionFailedError) {
+    return true
+  }
+
+  if (!(error instanceof Error)) {
+    return false
+  }
+
+  return error.name === 'BlobPreconditionFailedError'
+    || error.message.includes('Precondition failed')
+    || error.message.includes('ETag mismatch')
+}
+
+function waitBeforeRetry(attempt: number) {
+  const delay = 25 * (attempt + 1) + Math.floor(Math.random() * 25)
+  return new Promise((resolve) => setTimeout(resolve, delay))
+}
+
 async function ensureDatabase() {
   initialization ??= (async () => {
     await mkdir(dataDir, { recursive: true })
@@ -185,9 +204,12 @@ async function mutateBlobDatabase<Result>(
       }
       return result
     } catch (error) {
-      if (!(error instanceof BlobPreconditionFailedError) || attempt === 4) {
+      if (!isBlobPreconditionFailure(error) || attempt === 4) {
         throw error
       }
+
+      blobDatabaseCache = undefined
+      await waitBeforeRetry(attempt)
     }
   }
 
