@@ -40,6 +40,10 @@ function waitBeforeRetry(attempt: number) {
   return new Promise((resolve) => setTimeout(resolve, delay))
 }
 
+function normalizeBlobEtag(etag?: string) {
+  return etag?.replace(/^W\//, '')
+}
+
 async function ensureDatabase() {
   initialization ??= (async () => {
     await mkdir(dataDir, { recursive: true })
@@ -134,7 +138,9 @@ async function readBlobDatabase(forceFresh = false): Promise<{ database: Databas
 
   const cachedDatabase = {
     database: normalizedDatabase,
-    etag: result.blob.etag,
+    // Blob GET responses use a weak ETag, while conditional writes require
+    // the equivalent strong ETag value.
+    etag: normalizeBlobEtag(result.blob.etag),
     expiresAt: Date.now() + 5000,
   }
   blobDatabaseCache = cachedDatabase
@@ -199,7 +205,7 @@ async function mutateBlobDatabase<Result>(
       })
       blobDatabaseCache = {
         database,
-        etag: savedBlob.etag,
+        etag: normalizeBlobEtag(savedBlob.etag),
         expiresAt: Date.now() + 5000,
       }
       return result
