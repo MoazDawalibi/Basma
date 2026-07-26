@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type ChangeEvent, type DragEvent, type FormEvent, type ReactNode } from 'react'
+import { useCallback, useEffect, useMemo, useState, type ChangeEvent, type DragEvent, type FormEvent, type ReactNode } from 'react'
 import {
   apiBaseUrl,
   deleteMedia,
@@ -23,7 +23,6 @@ import type {
   Project,
   PublicationStatus,
   Service,
-  SocialLink,
   Statistic,
 } from './types'
 
@@ -203,11 +202,11 @@ function App() {
   const t = (en: string, ar: string) => isArabic ? ar : en
   const meta = pageMeta[page]
 
-  const notify = (kind: Toast['kind'], message: string) => {
+  const notify = useCallback((kind: Toast['kind'], message: string) => {
     const id = Date.now() + Math.random()
     setToasts((current) => [...current, { id, kind, message }])
     window.setTimeout(() => setToasts((current) => current.filter((toast) => toast.id !== id)), 3800)
-  }
+  }, [])
 
   const edit = (mutator: (draft: BasmaContent) => void) => {
     setContent((current) => {
@@ -221,7 +220,7 @@ function App() {
 
   const localized = (value: Record<Locale, string>, next: string) => ({ ...value, [contentLocale]: next })
 
-  const loadContent = async () => {
+  const loadContent = useCallback(async () => {
     setLoading(true)
     try {
       setContent(await getContent())
@@ -230,15 +229,15 @@ function App() {
     } finally {
       setLoading(false)
     }
-  }
+  }, [notify])
 
-  const loadContacts = async () => {
+  const loadContacts = useCallback(async () => {
     try { setContacts(await getContactSubmissions(token)) } catch (error) { notify('error', error instanceof Error ? error.message : 'Could not load contacts') }
-  }
+  }, [notify, token])
 
-  const loadMedia = async () => {
+  const loadMedia = useCallback(async () => {
     try { setMedia(await getMedia(token)) } catch (error) { notify('error', error instanceof Error ? error.message : 'Could not load media') }
-  }
+  }, [notify, token])
 
   useEffect(() => {
     let active = true
@@ -267,7 +266,7 @@ function App() {
       .finally(() => { if (active) setAuthLoading(false) })
 
     return () => { active = false }
-  }, [token])
+  }, [loadContent, token])
   useEffect(() => { document.documentElement.dataset.theme = theme; localStorage.setItem('basma-dashboard-theme', theme) }, [theme])
   useEffect(() => {
     localStorage.removeItem('basma-dashboard-token')
@@ -275,7 +274,7 @@ function App() {
     else sessionStorage.removeItem('basma-dashboard-session')
   }, [token])
   useEffect(() => { localStorage.setItem('basma-dashboard-ui-locale', uiLocale) }, [uiLocale])
-  useEffect(() => { if (!adminUser) return; if (page === 'contact' || page === 'dashboard') void loadContacts(); if (page === 'media') void loadMedia() }, [page, adminUser, token])
+  useEffect(() => { if (!adminUser) return; if (page === 'contact' || page === 'dashboard') void loadContacts(); if (page === 'media') void loadMedia() }, [adminUser, loadContacts, loadMedia, page])
   useEffect(() => { setQuery(''); setProjectPage(1); setSidebarOpen(false) }, [page])
   useEffect(() => {
     const warn = (event: BeforeUnloadEvent) => { if (dirty) event.preventDefault() }

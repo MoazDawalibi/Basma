@@ -4,22 +4,50 @@ import { HomePage } from '@/features/home/pages/HomePage'
 import type { LocalizedContentCatalog } from '@/i18n/catalog'
 import { LocaleProvider } from '@/i18n/LocaleProvider'
 
+const contentCacheKey = 'basma-content-cache-v1'
+const contentCacheLifetime = 7 * 24 * 60 * 60 * 1000
+
+type CachedContent = {
+  savedAt: number
+  catalog: LocalizedContentCatalog
+}
+
+function readCachedContent() {
+  try {
+    const cached = JSON.parse(window.localStorage.getItem(contentCacheKey) ?? 'null') as CachedContent | null
+    if (!cached?.catalog || Date.now() - cached.savedAt > contentCacheLifetime) return undefined
+    return cached.catalog
+  } catch {
+    return undefined
+  }
+}
+
+function cacheContent(catalog: LocalizedContentCatalog) {
+  try {
+    window.localStorage.setItem(contentCacheKey, JSON.stringify({
+      savedAt: Date.now(),
+      catalog,
+    } satisfies CachedContent))
+  } catch {
+    // Storage can be unavailable in private browsing. The bundled content remains the fallback.
+  }
+}
+
 export function App() {
-  const [contentCatalog, setContentCatalog] = useState<LocalizedContentCatalog | undefined>()
-  const [isContentResolved, setIsContentResolved] = useState(false)
+  const [contentCatalog, setContentCatalog] = useState<LocalizedContentCatalog | undefined>(readCachedContent)
 
   useEffect(() => {
     const controller = new AbortController()
     const requestTimer = window.setTimeout(() => {
       void fetchBackendContent(controller.signal)
-        .then(setContentCatalog)
-        .catch((error: unknown) => {
-          if (!(error instanceof DOMException && error.name === 'AbortError')) {
-            setContentCatalog(undefined)
-          }
+        .then((catalog) => {
+          setContentCatalog(catalog)
+          cacheContent(catalog)
         })
-        .finally(() => setIsContentResolved(true))
-    }, 0)
+        .catch(() => {
+          // Keep rendering cached or bundled content when the API is unavailable.
+        })
+    }, 100)
 
     return () => {
       window.clearTimeout(requestTimer)
@@ -53,10 +81,6 @@ export function App() {
       window.history.scrollRestoration = previousScrollRestoration
     }
   }, [])
-
-  if (!isContentResolved) {
-    return null
-  }
 
   return (
     <LocaleProvider contentCatalog={contentCatalog}>
