@@ -52,7 +52,7 @@ export const homeContent = {
     openMenu: 'Open menu',
     closeMenu: 'Close menu',
     keyFeatures: 'Key Features:',
-    pageTitle: 'Basma — Where Ideas Become Real',
+    pageTitle: 'Basma Where Ideas Become Real',
     pageDescription: 'Basma turns ambitious ideas into thoughtful, effective digital products.',
     contactSending: 'Sending...',
     contactSuccess: 'Thank you. Your message was sent successfully.',
