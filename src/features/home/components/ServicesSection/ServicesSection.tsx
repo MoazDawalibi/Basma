@@ -85,14 +85,14 @@ export function ServicesSection() {
   }, [])
 
   return (
-    <section id="services" className={styles.section} aria-labelledby="services-title">
+    <section className={styles.section} aria-labelledby="services-title">
       <ul ref={statsRef} className={styles.stats} aria-label={ui.statistics}>
         {stats.map((stat, index) => (
           <AnimatedStat key={stat.label} stat={stat} shouldAnimate={shouldAnimateStats} index={index} />
         ))}
       </ul>
 
-      <div data-reveal className={styles.header}>
+      <div id="services" data-reveal className={styles.header}>
         <h2 id="services-title" className="section-title gradient-text">{services.title}</h2>
         <p>{services.body}</p>
       </div>
