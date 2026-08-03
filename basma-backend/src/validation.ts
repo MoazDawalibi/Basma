@@ -26,27 +26,51 @@ const orderedSchema = {
   status: statusSchema,
 }
 
+type ValidationContext = z.RefinementCtx
+
+function requireLocalizedText(
+  value: z.infer<typeof localizedTextSchema>,
+  context: ValidationContext,
+  path: string[],
+) {
+  if (!value.en.trim()) {
+    context.addIssue({ code: 'custom', path: [...path, 'en'], message: 'English value is required.' })
+  }
+  if (!value.ar.trim()) {
+    context.addIssue({ code: 'custom', path: [...path, 'ar'], message: 'Arabic value is required.' })
+  }
+}
+
 const statisticSchema = z.object({
   id: z.string().min(1),
   value: z.number().min(0),
   suffix: z.string().max(8),
-  label: requiredLocalizedTextSchema,
+  label: localizedTextSchema,
   ...orderedSchema,
+}).superRefine((statistic, context) => {
+  if (statistic.status === 'published') requireLocalizedText(statistic.label, context, ['label'])
 })
 
 const serviceSchema = z.object({
   id: z.string().min(1),
-  title: requiredLocalizedTextSchema,
-  body: requiredLocalizedTextSchema,
+  title: localizedTextSchema,
+  body: localizedTextSchema,
   icon: z.string().max(80),
   ...orderedSchema,
+}).superRefine((service, context) => {
+  if (service.status !== 'published') return
+  requireLocalizedText(service.title, context, ['title'])
+  requireLocalizedText(service.body, context, ['body'])
 })
 
 const projectSchema = z.object({
   id: z.string().min(1),
-  title: requiredLocalizedTextSchema,
-  body: requiredLocalizedTextSchema,
-  image: mediaAssetSchema,
+  title: localizedTextSchema,
+  body: localizedTextSchema,
+  image: z.object({
+    url: z.string(),
+    alt: localizedTextSchema,
+  }),
   projectUrl: z.string().url().or(z.literal('')),
   category: z.string().min(1),
   features: z.object({
@@ -55,6 +79,15 @@ const projectSchema = z.object({
   }),
   featured: z.boolean(),
   ...orderedSchema,
+}).superRefine((project, context) => {
+  if (project.status !== 'published') return
+
+  requireLocalizedText(project.title, context, ['title'])
+  requireLocalizedText(project.body, context, ['body'])
+  if (!project.image.url.trim()) {
+    context.addIssue({ code: 'custom', path: ['image', 'url'], message: 'Project image is required.' })
+  }
+  requireLocalizedText(project.image.alt, context, ['image', 'alt'])
 })
 
 const marketingItemSchema = z.object({

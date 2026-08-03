@@ -33,8 +33,13 @@ function apiUrl(path: string) {
 
 async function parseResponse<ResponseBody>(response: Response): Promise<ResponseBody> {
   if (!response.ok) {
-    const errorBody = await response.json().catch(() => ({ message: 'Request failed.' }))
-    throw new ApiError(errorBody.message ?? 'Request failed.', response.status)
+    const errorBody: { message?: string; issues?: Array<{ field: string; message: string }> } = await response.json().catch(() => ({ message: 'Request failed.' }))
+    const issueSummary = errorBody.issues?.slice(0, 3).map((issue) => `${issue.field}: ${issue.message}`).join(' ')
+    const remainingIssueCount = Math.max(0, (errorBody.issues?.length ?? 0) - 3)
+    const message = issueSummary
+      ? `${errorBody.message ?? 'Validation failed.'} ${issueSummary}${remainingIssueCount ? ` (+${remainingIssueCount} more)` : ''}`
+      : errorBody.message ?? 'Request failed.'
+    throw new ApiError(message, response.status)
   }
 
   return response.json() as Promise<ResponseBody>

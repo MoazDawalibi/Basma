@@ -10,8 +10,9 @@
     "dev": "tsx watch src/server.ts",
     "build": "tsc",
     "start": "node dist/server.js",
+    "test": "node --import tsx --test src/*.test.ts",
     "typecheck": "tsc --noEmit",
-    "check": "npm run typecheck"
+    "check": "npm run typecheck && npm test"
   },
   "dependencies": {
     "@vercel/blob": "^2.6.1",
