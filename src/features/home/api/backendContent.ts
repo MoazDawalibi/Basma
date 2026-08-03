@@ -105,7 +105,7 @@ function mediaUrl(url: string) {
 }
 
 function value(localized: LocalizedText, locale: Locale) {
-  return localized[locale] || localized.en
+  return localized[locale] || localized.en || localized.ar
 }
 
 function titleCase(valueToFormat: string) {
@@ -170,7 +170,11 @@ function mapBackendContentForLocale(backend: BackendContent, locale: Locale): Ho
         imageAlt: value(project.image.alt, locale),
         projectUrl: project.projectUrl,
         category: project.category,
-        features: project.features[locale],
+        features: project.features[locale].length
+          ? project.features[locale]
+          : project.features.en.length
+            ? project.features.en
+            : project.features.ar,
       })),
     },
     contact: {

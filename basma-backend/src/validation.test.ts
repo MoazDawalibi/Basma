@@ -29,16 +29,29 @@ describe('content validation for new projects', () => {
     assert.equal(contentSchema.safeParse(contentWithNewProject('draft')).success, true)
   })
 
-  it('requires the missing Arabic fields before the project is published', () => {
+  it('accepts the English-only project when it is published', () => {
     const result = contentSchema.safeParse(contentWithNewProject('published'))
+    assert.equal(result.success, true)
+  })
+
+  it('rejects a published project that has no usable content', () => {
+    const content = contentWithNewProject('published')
+    const project = content.projects.cards[0]
+    assert.ok(project)
+    project.title = { en: '', ar: '' }
+    project.body = { en: '', ar: '' }
+    project.image = { url: '', alt: { en: '', ar: '' } }
+
+    const result = contentSchema.safeParse(content)
     assert.equal(result.success, false)
     if (result.success) return
 
     const issueFields = result.error.issues.map((issue) => issue.path.join('.'))
     assert.deepEqual(issueFields, [
-      'projects.cards.0.title.ar',
-      'projects.cards.0.body.ar',
-      'projects.cards.0.image.alt.ar',
+      'projects.cards.0.title',
+      'projects.cards.0.body',
+      'projects.cards.0.image.url',
+      'projects.cards.0.image.alt',
     ])
   })
 })

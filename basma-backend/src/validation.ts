@@ -41,6 +41,16 @@ function requireLocalizedText(
   }
 }
 
+function requireProjectText(
+  value: z.infer<typeof localizedTextSchema>,
+  context: ValidationContext,
+  path: string[],
+) {
+  if (!value.en.trim() && !value.ar.trim()) {
+    context.addIssue({ code: 'custom', path, message: 'English or Arabic value is required.' })
+  }
+}
+
 const statisticSchema = z.object({
   id: z.string().min(1),
   value: z.number().min(0),
@@ -82,12 +92,12 @@ const projectSchema = z.object({
 }).superRefine((project, context) => {
   if (project.status !== 'published') return
 
-  requireLocalizedText(project.title, context, ['title'])
-  requireLocalizedText(project.body, context, ['body'])
+  requireProjectText(project.title, context, ['title'])
+  requireProjectText(project.body, context, ['body'])
   if (!project.image.url.trim()) {
     context.addIssue({ code: 'custom', path: ['image', 'url'], message: 'Project image is required.' })
   }
-  requireLocalizedText(project.image.alt, context, ['image', 'alt'])
+  requireProjectText(project.image.alt, context, ['image', 'alt'])
 })
 
 const marketingItemSchema = z.object({
