@@ -438,6 +438,7 @@ export const homeContent = {
   },
   footer: {
     brandName: 'Basma',
+    copyright: '© 2026 Basma. All rights reserved.',
     description: 'Business thinking, thoughtful design, and dependable technology working together.',
     artwork: footerTentacle,
     socialLinks: [

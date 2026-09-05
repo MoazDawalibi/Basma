@@ -252,6 +252,7 @@ export const arabicHomeContent: HomeContent = {
   footer: {
     ...homeContent.footer,
     brandName: 'بصمة',
+    copyright: '© 2026 بصمة. جميع الحقوق محفوظة.',
     description: 'فهم للأعمال وتصميم مدروس وتقنية موثوقة، تعمل معًا.',
     columns: [
       {
