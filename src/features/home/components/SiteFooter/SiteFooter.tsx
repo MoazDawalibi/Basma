@@ -134,6 +134,7 @@ export function SiteFooter() {
           ))}
         </nav>
       </div>
+      <p className={styles.copyright} lang="en" dir="ltr">© 2026 Basma. All rights reserved.</p>
     </footer>
   )
 }

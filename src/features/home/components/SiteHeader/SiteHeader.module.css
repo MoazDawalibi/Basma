@@ -69,8 +69,13 @@
   will-change: opacity, transform;
 }
 
-:global(html[data-theme='dark']) .mark {
-  filter: invert(1) brightness(1.08);
+.markDark,
+:global(html[data-theme='dark']) .markLight {
+  display: none;
+}
+
+:global(html[data-theme='dark']) .markDark {
+  display: block;
 }
 
 .links {

@@ -1,4 +1,6 @@
 import basmaAbout from '@/assets/images/basma-about.png'
+import basmaLogoBlack from '@/assets/Basma_logo_blk.png'
+import basmaLogoWhite from '@/assets/Basma_logo.png'
 import contactHandshake from '@/assets/Contact-Image.png'
 import footerTentacle from '@/assets/Footer-Image.png'
 import heroArtwork from '@/assets/images/hero-brain.png'
@@ -60,7 +62,8 @@ export const homeContent = {
   },
   brand: {
     name: 'Basma',
-    mark: '/favicon.png',
+    mark: basmaLogoBlack,
+    markDark: basmaLogoWhite,
   },
   navigation: [
     { label: 'About Us', href: '#about' },
@@ -438,7 +441,7 @@ export const homeContent = {
     description: 'Business thinking, thoughtful design, and dependable technology working together.',
     artwork: footerTentacle,
     socialLinks: [
-      { label: 'Instagram', href: 'https://www.instagram.com/', icon: 'instagram' },
+      { label: 'Instagram', href: 'https://www.instagram.com/build.with.basma?igsi=MXI2NHFpdHJpd21qdw==', icon: 'instagram' },
       { label: 'LinkedIn', href: 'https://www.linkedin.com/', icon: 'linkedin' },
       { label: 'X', href: 'https://x.com/', icon: 'x' },
     ],

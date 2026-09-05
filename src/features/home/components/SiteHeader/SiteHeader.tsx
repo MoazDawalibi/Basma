@@ -65,7 +65,8 @@ export function SiteHeader() {
     <header className={styles.header}>
       <nav className={styles.nav} aria-label={ui.primaryNavigation}>
         <a data-reveal className={styles.brand} href="#top" aria-label={`${brand.name} ${ui.home}`}>
-          <img className={styles.mark} src={brand.mark} alt="" aria-hidden="true" />
+          <img className={`${styles.mark} ${styles.markLight}`} src={brand.mark} alt="" aria-hidden="true" />
+          <img className={`${styles.mark} ${styles.markDark}`} src={brand.markDark} alt="" aria-hidden="true" />
           <span className={styles.wordmark} aria-hidden="true">
             {locale === 'ar' ? (
               <span className={styles.wordmarkText}>{brand.name}</span>

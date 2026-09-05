@@ -107,7 +107,7 @@ export const seedContent: BasmaContent = {
     responseTime: text('Usually we reply within 24 hours.', 'نرد عادةً خلال 24 ساعة.'),
   },
   socialLinks: [
-    { id: 'instagram', label: 'Instagram', href: 'https://www.instagram.com/', icon: 'instagram', enabled: true },
+    { id: 'instagram', label: 'Instagram', href: 'https://www.instagram.com/build.with.basma?igsi=MXI2NHFpdHJpd21qdw==', icon: 'instagram', enabled: true },
     { id: 'linkedin', label: 'LinkedIn', href: 'https://www.linkedin.com/', icon: 'linkedin', enabled: true },
     { id: 'x', label: 'X', href: 'https://x.com/', icon: 'x', enabled: true },
   ],

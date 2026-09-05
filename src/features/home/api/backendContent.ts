@@ -215,7 +215,13 @@ function mapBackendContentForLocale(backend: BackendContent, locale: Locale): Ho
     },
     footer: {
       ...fallback.footer,
-      socialLinks: backend.socialLinks.filter((link) => link.enabled).map(({ label, href, icon }) => ({ label, href, icon })),
+      socialLinks: backend.socialLinks.filter((link) => link.enabled).map(({ label, href, icon }) => ({
+        label,
+        href: icon === 'instagram' && /^https?:\/\/(www\.)?instagram\.com\/?$/.test(href)
+          ? fallback.footer.socialLinks.find((link) => link.icon === 'instagram')!.href
+          : href,
+        icon,
+      })),
     },
   }
 }
