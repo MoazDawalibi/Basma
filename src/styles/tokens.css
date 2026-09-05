@@ -46,6 +46,8 @@
   --section-intro-line-height: 1.5;
   --eyebrow-size: clamp(0.9rem, 1.1vw, 1rem);
   --eyebrow-size-mobile: 0.9rem;
+
+  --tavo-green : #40b252;
 }
 
 @media (max-width: 40rem) {
@@ -78,4 +80,6 @@
   --heading-gradient-start: #c58cdd;
   --heading-gradient-middle: #8f5aa2;
   --heading-gradient-end: #815091;
+
+  --tavo-green : #40b252
 }
